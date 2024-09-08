@@ -12,19 +12,19 @@ const Footer = () => {
         <div className=' flex gap-4 items-center'>
           <p className=' text-sm text-stone-500 hover:text-red-500'>Help/privacy policy</p>
 
-          <div className='w-10 h-10 rounded-full bg-gray-700 flex justify-center items-center hover:bg-red-500'>
+          <div className='w-10 h-10 rounded-full bg-gray-700 flex justify-center items-center hover:bg-red-500 cursor-pointer hover:mt-[-15px] transition-all ease-in-out duration-300'>
             <i className="bi bi-twitter text-white text-xs"></i>
           </div>
 
-          <div className='w-10 h-10 rounded-full bg-gray-700 flex justify-center items-center hover:bg-red-500'>
+          <div className='w-10 h-10 rounded-full bg-gray-700 flex justify-center items-center hover:bg-red-500 cursor-pointer hover:mt-[-15px] transition-all ease-in-out duration-300'>
             <i className="fa-brands fa-facebook-f text-white text-xs"></i>
           </div>
 
-          <div className='w-10 h-10 rounded-full bg-gray-700 flex justify-center items-center hover:bg-red-500'>
+          <div className='w-10 h-10 rounded-full bg-gray-700 flex justify-center items-center  hover:bg-red-500 cursor-pointer hover:mt-[-15px] transition-all ease-in-out duration-300'>
             <i className="fa-brands fa-pinterest-p text-white text-xs"></i>
           </div>
 
-          <div className='w-10 h-10 rounded-full bg-gray-700 flex justify-center items-center hover:bg-red-500'>
+          <div className='w-10 h-10 rounded-full bg-gray-700 flex justify-center items-center hover:bg-red-500 cursor-pointer hover:mt-[-15px] transition-all ease-in-out duration-300'>
             <i className="fa-brands fa-instagram text-white text-xs"></i>
           </div>
 

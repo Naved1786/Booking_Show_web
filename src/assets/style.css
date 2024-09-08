@@ -1,14 +1,18 @@
 /* Change pagination bullet color */
-.swiper-pagination-bullet {
-    background-color: #c2c2c2df !important; /* Default color */
+ .slider .swiper-pagination-bullet{
+    background-color: #bdb5b5df !important; /* Default color */
     opacity: 1; /* Ensure bullets are fully visible */
     transition: background-color 0.3s ease;
   }
   /* Change active bullet color */
-  .swiper-pagination-bullet-active {
-    background-color: #ffffff !important; /* Active color */
+  .slider .swiper-pagination-bullet-active {
+    background-color: #3226dc !important; /* Active color */
   }
    
+  .slider2 .swiper-pagination{
+    bottom: -20px;
+  }
+
   @keyframes borderExpand {
     from {
       border-width: 0 0 2px 0;

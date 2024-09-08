@@ -2,12 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
-    <div className='flex h-17 items-center justify-between border-y-2 shadow-lg fixed w-full bg-white z-[1000]'>
+    <div className='flex h-20 items-center justify-between border-y-2 shadow-lg fixed w-full bg-white z-[1000]'>
       <ul className='mx-10 flex items-center justify-center'>
         <li><img src="./images/navbar-logo.png" alt="" className='w-[80px]' /></li>
       </ul>
       <ul className='flex gap-10 justify-center text-base  '>
-        <li className='group flex justify-center flex-col items-center'><Link to='/Home'>Home</Link>
+        <li className='group flex justify-center flex-col items-center'><Link to='/'>Home</Link>
           <div className='w-0 h-[2px] group-hover:w-full group-hover:bg-red-500 flex justify-center  group-hover:transition-all duration-300 ease-in-out'></div>
         </li>
         <li className='group flex justify-center flex-col items-center'><Link to='/All Movies'>All Movies</Link>

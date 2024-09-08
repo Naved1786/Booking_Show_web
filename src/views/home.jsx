@@ -4,7 +4,7 @@ import Slider2 from '../components/slider2'
 const Home = () => {
   return (
     <div className=' '>
-      <div className='py-10'>
+      <div className='pt-28'>
         <Slider />
       </div>
 

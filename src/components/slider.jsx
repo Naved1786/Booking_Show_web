@@ -12,7 +12,7 @@ import { Pagination, Autoplay } from 'swiper/modules';
 
 export default function Slider() {
   return (
-    <div className='rounded-2xl overflow-hidden'>
+    <div className='slider rounded-2xl overflow-hidden'>
       <Swiper
         spaceBetween={30}
         pagination={{
