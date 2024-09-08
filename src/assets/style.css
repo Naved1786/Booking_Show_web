@@ -1,0 +1,19 @@
+/* Change pagination bullet color */
+.swiper-pagination-bullet {
+    background-color: #c2c2c2df !important; /* Default color */
+    opacity: 1; /* Ensure bullets are fully visible */
+    transition: background-color 0.3s ease;
+  }
+  /* Change active bullet color */
+  .swiper-pagination-bullet-active {
+    background-color: #ffffff !important; /* Active color */
+  }
+   
+  @keyframes borderExpand {
+    from {
+      border-width: 0 0 2px 0;
+    }
+    to {
+      border-width: 0 0 2px 100%;
+    }
+  }
