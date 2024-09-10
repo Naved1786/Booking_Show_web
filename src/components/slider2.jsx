@@ -48,7 +48,7 @@ export default function Slider2() {
           clickable: true,
         }}
         modules={[Pagination]}
-        className="mySwiper pb-8"
+        className="mySwiper pb-12"
       >
         {
         /* <SwiperSlide className='h-40 w-72 relative'>
