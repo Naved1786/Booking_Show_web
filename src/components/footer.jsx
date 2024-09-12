@@ -34,7 +34,7 @@ const Footer = () => {
 
         <div className='w-[30%] h-full'>
           <h1 className='text-white py-3 text-base font-bold'>Buy movie tickets easily with Aovis system nationwide</h1>
-          <button className='bg-red-500 text-white hover:bg-white hover:text-red-500  w-24 h-9 text-xs rounded-sm my-5'>Get Your Ticket</button>
+          <button className='bg-red-500 text-white hover:bg-white hover:text-red-500  w-28 h-10 text-xs rounded-sm my-5 font-bold transition duration-300 ease-in-out hover:scale-105'>Get Your Ticket</button>
         </div>
         <div className='w-[20%] h-full flex flex-col gap-[10px]'>
           <h1 className='text-red-500 py-3 '>Movies</h1>
@@ -58,7 +58,7 @@ const Footer = () => {
           <p className='text-stone-500 text-sm'>Subscribe to leitmotif Newsletter this very day</p>
           <div className='relative'>
             <input type="text" placeholder='Email Address' className='w-56 h-10 text-sm outline-none px-4'/>
-            <i class="bi bi-send text-blue-400 absolute top-2 right-10"></i>
+            <i className="bi bi-send text-blue-400 absolute top-2 right-10"></i>
           </div>
           <p className='text-stone-500 text-sm'>I agree to all terms and policies of the company</p>
         </div>

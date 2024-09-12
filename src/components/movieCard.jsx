@@ -1,15 +1,18 @@
 import React from 'react'
 
-const MovieCard = () => {
+const MovieCard = (props) => {
   return (
-    <div>
-      <div className='w-[220px] h-[100px]'>
-        <img src="./images/movie-card-img1.avif" className='' alt="" />
+    <div className='overflow-hidden w-[220px] h-[325px] border-4 hover:border-red-500 rounded-xl my-12 cursor-pointer '>
+      <div className='movie-card relative w-full h-[325px] transition duration-300 ease-in-out hover:scale-105 '>
+        <img src={`./images/${props.image}`} className='w-full' alt="" />
       </div>
-      <div>
-        <p className='text-sm text-white' >Animation,Comedy/190 Mins</p>
-        <h1 className='text-xl font-bold text-white'>The Fifth Day</h1>
-        <button className='w-20 h-8 bg-white text-sm '>Get Ticket</button>
+      <div className='absolute bottom-[45px] left-[40px]'>
+        <div className='flex  items-center gap-2'>
+          <i class="bi bi-suit-heart-fill text-[#e53935] text-base"></i>
+          <p className='text-sm text-white m-0' >{props.title}</p>
+        </div>
+        <h1 className='text-LG font-bold text-white'>{props.movieName}</h1>
+        <button className='mt-4 w-20 h-8 bg-white text-xs hover:bg-red-500  hover:text-white font-bold transition duration-300 ease-in-out hover:scale-105'>Get Ticket</button>
       </div>
     </div>
   )
