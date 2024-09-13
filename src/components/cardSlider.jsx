@@ -11,14 +11,19 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import MovieCard from './movieCard';
 
-export default function CardSlider() {
+export default function CardSlider({slides}) {
   return (
     <>
       <Swiper slidesPerView={5} navigation={true} modules={[Navigation]}  className="mySwiper w-full h-[85%]">
-        <SwiperSlide className=' flex justify-center items-center'>
-          <MovieCard image="card-slider-img1.avif" title="8.9/10" movieName="JOKER" />
-        </SwiperSlide>
-        <SwiperSlide className=' flex justify-center items-center '>
+       
+        {
+          slides.map((item,index)=>(
+            <SwiperSlide className=' flex justify-center items-center' key={index}>
+            <MovieCard image={item.image} title={item.title} movieName={item.movieName} />
+          </SwiperSlide>
+          ))
+        }
+        {/* <SwiperSlide className=' flex justify-center items-center '>
           <MovieCard image="card-slider-img2.avif" title="8.9/10" movieName="THE BOOKINGHEM MURDERS"  />
         </SwiperSlide>
         <SwiperSlide className=' flex justify-center items-center '>
@@ -41,7 +46,7 @@ export default function CardSlider() {
         </SwiperSlide>
         <SwiperSlide className=' flex justify-center items-center '>
           <MovieCard image="card-slider-img9.avif" title="8.9/10" movieName="UDAN CHOO"  />
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
     </>
   );
