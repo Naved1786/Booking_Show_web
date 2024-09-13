@@ -2,7 +2,7 @@ import React from 'react'
 
 const MovieCard = (props) => {
   return (
-    <div className='overflow-hidden w-[220px] h-[325px] border-4 hover:border-red-500 rounded-xl my-12 cursor-pointer '>
+    <div className='overflow-hidden w-[220px] h-[325px] border-4 hover:border-red-500 rounded-lg my-12 cursor-pointer '>
       <div className=' movie-card relative w-full h-[325px] transition duration-300 ease-in-out hover:scale-105 '>
         <img src={`./images/${props.image}`} className='w-full h-full object-cover' alt="" />
         <div className="h-full w-full absolute  top-0" style={{background:'linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 65%)'}}></div>

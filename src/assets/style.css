@@ -26,3 +26,11 @@
     background: linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 65%);
     z-index: 10px;
   }
+  .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+    content: 'next';
+    color: red;
+}
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+  content: 'prev';
+  color: red;
+}
