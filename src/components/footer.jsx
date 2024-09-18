@@ -57,8 +57,8 @@ const Footer = () => {
           <h1 className='text-red-500 py-3'>Newsletter</h1>
           <p className='text-stone-500 text-sm'>Subscribe to leitmotif Newsletter this very day</p>
           <div className='relative'>
-            <input type="text" placeholder='Email Address' className='w-56 h-10 text-sm outline-none px-4'/>
-            <i className="bi bi-send text-blue-400 absolute top-2 right-10"></i>
+            <input type="text" placeholder='Email Address' className='w-56 h-10 text-xs outline-none px-4 bg-[#f3f3f3] '/>
+            <i className="bi bi-send text-black absolute top-2 right-10"></i>
           </div>
           <p className='text-stone-500 text-sm'>I agree to all terms and policies of the company</p>
         </div>
