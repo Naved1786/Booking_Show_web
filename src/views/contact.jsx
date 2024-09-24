@@ -2,7 +2,7 @@ import React from 'react'
 
 const Contact = () => {
     return (
-        <div className='pt-20 flex flex-col justify-center items-center '>
+        <div className='pt-20 flex flex-col justify-center items-center  bg-[url("./images/seat-bg.png")]'>
             <div className=' flex justify-center items-center flex-col w-[50%] h-[100vh]'>
                 <div className='w-8'>
                     <img src="./images/film-logo.png" alt="" />
