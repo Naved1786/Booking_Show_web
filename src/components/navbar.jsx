@@ -25,12 +25,11 @@ const Navbar = () => {
         <li className='relative'>
           <input
             type="text"
-            className=" w-64 text-base h-10 p-3 border-2 border-gray-300 rounded-full outline-none focus:border-blue-500"
-            placeholder="Are you looking for?"
+            className=" w-56 text-base h-10 p-3 border-2 border-gray-300 rounded-full outline-none focus:border-blue-500"
+            placeholder="Search movie?"
           />
           <i className="bi bi-search text-xl font absolute top-2 right-3"></i>
         </li>
-
         <li><button className='w-16 h-7 text-xs bg-red-500 hover:bg-red-700 hover:text-white text-white  py-1 px-3 rounded transition duration-300 ease-in-out hover:scale-105'>Login</button></li>
       </ul>
     </div>
