@@ -42,7 +42,7 @@ export default function Slider2() {
   return (
     <>
       <Swiper
-        slidesPerView={'5'}
+        slidesPerView={'4'}
         spaceBetween={30}
         pagination={{
           clickable: true,
