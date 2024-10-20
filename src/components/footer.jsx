@@ -37,7 +37,7 @@ const Footer = () => {
           <button className='bg-red-500 text-white hover:bg-white hover:text-red-500  w-28 h-10 text-xs rounded-sm my-5 font-bold transition duration-300 ease-in-out hover:scale-105'>Get Your Ticket</button>
         </div>
         <div className='w-[20%] h-full flex flex-col gap-[10px]'>
-          <h1 className='text-red-500 py-3 '>Movies</h1>
+          <h1 className='text-red-400 py-3 '>Movies</h1>
           <p className="text-stone-500 text-sm w-10 border-b-0 hover:text-red-500 hover:border-b-red-500  relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-red-500 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">Action</p>
           <p className="text-stone-500 text-sm w-16 border-b-0 hover:text-red-500 hover:border-b-red-500  relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-red-500 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">Adventure</p>
           <p className="text-stone-500 text-sm w-16 border-b-0 hover:text-red-500 hover:border-b-red-500  relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-red-500 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">Animation</p>
