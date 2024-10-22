@@ -30,7 +30,7 @@ const Navbar = () => {
           />
           <i className="bi bi-search text-xl font absolute top-2 right-3"></i>
         </li>
-        <li><button className='w-16 h-7 text-xs bg-red-500 hover:bg-red-700 hover:text-white text-white  py-1 px-3 rounded transition duration-300 ease-in-out hover:scale-105'>Login</button></li>
+        <li><button className='w-16 h-7 text-xs bg-red-500 hover:bg-red-600 hover:text-white text-white  py-1 px-3 rounded transition duration-300 ease-in-out hover:scale-105'>Login</button></li>
       </ul>
     </div>
   )
