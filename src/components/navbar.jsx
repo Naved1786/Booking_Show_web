@@ -13,7 +13,7 @@ const Navbar = () => {
         <li className='relative'><i className="fa-solid fa-location-dot text-3xl text-red-400 cursor-pointer" onClick={() => handleShowMenu()}></i>
           {
             isShowMenu &&
-            <div class="bg-white h-[80vh] overflow-scroll w-80 md:w-96 p-4 rounded-lg shadow-lg absolute" style={{ scrollbarWidth: 'none' }}>
+            <div class="bg-white h-[80vh] overflow-scroll w-80 md:w-96 p-4 rounded-lg shadow-xl  absolute" style={{ scrollbarWidth: 'none' }}>
               <div class="flex justify-between items-center mb-4">
                 <h2 class="text-lg font-semibold">Select City</h2>
                 <button class="text-gray-500 hover:text-gray-700 text-xl font-bold" onClick={() => handleShowMenu()}>&times;</button>
