@@ -6,6 +6,8 @@ import LoginPage from './views/loginPage';
 import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Contact from './views/contact';
+import SignUpPage from './views/signUpPage';
+
 
 function App() {
   return(
@@ -16,6 +18,7 @@ function App() {
         <Route path='/about' element={<About/>}/>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/loginPage' element={<LoginPage/>}/>
+        <Route path='/signUpPage' element={<SignUpPage/>}/>
       </Routes>
       <Footer/>
     </div>

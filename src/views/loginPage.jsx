@@ -1,68 +1,59 @@
+// LoginPage.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
-    return (
-        <div className="flex min-h-screen">
-            <div className="w-1/2 flex items-center justify-center bg-gradient-to-br from-orange-400 via-purple-500 to-purple-700 text-white">
-                <div className="w-full h-full relative">
-                    <img
-                        src="./images/cinema-popcorn-img.jpg"
-                        alt="Cinema Logo"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-
+  return (
+    <div className="flex h-screen bg-gray-100 pt-20">
+      <div className="w-1/2 flex items-center justify-center">
+        <div className="p-8 w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-6 text-center text-red-400">Sign In</h2>
+          <form>
+            <div className="mb-4">
+              <label className="block text-red-400 font-semibold mb-2">EMAIL</label>
+              <input
+                type="email"
+                placeholder="Email"
+                className="w-full p-2 border border-red-400 rounded-lg bg-gray-50 focus:outline-none focus:border-red-400"
+              />
             </div>
-
-            <div className="w-1/2 flex items-center justify-center bg-white">
-                <div className="w-3/4 max-w-md">
-                    <h2 className="text-3xl font-semibold mb-2 text-gray-800">Login</h2>
-                    <p className="text-gray-500 mb-8">Welcome back! Please login to your account.</p>
-
-                    <form className="space-y-6">
-                        <div>
-                            <label className="block text-gray-700" htmlFor="username">User Name</label>
-                            <input
-                                id="username"
-                                type="email"
-                                placeholder="username@gmail.com"
-                                className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block text-gray-700" htmlFor="password">Password</label>
-                            <input
-                                id="password"
-                                type="password"
-                                placeholder="********"
-                                className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                            />
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                            <label className="inline-flex items-center">
-                                <input type="checkbox" className="form-checkbox text-purple-500" />
-                                <span className="ml-2 text-gray-600">Remember Me</span>
-                            </label>
-                            <a href="#" className="text-sm text-purple-500 hover:underline">Forgot Password?</a>
-                        </div>
-
-                        <button
-                            type="submit"
-                            className="w-full bg-red-400 hover:bg-red-500 text-white font-semibold py-2 rounded-md transition duration-200"
-                        >
-                            Login
-                        </button>
-                    </form>
-
-                    <p className="mt-6 text-center text-gray-600">
-                        New User? <a href="#" className="text-purple-500 hover:underline">Signup</a>
-                    </p>
-                </div>
+            <div className="mb-4">
+              <label className="block text-red-400 font-semibold mb-2">PASSWORD</label>
+              <input
+                type="password"
+                placeholder="Password"
+                className="w-full p-2 border border-red-400 rounded-lg bg-gray-50 focus:outline-none focus:border-red-400"
+              />
             </div>
+            <div className="flex items-center justify-between mb-4">
+              <label className="flex items-center text-red-400">
+                <input type="checkbox" className="form-checkbox text-red-400" />
+                <span className="ml-2">Remember Me</span>
+              </label>
+              <a href="#" className="text-red-400 hover:text-red-500">Forgot Password</a>
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-red-400 text-white font-bold py-2 rounded-lg transition duration-200 hover:bg-red-500"
+            >
+              Sign In
+            </button>
+          </form>
         </div>
-    );
+      </div>
+      <div className="w-1/2 bg-red-400 flex items-center justify-center text-white pt-20">
+        <div className="text-center px-8">
+          <h2 className="text-3xl font-bold mb-2">Welcome to login</h2>
+          <p className="mb-4">Don't have an account?</p>
+          <Link to="/SignUpPage">
+            <button className="bg-white text-red-400 font-bold py-2 px-6 rounded-full border-2 border-white hover:bg-gray-100 transition duration-200">
+              Sign Up
+            </button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default LoginPage;
