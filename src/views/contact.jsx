@@ -5,7 +5,7 @@ import Banner from '../components/banner';
 const Contact = () => {
     return (
         <div>
-            <Banner/>
+            <Banner heading="Contact Us" paragraph="We’re here to help! If you have any questions, feedback, or need assistance with our movie ticket transfer service, please don't hesitate to reach out. Your satisfaction is our priority."/>
             <div className='pt-20 flex flex-col justify-center items-center w-full'>
 
                 <div className='flex justify-center items-center flex-col w-[50%] h-[100vh]'>

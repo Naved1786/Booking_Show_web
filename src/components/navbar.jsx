@@ -188,7 +188,7 @@ const Navbar = () => {
         <li class="flex items-center justify-center">
 
           <button class="text-red-400 text-xs  border-2 border-red-400 rounded-lg px-2 py-2 hover:bg-red-500 hover:text-white transition-colors duration-300">
-            Login / Register
+            <Link to='LoginPage'>Login/Register</Link>
           </button>
 
         </li>
