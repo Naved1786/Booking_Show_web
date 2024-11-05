@@ -19,7 +19,7 @@ export default function CardSlider({slides}) {
         {
           slides.map((item,index)=>(
             <SwiperSlide className=' flex justify-center items-center' key={index}>
-            <MovieCard image={item.image} title={item.title} movieName={item.movieName} />
+            <MovieCard image={item.image} title={item.title} movieName={item.movieName} movieItem={item}/>
           </SwiperSlide>
           ))
         }

@@ -67,47 +67,119 @@ const Home = () => {
     {
       image: 'card-slider-img1.avif',
       title: '8.9/10',
-      movieName: 'JOKER'
+      movieName: 'JOKER',
+      posterUrl: 'https://image-url.jpg',
+      genres: ['Adventure', 'Fantasy', 'Action'],
+      language: 'English',
+      releaseDate: 'April 27, 2018 (USA)',
+      duration: '2h 36m',
+      description:
+        'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.',
+      rating: 99,
     },
     {
       image: 'card-slider-img2.avif',
       title: '8.9/10',
-      movieName: 'THE BUKHINGHAM MURDERS'
+      movieName: 'THE BUKHINGHAM MURDERS',
+      posterUrl: 'https://image-url.jpg',
+      genres: ['Adventure', 'Fantasy', 'Action'],
+      language: 'English',
+      releaseDate: 'April 27, 2018 (USA)',
+      duration: '2h 36m',
+      description:
+        'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.',
+      rating: 99,
     },
     {
       image: 'card-slider-img3.avif',
       title: '8.9/10',
-      movieName: 'STREE 2'
+      movieName: 'STREE 2',
+      posterUrl: 'https://image-url.jpg',
+      genres: ['Adventure', 'Fantasy', 'Action'],
+      language: 'English',
+      releaseDate: 'April 27, 2018 (USA)',
+      duration: '2h 36m',
+      description:
+        'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.',
+      rating: 99,
     },
     {
       image: 'card-slider-img4.avif',
       title: '8.9/10',
-      movieName: 'KHEL KHEL ME'
+      movieName: 'KHEL KHEL ME',
+      posterUrl: 'https://image-url.jpg',
+      genres: ['Adventure', 'Fantasy', 'Action'],
+      language: 'English',
+      releaseDate: 'April 27, 2018 (USA)',
+      duration: '2h 36m',
+      description:
+        'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.',
+      rating: 99,
     },
     {
       image: 'card-slider-img5.avif',
       title: '8.9/10',
-      movieName: 'VEDAA'
+      movieName: 'VEDAA',
+      posterUrl: 'https://image-url.jpg',
+      genres: ['Adventure', 'Fantasy', 'Action'],
+      language: 'English',
+      releaseDate: 'April 27, 2018 (USA)',
+      duration: '2h 36m',
+      description:
+        'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.',
+      rating: 99,
     },
     {
       image: 'card-slider-img6.avif',
       title: '8.9/10',
-      movieName: 'THE GREATEST OF ALL TIME..'
+      movieName: 'THE GREATEST OF ALL TIME..',
+      posterUrl: 'https://image-url.jpg',
+      genres: ['Adventure', 'Fantasy', 'Action'],
+      language: 'English',
+      releaseDate: 'April 27, 2018 (USA)',
+      duration: '2h 36m',
+      description:
+        'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.',
+      rating: 99,
     },
     {
       image: 'card-slider-img7.avif',
       title: '8.9/10',
-      movieName: 'BEETLIJUICE BEETLIJUICE'
+      movieName: 'BEETLIJUICE BEETLIJUICE',
+      posterUrl: 'https://image-url.jpg',
+      genres: ['Adventure', 'Fantasy', 'Action'],
+      language: 'English',
+      releaseDate: 'April 27, 2018 (USA)',
+      duration: '2h 36m',
+      description:
+        'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.',
+      rating: 99,
     },
     {
       image: 'card-slider-img8.avif',
       title: '8.9/10',
-      movieName: 'BIBI RAJNI'
+      movieName: 'BIBI RAJNI',
+      posterUrl: 'https://image-url.jpg',
+      genres: ['Adventure', 'Fantasy', 'Action'],
+      language: 'English',
+      releaseDate: 'April 27, 2018 (USA)',
+      duration: '2h 36m',
+      description:
+        'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.',
+      rating: 99,
     },
     {
       image: 'card-slider-img9.avif',
       title: '8.9/10',
-      movieName: 'URANCHHU'
+      movieName: 'URANCHHU',
+      posterUrl: 'https://image-url.jpg',
+      genres: ['Adventure', 'Fantasy', 'Action'],
+      language: 'English',
+      releaseDate: 'April 27, 2018 (USA)',
+      duration: '2h 36m',
+      description:
+        'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.',
+      rating: 99,
     },
   ]
 
