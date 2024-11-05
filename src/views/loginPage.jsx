@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 const LoginPage = () => {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen ">
       <div className="w-1/2 flex flex-col justify-center items-center p-8 bg-white">
         <h1 className="text-4xl font-bold mb-4">Sign in</h1>
         <div className="flex space-x-4 mb-4">

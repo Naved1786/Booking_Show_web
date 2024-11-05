@@ -7,19 +7,24 @@ import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Contact from './views/contact';
 import SignUpPage from './views/signUpPage';
+import MovieDetails from './views/movieDetails';
 
 
 function App() {
   return(
     <div>
       <Navbar/>
+      < div className=''>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/loginPage' element={<LoginPage/>}/>
         <Route path='/signUpPage' element={<SignUpPage/>}/>
+        <Route path='/movieDetails' element={<MovieDetails/>}/>
       </Routes>
+      </div>
+      
       <Footer/>
     </div>
   );
