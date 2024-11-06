@@ -29,7 +29,7 @@ export default function AboutMovieSlider() {
                 spaceBetween={30}
             >
                 {slides.map((slide,index)=>(    
-                    <SwiperSlide className=' h-80 w-80 flex flex-col justify-center items-center '>
+                    <SwiperSlide className=' h-64 w-80 flex flex-col justify-center items-center '>
                     <img src={slide.src} alt={slide.name} className='rounded-full' />
                     <h1 className='text-xl'>{slide.name}</h1>
                     <p className='text-base text-gray-500'>{slide.role}</p>

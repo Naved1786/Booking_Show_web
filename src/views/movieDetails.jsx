@@ -64,17 +64,24 @@ const MovieDetails = () => {
           </div>
         </div>
       </div>
-      <div className='w-[80%]'>
-        <div>
+      <div className='w-[85%] pt-8 px-10 py-10'>
+        <div className='border-b-[1px] pb-8'>
           <h1 className='text-3xl font-bold'>About the movie</h1>
-          <p>The hilarious revelation of the shocking fact that your friends and spouses, are nothing more than masked strangers, dwelling behind a phony pile of lies... sometimes just needs one game!
-
+          <p className='pt-3'>The hilarious revelation of the shocking fact that your friends and spouses, are nothing more than masked strangers, dwelling behind a phony pile of lies... sometimes just needs one game!
+            <br />
+            <br />
             That game is now on!</p>
         </div>
-        <div>
-          <h1 className='text-2xl font-semibold'>Cast</h1>
+        <div className=' border-b-[1px] pt-6 pb-6'>
+          <h1 className='text-3xl font-bold'>Cast</h1>
           <div>
-            <AboutMovieSlider/>
+            <AboutMovieSlider />
+          </div>
+        </div>
+        <div className=' border-b-[1px] pt-6 pb-6' >
+          <h1 className='text-3xl font-bold'>Crew</h1>
+          <div>
+          <AboutMovieSlider />
           </div>
         </div>
       </div>
