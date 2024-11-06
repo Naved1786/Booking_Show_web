@@ -26,15 +26,16 @@ const MovieDetails = () => {
   return (
 
     <div className="container mx-auto p-4">
-      <div className="w-full h-[90vh] flex flex-col md:flex-row items-center bg-gray-900 text-white p-8 rounded-lg mx-auto pt-20">
+      <div className="relative w-full h-[90vh] flex flex-col md:flex-row items-center bg-gray-900 text-white rounded-lg mx-auto pt-20 bg-[url('/images/bg-stree2.jpg')] bg-cover bg-center">
+      <div className='bg-black w-full h-[90vh] opacity-60 absolute bottom-0'></div>
         <img
           src={`./images/${movie?.image}`}
           // src="./images/feature-img1.jpg"
           alt={`${movie?.movieName} Poster`}
-          className="w-full md:w-1/3 h-80 object-cover rounded-lg shadow-lg"
+          className="w-full md:w-1/3 h-80 object-cover rounded-lg shadow-lg z-10"
         />
 
-        <div className="md:ml-8 mt-4 md:mt-0 flex flex-col justify-between">
+        <div className="md:ml-8 mt-4 md:mt-0 flex flex-col justify-between z-10">
           <h2 className="text-3xl font-bold mb-2">{movie?.movieName}</h2>
           <div className="flex space-x-2 mb-4">
             {movie?.genres?.map((genre, index) => (

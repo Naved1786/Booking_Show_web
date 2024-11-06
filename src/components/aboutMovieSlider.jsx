@@ -10,6 +10,7 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 
 const slides = [
+    
     { src: "./images/Akshay-kumar.avif", name: "Akshay Kumar", role: "as Rishabh Malik" },
     { src: "./images/vaani-kapoor.avif", name: "Vaani Kapoor", role: "as Pooja" },
     { src: "./images/ammy-virk.avif", name: "Ammy Virk", role: "as Harry" },
