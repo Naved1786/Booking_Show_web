@@ -1,17 +1,17 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-
+import AboutMovieSlider from '../components/aboutMovieSlider';
 const MovieDetails = () => {
-  const location=useLocation();
-  const [movie,setMovie]=useState();
-  useEffect(()=>{
+  const location = useLocation();
+  const [movie, setMovie] = useState();
+  useEffect(() => {
     setMovie(location?.state?.item);
-    console.log("movie",location?.state?.item)
-  },[location.state])
-  useEffect(()=>{
+    console.log("movie", location?.state?.item)
+  }, [location.state])
+  useEffect(() => {
     setMovie(location?.state?.item);
-    console.log("movie",location?.state?.item)
-  },[])
+    console.log("movie", location?.state?.item)
+  }, [])
   // const movie = {
   //   title: 'Avengers: Infinity War',
   //   posterUrl: 'https://image-url.jpg', // Replace with an actual image URL
@@ -28,8 +28,8 @@ const MovieDetails = () => {
     <div className="container mx-auto p-4">
       <div className="w-full h-[90vh] flex flex-col md:flex-row items-center bg-gray-900 text-white p-8 rounded-lg mx-auto pt-20">
         <img
-          // src={movie.posterUrl}
-          src="./images/feature-img1.jpg"
+          src={`./images/${movie?.image}`}
+          // src="./images/feature-img1.jpg"
           alt={`${movie?.movieName} Poster`}
           className="w-full md:w-1/3 h-80 object-cover rounded-lg shadow-lg"
         />
@@ -61,6 +61,20 @@ const MovieDetails = () => {
             <button className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded">
               Book Tickets
             </button>
+          </div>
+        </div>
+      </div>
+      <div className='w-[80%]'>
+        <div>
+          <h1 className='text-3xl font-bold'>About the movie</h1>
+          <p>The hilarious revelation of the shocking fact that your friends and spouses, are nothing more than masked strangers, dwelling behind a phony pile of lies... sometimes just needs one game!
+
+            That game is now on!</p>
+        </div>
+        <div>
+          <h1 className='text-2xl font-semibold'>Cast</h1>
+          <div>
+            <AboutMovieSlider/>
           </div>
         </div>
       </div>
