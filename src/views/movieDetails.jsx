@@ -1,48 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import AboutMovieSlider from '../components/aboutMovieSlider';
+import { FaPlay } from 'react-icons/fa';
+
 const MovieDetails = () => {
   const location = useLocation();
   const [movie, setMovie] = useState();
-  useEffect(() => {
-    setMovie(location?.state?.item);
-    console.log("movie", location?.state?.item)
-  }, [location.state])
-  useEffect(() => {
-    setMovie(location?.state?.item);
-    console.log("movie", location?.state?.item)
-  }, [])
-  // const movie = {
-  //   title: 'Avengers: Infinity War',
-  //   posterUrl: 'https://image-url.jpg', // Replace with an actual image URL
-  //   genres: ['Adventure', 'Fantasy', 'Action'],
-  //   language: 'English',
-  //   releaseDate: 'April 27, 2018 (USA)',
-  //   duration: '2h 36m',
-  //   description:
-  //     'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.',
-  //   rating: 99,
-  // };
-  return (
 
+  useEffect(() => {
+    setMovie(location?.state?.item);
+  }, [location.state]);
+
+  return (
     <div className="container mx-auto p-4">
       <div className="relative w-full h-[90vh] flex flex-col md:flex-row items-center bg-gray-900 text-white rounded-lg mx-auto pt-20 bg-[url('/images/bg-stree2.jpg')] bg-cover bg-center">
-      <div className='bg-black w-full h-[90vh] opacity-60 absolute bottom-0'></div>
-        <img
-          src={`./images/${movie?.image}`}
-          // src="./images/feature-img1.jpg"
-          alt={`${movie?.movieName} Poster`}
-          className="w-full md:w-1/3 h-80 object-cover rounded-lg shadow-lg z-10"
-        />
-
+        <div className='bg-black w-full h-[90vh] opacity-60 absolute bottom-0'></div>
+        <div className="relative w-64 h-80 z-10 ml-12">
+          <img
+            src={`./images/${movie?.image}`}
+            alt={`${movie?.movieName} Poster`}
+            className="w-full h-full object-cover rounded-lg shadow-lg"
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <FaPlay className="text-white text-6xl bg-black bg-opacity-50 p-4 rounded-full" />
+          </div>
+        </div>
         <div className="md:ml-8 mt-4 md:mt-0 flex flex-col justify-between z-10">
           <h2 className="text-3xl font-bold mb-2">{movie?.movieName}</h2>
           <div className="flex space-x-2 mb-4">
             {movie?.genres?.map((genre, index) => (
-              <span
-                key={index}
-                className="bg-purple-600 px-2 py-1 rounded-full text-xs font-semibold"
-              >
+              <span key={index} className="bg-purple-600 px-2 py-1 rounded-full text-xs font-semibold">
                 {genre}
               </span>
             ))}
@@ -73,21 +60,21 @@ const MovieDetails = () => {
             <br />
             That game is now on!</p>
         </div>
-        <div className=' border-b-[1px] pt-6 pb-6'>
+        <div className='border-b-[1px] pt-6 pb-6'>
           <h1 className='text-3xl font-bold'>Cast</h1>
           <div>
             <AboutMovieSlider />
           </div>
         </div>
-        <div className=' border-b-[1px] pt-6 pb-6' >
+        <div className='border-b-[1px] pt-6 pb-6'>
           <h1 className='text-3xl font-bold'>Crew</h1>
           <div>
-          <AboutMovieSlider />
+            <AboutMovieSlider />
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default MovieDetails;

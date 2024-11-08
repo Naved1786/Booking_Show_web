@@ -95,9 +95,9 @@ export default function Slider() {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index} className="relative w-full h-80 flex justify-center items-center">
-            <div className="h-full bg-black opacity-30 w-full absolute top-0"></div>
+            <div className="h-full bg-black opacity-40 w-full absolute top-0"></div>
             <div className='absolute w-40 h-44 top-11 right-28 z-20 shadow-lg'>
-              <img src={slide.src2} alt="" />
+              <img src={slide.src2} alt="" className='' />
               <button
                 onClick={() => handlePlayClick(slide.videoUrl)}
                 className="bi bi-play-circle top-[40%] text-white text-4xl hover:text-red-500 absolute inset-0 flex items-center justify-center cursor-pointer"
