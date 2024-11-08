@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import AboutMovieSlider from '../components/aboutMovieSlider';
 import { FaPlay } from 'react-icons/fa';
-
+import { Link } from 'react-router-dom';
 const MovieDetails = () => {
   const location = useLocation();
   const [movie, setMovie] = useState();
@@ -46,9 +46,11 @@ const MovieDetails = () => {
             <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded">
               Watch Trailer
             </button>
-            <button className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded">
+           <Link to="/bookTickets">
+           <button className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded">
               Book Tickets
             </button>
+           </Link>
           </div>
         </div>
       </div>

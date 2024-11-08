@@ -8,6 +8,7 @@ import Footer from './components/footer';
 import Contact from './views/contact';
 import SignUpPage from './views/signUpPage';
 import MovieDetails from './views/movieDetails';
+import BookTickets from './views/bookTickets';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/loginPage' element={<LoginPage/>}/>
         <Route path='/signUpPage' element={<SignUpPage/>}/>
         <Route path='/movieDetails' element={<MovieDetails/>}/>
+        <Route path='/bookTickets' element={<BookTickets/>}/>
       </Routes>
       </div>
       
