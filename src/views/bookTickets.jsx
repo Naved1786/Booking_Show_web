@@ -18,7 +18,7 @@ const BookTickets = () => {
         <div className='pt-20 flex flex-col justify-center items-center'>
             <div className='flex flex-col justify-center items-center'>
                 <DatePicker
-                 placeholderText="Select Date"
+                    placeholderText="Select Date"
                     selected={selectedDate}
                     onChange={(date) => setSelectedDate(date)}
                     dateFormat="MMMM d, yyyy"
@@ -28,7 +28,7 @@ const BookTickets = () => {
             {theaters.map((theater, index) => (
 
                 <div className='flex flex-col justify-center w-[95%] h-28 rounded-lg border-[1px] border-red-400 bg-[#fef2f2] mt-5'>
-                    <h1 className='text-yellow-500 pl-4 font-bold'>{theater.name}</h1>
+                    <h1 className='text-yellow-500 text-lg pl-4'>{theater.name}</h1>
                     <div className=' flex flex-wrap gap-4 pl-4 pt-2'>
                         {theater.timings.map((time) => (
                             <div className="flex flex-wrap gap-10">
@@ -40,7 +40,16 @@ const BookTickets = () => {
                         ))}
                     </div>
                 </div>
+
             ))}
+            <div className="mt-8 text-center">
+                <button
+                    className="px-8 mb-10 py-3 bg-red-400 text-white rounded-lg hover:bg-red-500 disabled:opacity-50"
+                    // disabled={!selectedDate || !selectedTime}
+                >
+                    Confirm Booking
+                </button>
+            </div>
         </div>
     );
 }
