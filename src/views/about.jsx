@@ -1,11 +1,12 @@
 // src/AboutUs.js
 import React from "react";
 import Banner from "../components/banner";
+import CompanySlider from "../components/companySlider";
 const About = () => {
   return (
-    <div>
+    <div className=" flex flex-col justify-center items-center">
       <Banner heading="About Us" paragraph="Welcome to Movie Tickets Booking & Resell - your platform for buying, selling, and transferring movie tickets effortlessly" />
-      <div className="flex flex-row  h-[100vh] px-20">
+      <div className="flex flex-row  h-[100vh] px-20 border-b-[1px]">
         <div className="w-1/2 flex justify-center items-center">
           <img src="./images/about-Img1.jpg" alt="" className="w-96" />
         </div>
@@ -24,10 +25,14 @@ const About = () => {
             </div>
           </div>
           <div className='pt-9'>
-          <button className='bg-red-500 w-40 h-10 text-xs font-bold text-white hover:bg-black hover:text-white transition duration-300 ease-in-out hover:scale-105'>Discover More</button>
+            <button className='bg-red-500 w-40 h-10 text-xs font-bold text-white hover:bg-black hover:text-white transition duration-300 ease-in-out hover:scale-105'>Discover More</button>
+          </div>
         </div>
-        </div>
-        
+
+
+      </div>
+      <div className="w-[80%]">
+        <CompanySlider />
       </div>
     </div>
   );
