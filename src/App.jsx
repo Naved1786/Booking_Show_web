@@ -9,7 +9,7 @@ import Contact from './views/contact';
 import SignUpPage from './views/signUpPage';
 import MovieDetails from './views/movieDetails';
 import BookTickets from './views/bookTickets';
-
+import SeatSelection from './views/seatSelection';
 
 function App() {
   return(
@@ -24,6 +24,7 @@ function App() {
         <Route path='/signUpPage' element={<SignUpPage/>}/>
         <Route path='/movieDetails' element={<MovieDetails/>}/>
         <Route path='/bookTickets' element={<BookTickets/>}/>
+        <Route path='/seatSelection' element={<SeatSelection/>}/>
       </Routes>
       </div>
       

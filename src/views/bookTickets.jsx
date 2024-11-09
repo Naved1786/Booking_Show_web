@@ -32,7 +32,7 @@ const BookTickets = () => {
                     <div className=' flex flex-wrap gap-4 pl-4 pt-2'>
                         {theater.timings.map((time) => (
                             <div className="flex flex-wrap gap-10">
-                                <button className='px-4 py-2 rounded border hover:bg-red-400 hover:text-white border-black bg-transparent text-black'>
+                                <button className='px-4 py-2 rounded border hover:bg-red-500 hover:text-white border-black bg-transparent text-black'>
                                     {time}
                                 </button>
                             </div>
