@@ -55,7 +55,7 @@ export default function CompanySlider() {
                 spaceBetween={30}
                 navigation={true}
                 modules={[Pagination, Navigation]}
-                className="mySwiper mb-10 flex flex-row justify-center items-center"
+                className="mySwiper mb-10 flex flex-row justify-center items-center pt-10"
             >
                 
                 {companies.map((company)=>
