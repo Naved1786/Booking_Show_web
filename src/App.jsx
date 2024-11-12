@@ -10,6 +10,10 @@ import SignUpPage from './views/signUpPage';
 import MovieDetails from './views/movieDetails';
 import BookTickets from './views/bookTickets';
 import SeatSelection from './views/seatSelection';
+import PaymentDetails from './views/paymentDetails';
+import AdminLogin from './views/adminLogin';
+import AdminDashboard from './views/adminDashboard';
+import UserDashboard from './views/userDashboard';
 
 function App() {
   return(
@@ -25,6 +29,10 @@ function App() {
         <Route path='/movieDetails' element={<MovieDetails/>}/>
         <Route path='/bookTickets' element={<BookTickets/>}/>
         <Route path='/seatSelection' element={<SeatSelection/>}/>
+        <Route path='/paymentDetails' element={<PaymentDetails/>}/>
+        <Route path='/adminLogin' element={<AdminLogin/>}/>
+        <Route path='/adminDashboard' element={<AdminDashboard/>}/>
+        <Route path='/userDashboard' element={<UserDashboard/>}/>
       </Routes>
       </div>
       
