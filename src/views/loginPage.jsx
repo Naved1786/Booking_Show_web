@@ -1,6 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { login } from '../services/user-service';
+import { doLogin } from '../auth';
+import { toast } from 'react-toast';
 const LoginPage = () => {
+  const [loginDetail, setLoginDeatail] = useState({
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+  const handleOnChange = (event, field) => {
+    setLoginDeatail({
+      ...loginDetail,
+      [field]: event.target.value,
+    });
+  };
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    console.log(loginDetail);
+    if (loginDetail.email.trim() == "" || loginDetail.password.trim() == "") {
+      toast.error("Username or Password is required");
+      return;
+    }
+    login(loginDetail)
+      .then((data) => {
+        console.log("Login:");
+        console.log(data);
+        doLogin(data, () => {
+          console.log("login details is saved");          
+          navigate("/userDashboard");
+        });
+        toast.success("login success");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("something went wrong");
+      });
+  };
   return (
     <div className="flex h-screen ">
       <div className="w-1/2 flex flex-col justify-center items-center p-8 bg-white">
@@ -17,16 +53,20 @@ const LoginPage = () => {
           </div>
         </div>
         <p className="text-gray-500 mb-4">or use your account</p>
-        <form className="flex flex-col space-y-4 w-3/4">
+        <form className="flex flex-col space-y-4 w-3/4" onSubmit={handleFormSubmit}>
           <input
             type="email"
             placeholder="Email"
             className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+            value={setLoginDeatail.email}
+            onChange={(e)=> handleOnChange(e,"email")}
           />
           <input
             type="password"
             placeholder="Password"
             className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+            value={setLoginDeatail.password}
+            onChange={(e)=>handleOnChange(e,"password")}
           />
           <a href="#" className="text-sm text-orange-500 hover:underline text-right">
             Forgot your password?

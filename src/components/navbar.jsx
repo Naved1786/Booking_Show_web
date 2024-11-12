@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { isLoggedIn } from '../auth';
 const Navbar = () => {
   const [isShowMenu, setIsShowMenu] = useState(false);
 
@@ -187,9 +188,9 @@ const Navbar = () => {
         </li>
         <li class="flex items-center justify-center">
 
-          <button class="text-red-400 text-xs  border-2 border-red-400 rounded-lg px-2 py-2 hover:bg-red-500 hover:text-white transition-colors duration-300">
+          {!isLoggedIn() && <><button class="text-red-400 text-xs  border-2 border-red-400 rounded-lg px-2 py-2 hover:bg-red-500 hover:text-white transition-colors duration-300">
             <Link to='LoginPage'>Login/Register</Link>
-          </button>
+          </button></> }
 
         </li>
       </ul>

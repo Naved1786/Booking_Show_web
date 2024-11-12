@@ -14,10 +14,12 @@ import PaymentDetails from './views/paymentDetails';
 import AdminLogin from './views/adminLogin';
 import AdminDashboard from './views/adminDashboard';
 import UserDashboard from './views/userDashboard';
+import { ToastContainer } from 'react-toast';
 
 function App() {
   return(
     <div>
+      <ToastContainer/>
       <Navbar/>
       < div className=''>
       <Routes>
