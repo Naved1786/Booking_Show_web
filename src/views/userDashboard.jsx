@@ -1,104 +1,99 @@
-import React from 'react';
-import { FaUser, FaFilm, FaTicketAlt, FaHistory, FaCog } from 'react-icons/fa';
+import React from "react";
 
-function UserDashboard() {
+const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex">
+    <div className="flex h-screen bg-white pt-20">
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md">
-        <div className="p-4 font-bold text-xl text-red-500 border-b border-gray-200">
-          User Dashboard
+      <div className="w-64 bg-red-500 p-6">
+        <div className="flex justify-center items-center mb-8">
+          <img
+            src="./images/profile-img.jpg" // Placeholder for profile image
+            alt="Profile"
+            className="rounded-full border-4 border-white w-24 h-24"
+          />
         </div>
-        <nav className="p-4">
-          <ul>
-            <li className="mb-4">
-              <a href="#profile" className="text-gray-700 hover:text-red-500 font-medium">
-                Profile
-              </a>
+        <nav>
+          <ul className="space-y-6 text-white">
+            <li>
+              <a href="#" className="text-xl hover:text-gray-300">Dashboard</a>
             </li>
-            <li className="mb-4">
-              <a href="#my-bookings" className="text-gray-700 hover:text-red-500 font-medium">
-                My Bookings
-              </a>
+            <li>
+              <a href="#" className="text-xl hover:text-gray-300">Bookings</a>
             </li>
-            <li className="mb-4">
-              <a href="#upcoming-movies" className="text-gray-700 hover:text-red-500 font-medium">
-                Upcoming Movies
-              </a>
+            <li>
+              <a href="#" className="text-xl hover:text-gray-300">Tickets</a>
             </li>
-            <li className="mb-4">
-              <a href="#booking-history" className="text-gray-700 hover:text-red-500 font-medium">
-                Booking History
-              </a>
+            <li>
+              <a href="#" className="text-xl hover:text-gray-300">Settings</a>
             </li>
-            <li className="mb-4">
-              <a href="#settings" className="text-gray-700 hover:text-red-500 font-medium">
-                Settings
-              </a>
-            </li>
-            <li className="mb-4">
-              <a href="#logout" className="text-gray-700 hover:text-red-500 font-medium">
-                Logout
-              </a>
+            <li>
+              <a href="#" className="text-xl hover:text-gray-300">Logout</a>
             </li>
           </ul>
         </nav>
-      </aside>
+      </div>
 
-      {/* Main Content */}
-      <main className="flex-1 p-6">
-        <header className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800">Welcome to Your Dashboard</h1>
-          <button className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">
-            Logout
-          </button>
-        </header>
+      {/* Main Content Area */}
+      <div className="flex-1 p-8">
+        <h1 className="text-3xl font-semibold text-red-500 mb-4">Welcome to Mr Sarfraz</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Booking Stats Card */}
+          <div className="bg-white shadow-lg rounded-lg p-6 flex items-center justify-between">
+            <div>
+              <h2 className="text-xl text-gray-700">Upcoming Bookings</h2>
+              <p className="text-gray-500">You have 3 upcoming bookings</p>
+            </div>
+            <div className="bg-red-500 text-white p-4 rounded-full">
+              <i className="fas fa-ticket-alt"></i>
+            </div>
+          </div>
 
-        {/* Dashboard Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white p-4 shadow rounded-md">
-            <h2 className="text-xl font-semibold text-gray-700">Upcoming Bookings</h2>
-            <p className="text-3xl font-bold text-red-500">2</p>
+          {/* Ticket Stats Card */}
+          <div className="bg-white shadow-lg rounded-lg p-6 flex items-center justify-between">
+            <div>
+              <h2 className="text-xl text-gray-700">Tickets Available</h2>
+              <p className="text-gray-500">You have 5 tickets available for resale</p>
+            </div>
+            <div className="bg-red-500 text-white p-4 rounded-full">
+              <i className="fas fa-recycle"></i>
+            </div>
           </div>
-          <div className="bg-white p-4 shadow rounded-md">
-            <h2 className="text-xl font-semibold text-gray-700">Available Movies</h2>
-            <p className="text-3xl font-bold text-red-500">12</p>
-          </div>
-          <div className="bg-white p-4 shadow rounded-md">
-            <h2 className="text-xl font-semibold text-gray-700">Booking History</h2>
-            <p className="text-3xl font-bold text-red-500">20</p>
+
+          {/* Notifications Stats Card */}
+          <div className="bg-white shadow-lg rounded-lg p-6 flex items-center justify-between">
+            <div>
+              <h2 className="text-xl text-gray-700">Notifications</h2>
+              <p className="text-gray-500">No new notifications</p>
+            </div>
+            <div className="bg-red-500 text-white p-4 rounded-full">
+              <i className="fas fa-bell"></i>
+            </div>
           </div>
         </div>
 
-        {/* User Options */}
-        <section className="mt-8">
-          <h2 className="text-xl font-bold text-gray-700 mb-4">User Options</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white p-6 shadow rounded-md flex flex-col items-center justify-center text-center gap-4 hover:bg-blue-500 hover:text-white transition-all">
-              <FaUser className="text-4xl" />
-              <h3 className="text-lg font-semibold">View Profile</h3>
-            </div>
-            <div className="bg-white p-6 shadow rounded-md flex flex-col items-center justify-center text-center gap-4 hover:bg-green-500 hover:text-white transition-all">
-              <FaFilm className="text-4xl" />
-              <h3 className="text-lg font-semibold">Browse Movies</h3>
-            </div>
-            <div className="bg-white p-6 shadow rounded-md flex flex-col items-center justify-center text-center gap-4 hover:bg-yellow-500 hover:text-white transition-all">
-              <FaTicketAlt className="text-4xl" />
-              <h3 className="text-lg font-semibold">Book Tickets</h3>
-            </div>
-            <div className="bg-white p-6 shadow rounded-md flex flex-col items-center justify-center text-center gap-4 hover:bg-purple-500 hover:text-white transition-all">
-              <FaHistory className="text-4xl" />
-              <h3 className="text-lg font-semibold">Booking History</h3>
-            </div>
-            <div className="bg-white p-6 shadow rounded-md flex flex-col items-center justify-center text-center gap-4 hover:bg-teal-500 hover:text-white transition-all">
-              <FaCog className="text-4xl" />
-              <h3 className="text-lg font-semibold">Settings</h3>
-            </div>
+        {/* Recent Activities Section */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Recent Activities</h2>
+          <div className="bg-white shadow-lg rounded-lg p-6">
+            <ul>
+              <li className="border-b py-3 flex justify-between">
+                <span className="text-gray-700">Booked 'Avengers' on 12/11/2024</span>
+                <span className="text-gray-500">2:00 PM</span>
+              </li>
+              <li className="border-b py-3 flex justify-between">
+                <span className="text-gray-700">Resold 'Spider-Man' ticket on 10/11/2024</span>
+                <span className="text-gray-500">5:30 PM</span>
+              </li>
+              <li className="border-b py-3 flex justify-between">
+                <span className="text-gray-700">Booked 'Batman' on 09/11/2024</span>
+                <span className="text-gray-500">1:00 PM</span>
+              </li>
+            </ul>
           </div>
-        </section>
-      </main>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
-export default UserDashboard;
+export default Dashboard;
