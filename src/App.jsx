@@ -15,6 +15,7 @@ import AdminLogin from './views/adminLogin';
 import AdminDashboard from './views/adminDashboard';
 import UserDashboard from './views/userDashboard';
 import { ToastContainer } from 'react-toast';
+import Event from './views/event';
 
 function App() {
   return(
@@ -26,6 +27,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/contact' element={<Contact/>}/>
+        <Route path='/event' element={<Event/>}/>
         <Route path='/loginPage' element={<LoginPage/>}/>
         <Route path='/signUpPage' element={<SignUpPage/>}/>
         <Route path='/movieDetails' element={<MovieDetails/>}/>

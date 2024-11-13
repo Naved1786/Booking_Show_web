@@ -167,13 +167,13 @@ const Navbar = () => {
         <li className='group flex justify-center flex-col items-center'><Link to='/All Movies'>All Movies</Link>
           <div className='w-0 h-[2px] group-hover:w-full group-hover:bg-red-500 flex justify-center group-hover:transition-all duration-300 ease-in-out '></div>
         </li>
-        <li className='group flex justify-center flex-col items-center'><Link to='/Events'>Events</Link>
+        <li className='group flex justify-center flex-col items-center'><Link to='/event'>Events</Link>
           <div className='w-0 h-[2px] group-hover:w-full group-hover:bg-red-500 flex justify-center group-hover:transition-all duration-300 ease-in-out '></div>
         </li>
-        <li className='group flex justify-center flex-col items-center'><Link to='/Contact'>Contact</Link>
+        <li className='group flex justify-center flex-col items-center'><Link to='/contact'>Contact</Link>
           <div className='w-0 h-[2px] group-hover:w-full group-hover:bg-red-500 flex justify-center group-hover:transition-all duration-300 ease-in-out  '></div>
         </li>
-        <li className='group flex justify-center flex-col items-center'><Link to='/About'>About</Link>
+        <li className='group flex justify-center flex-col items-center'><Link to='/about'>About</Link>
           <div className='w-0 h-[2px] group-hover:w-full group-hover:bg-red-500 flex justify-center group-hover:transition-all duration-300 ease-in-out '></div>
         </li>
       </ul>
