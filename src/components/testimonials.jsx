@@ -10,12 +10,12 @@ const Testimonials = () => {
     {
       name: "Michael Smith",
       feedback: "A great experience! I found discounted tickets and had no trouble transferring them.",
-      profilePic: "/images/user2.jpg",
+      profilePic: "https://randomuser.me/api/portraits/women/1.jpg",
     },
     {
       name: "Samantha Lee",
       feedback: "User-friendly and efficient. Highly recommend for anyone with unused tickets.",
-      profilePic: "/images/user3.jpg",
+      profilePic: "https://randomuser.me/api/portraits/men/1.jpg",
     },
     // Additional testimonials can be added here
   ];
