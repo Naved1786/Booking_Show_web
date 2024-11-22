@@ -47,7 +47,7 @@ const BookTickets = () => {
                     className="px-8 mb-10 py-2 bg-red-400 text-white rounded-lg hover:bg-red-500 disabled:opacity-50"
                     // disabled={!selectedDate || !selectedTime}
                 >
-                    confirm booking
+                    next
                 </button>
             </div>
         </div>
