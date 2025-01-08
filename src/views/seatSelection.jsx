@@ -98,7 +98,7 @@ const SeatSelection = () => {
             <p>Taken</p>
           </div>
         </div>
-        <button className="bg-green-500 px-6 py-2 rounded shadow-lg">next</button>
+        <button className="bg-green-500 px-6 py-2 rounded shadow-lg">proceed</button>
       </div>
     </div>
   );
