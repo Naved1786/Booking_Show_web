@@ -58,7 +58,6 @@ const SeatSelection = () => {
           {/* Add more date and time buttons */}
         </div>
       </div>
-
       {/* Full Seat Layout */}
       <div className="mt-8 max-w-4xl w-full">
         <h2 className="text-lg font-semibold">Select Your Seats</h2>
@@ -98,7 +97,7 @@ const SeatSelection = () => {
             <p>Taken</p>
           </div>
         </div>
-        <button className="bg-green-500 px-6 py-2 rounded shadow-lg">proceed</button>
+        <button className="bg-green-500 px-6 py-2 rounded shadow-lg">next</button>
       </div>
     </div>
   );
