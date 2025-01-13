@@ -29,7 +29,7 @@ export const SliderItems = ({ videolink, thumbnailImg }) => {
             className="bi bi-play-circle text-red-500 text-4xl hover:text-white absolute inset-0 flex items-center justify-center cursor-pointer"
             onClick={() => setPlayBtn(true)}
           ></i>
-          <img src={thumbnailImg} alt="" />
+          <img src={thumbnailImg} alt=""className="h-full w-full object-cover rounded-lg "/>
         </>
       )}
     </>
@@ -37,6 +37,14 @@ export const SliderItems = ({ videolink, thumbnailImg }) => {
 
 }
 export default function Slider2() {
+
+  const slides = [
+    { videolink: 'https://www.youtube.com/embed/szovD3BnvJI', thumbnailImg: './images/slider2-img1.jpg' },
+    { videolink: 'https://www.youtube.com/embed/uV50UfcIT68', thumbnailImg: './images/slider2-img2.jpg' },
+    { videolink: 'https://www.youtube.com/embed/uSWNCCChrC0', thumbnailImg: './images/slider2-img3.jpg' },
+    { videolink: 'https://www.youtube.com/embed/lVjieoMPN-c', thumbnailImg: './images/slider2-img4.jpg' },
+    { videolink: 'https://www.youtube.com/embed/szovD3BnvJI', thumbnailImg: './images/slider2-img5.jpg' },
+  ];
 
 
   return (
@@ -50,156 +58,16 @@ export default function Slider2() {
         modules={[Pagination]}
         className="mySwiper pb-12"
       >
+        
         {
-        /* <SwiperSlide className='h-40 w-72 relative'>
-          {
-            playBtn ? <iframe className='h-full w-full' src="https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> : (
-              <>
-                <i className="bi bi-play-circle text-red-500 text-4xl hover:text-white absolute inset-0 flex items-center justify-center cursor-pointer" onClick={() => setPlayBtn(true)}></i>
-                <img src="./images/slider2-img1.jpg" alt="" className='' />
-
-              </>
-
-            )
-
-          }
-        </SwiperSlide>
-        <SwiperSlide className='h-40 w-72 relative'>
-        {
-            playBtn ? <iframe className='h-full w-full' src="https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> : (
-              <>
-                <i className="bi bi-play-circle text-red-500 text-4xl hover:text-white absolute inset-0 flex items-center justify-center cursor-pointer" onClick={() => setPlayBtn(true)}></i>
-                <img src="./images/slider2-img2.jpg" alt="" />
-
-              </>
-
-            )
-
-          }         
-        </SwiperSlide>
-        <SwiperSlide className='h-40 w-72 relative'>
-        {
-            playBtn ? <iframe className='h-full w-full' src="https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> : (
-              <>
-                <i className="bi bi-play-circle text-red-500 text-4xl hover:text-white absolute inset-0 flex items-center justify-center cursor-pointer" onClick={() => setPlayBtn(true)}></i>
-                <img src="./images/slider2-img3.jpg" alt="" />
-
-              </>
-
-            )
-
-          }        
-        </SwiperSlide>
-        <SwiperSlide className='h-40 w-72 relative'>
-        {
-            playBtn ? <iframe className='h-full w-full' src="https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> : (
-              <>
-                <i className="bi bi-play-circle text-red-500 text-4xl hover:text-white absolute inset-0 flex items-center justify-center cursor-pointer" onClick={() => setPlayBtn(true)}></i>
-                <img src="./images/slider2-img4.jpg" alt="" />
-
-              </>
-
-            )
-
-          }      
-        </SwiperSlide>
-        <SwiperSlide className='h-40 w-72 relative '>
-        {
-            playBtn ? <iframe className='h-full w-full' src="https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> : (
-              <>
-                <i className="bi bi-play-circle text-red-500 text-4xl hover:text-white absolute inset-0 flex items-center justify-center cursor-pointer" onClick={() => setPlayBtn(true)}></i>
-                <img src="./images/slider2-img5.jpg" alt="" />
-
-              </>
-
-            )
-
-          }      
-        </SwiperSlide>
-        <SwiperSlide className='h-40 w-72 relative '>
-        {
-            playBtn ? <iframe className='h-full w-full' src="https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> : (
-              <>
-                <i className="bi bi-play-circle text-red-500 text-4xl hover:text-white absolute inset-0 flex items-center justify-center cursor-pointer" onClick={() => setPlayBtn(true)}></i>
-                <img src="./images/slider2-img6.jpg" alt="" />
-
-              </>
-
-            )
-
-          }      
-        </SwiperSlide>
-        <SwiperSlide className='h-40 w-72 relative'>
-        {
-            playBtn ? <iframe className='h-full w-full' src="https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> : (
-              <>
-                <i className="bi bi-play-circle text-red-500 text-4xl hover:text-white absolute inset-0 flex items-center justify-center cursor-pointer" onClick={() => setPlayBtn(true)}></i>
-                <img src="./images/slider2-img7.jpg" alt="" />
-
-              </>
-
-            )
-
-          }      
-        </SwiperSlide>
-        <SwiperSlide className='h-40 w-72 relative'>
-        {
-            playBtn ? <iframe className='h-full w-full' src="https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> : (
-              <>
-                <i className="bi bi-play-circle text-red-500 text-4xl hover:text-white absolute inset-0 flex items-center justify-center cursor-pointer" onClick={() => setPlayBtn(true)}></i>
-                <img src="./images/slider2-img8.jpg" alt="" />
-
-              </>
-
-            )
-
-          }      
+          slides.map((item, index) => (
+            <SwiperSlide key={index} className="slider2 h-40 w-72 relative overflow-hidden rounded-lg bg-gray-900">
+          <SliderItems videolink={item.videolink} thumbnailImg={item.thumbnailImg} />
 
         </SwiperSlide>
-        <SwiperSlide className='h-40 w-72 relative'>
-        {
-            playBtn ? <iframe className='h-full w-full' src="https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> : (
-              <>
-                <i className="bi bi-play-circle text-red-500 text-4xl hover:text-white absolute inset-0 flex items-center justify-center cursor-pointer" onClick={() => setPlayBtn(true)}></i>
-                <img src="./images/slider2-img9.jpg" alt="" />
-
-              </>
-
-            )
-
-          }                
-
-        </SwiperSlide> */}
-
-        <SwiperSlide className='slider2 h-40 w-72 relative'>
-          <SliderItems videolink='https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw' thumbnailImg='./images/slider2-img1.jpg' />
-
-        </SwiperSlide>
-        <SwiperSlide className='slider2 h-40 w-72 relative'>
-          <SliderItems videolink='https://www.youtube.com/embed/uV50UfcIT68?si=OBqBhWPvovmAfHrc' thumbnailImg='./images/slider2-img2.jpg' />
-        </SwiperSlide>
-        <SwiperSlide className='slider2 h-40 w-72 relative'>
-          <SliderItems videolink='https://www.youtube.com/embed/uSWNCCChrC0?si=wY5Dx5gYi7-MbMnv' thumbnailImg='./images/slider2-img3.jpg' />
-        </SwiperSlide>
-        <SwiperSlide className='slider2 h-40 w-72 relative'>
-          <SliderItems videolink='https://www.youtube.com/embed/lVjieoMPN-c?si=nWj_myjNYJI4iPwd' thumbnailImg='./images/slider2-img4.jpg' />
-        </SwiperSlide>
-        <SwiperSlide className='slider2 h-40 w-72 relative'>
-          <SliderItems videolink='https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw' thumbnailImg='./images/slider2-img5.jpg' />
-        </SwiperSlide>
-        <SwiperSlide className='slider2 h-40 w-72 relative'>
-          <SliderItems videolink='https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw' thumbnailImg='./images/slider2-img6.jpg' />
-        </SwiperSlide>
-        <SwiperSlide className='slider2 h-40 w-72 relative'>
-          <SliderItems videolink='https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw' thumbnailImg='./images/slider2-img7.jpg' />
-        </SwiperSlide>
-        <SwiperSlide className='slider2 h-40 w-72 relative'>
-          <SliderItems videolink='https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw' thumbnailImg='./images/slider2-img8.jpg' />
-        </SwiperSlide>
-        <SwiperSlide className='slider2 h-40 w-72 relative'>
-          <SliderItems videolink='https://www.youtube.com/embed/szovD3BnvJI?si=G6qQXuHK5MX0mNJw' thumbnailImg='./images/slider2-img9.jpg' />
-        </SwiperSlide>
-
+          ))
+        }
+        
       </Swiper>
 
     </>
