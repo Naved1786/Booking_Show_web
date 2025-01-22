@@ -49,5 +49,5 @@ const PaymentDetails = ({ selectedSeats }) => {
     </div>
   );
 };
-next
+proceed
 export default PaymentDetails;
