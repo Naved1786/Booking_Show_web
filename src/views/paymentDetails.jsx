@@ -44,7 +44,7 @@ const PaymentDetails = ({ selectedSeats }) => {
         onClick={handlePayment}
         className="bg-green-500 w-full py-3 mt-6 rounded text-white font-semibold hover:bg-green-600"
       >
-        proceed
+        next
       </button>
     </div>
   );
