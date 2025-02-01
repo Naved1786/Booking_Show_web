@@ -1,7 +1,7 @@
 //isLoggedIn
 
 export const isLoggedIn=()=>{
-    if(localStorage.getItem("data")==null){
+    if(localStorage.getItem("user")==null){
         return false;
     }
     else{
