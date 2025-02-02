@@ -23,7 +23,8 @@ const Sidebar = () => {
       {/* Profile Section */}
       <div className="flex flex-col items-center border-b pb-4">
         <img
-          src={`http://localhost:1111/api/v1/post/image/${ImageUrl}`}
+          // src={`http://localhost:1111/api/v1/post/image/${ImageUrl}`}
+          src="./images/user-dummy.png"
           alt="Profile"
           className="rounded-full border-4 border-white w-16 h-16 mb-2"
         />

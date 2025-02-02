@@ -27,6 +27,7 @@ const handlehandleImageClick=()=>{
   const handleShowMenu = () => {
     setIsShowMenu(!isShowMenu);
   }
+
   return (
     <div className='flex h-20 items-center justify-between border-y-2 shadow-lg fixed w-full bg-white z-[1000]'>
       <ul className='mx-10 flex items-center justify-center'>
@@ -211,7 +212,8 @@ const handlehandleImageClick=()=>{
             : <div>
               <div className='w-9 h-9 rounded-full bg-gray-700 flex justify-center items-center overflow-hidden'>
                 <img
-                  src={`http://localhost:1111/api/v1/post/image/${imageUrl}`}
+                  // src={`http://localhost:1111/api/v1/post/image/${imageUrl}`}
+                  src="./images/user-dummy.png"
                   alt="User Profile"
                   onClick={handlehandleImageClick}
                   style={{ width: "200px", height: "auto", borderRadius: "50%" }}
