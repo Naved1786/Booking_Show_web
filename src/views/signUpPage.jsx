@@ -53,7 +53,7 @@ const handleChange = (event, field) => {
   setData({ ...data, [field]: event.target.value });
 }
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen pt-20">
       <div className="w-1/2 bg-gradient-to-br from-red-500 to-orange-500 flex flex-col justify-center items-center text-white p-8">
         <h1 className="text-4xl font-bold mb-4">Welcome Back!</h1>
         <p className="text-center mb-6">To keep connected with us please login with your personal info</p>

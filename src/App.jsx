@@ -14,13 +14,14 @@ import PaymentDetails from './views/paymentDetails';
 import AdminLogin from './views/adminLogin';
 import AdminDashboard from './views/adminDashboard';
 import UserDashboard from './views/userDashboard';
-import { ToastContainer } from 'react-toast';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Event from './views/event';
 
 function App() {
   return(
     <div>
-      <ToastContainer/>
+      {/* <ToastContainer/> */}
       <Navbar/>
       < div className=''>
       <Routes>
@@ -38,8 +39,8 @@ function App() {
         <Route path='/adminDashboard' element={<AdminDashboard/>}/>
         <Route path='/userDashboard' element={<UserDashboard/>}/>
       </Routes>
-      </div>
-      
+      <ToastContainer position="top-center"/>
+      </div>  
       <Footer/>
     </div>
   );

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../services/user-service';
 import { doLogin } from '../auth';
-import { toast } from 'react-toast';
+// import { toast } from 'react-toast';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 const LoginPage = () => {
   const [loginDetail, setLoginDeatail] = useState({
@@ -29,7 +30,7 @@ const LoginPage = () => {
         password:loginDetail.password
       });
       if(response.status===200){
-        toast.success("login success");
+        toast.success("Login Successfully");
         console.log(response);
         localStorage.setItem("token",response.data.token);
         localStorage.setItem("user",JSON.stringify(response.data.user));
@@ -57,7 +58,7 @@ const LoginPage = () => {
 
   };
   return (
-    <div className="flex h-screen ">
+    <div className="flex h-screen pt-20">
       <div className="w-1/2 flex flex-col justify-center items-center p-8 bg-white">
         <h1 className="text-4xl font-bold mb-4">Sign in</h1>
         <div className="flex space-x-4 mb-4">

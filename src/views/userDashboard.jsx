@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaTicketAlt, FaRecycle, FaBell, FaHome, FaCog, FaEnvelope, FaChartBar, FaFilm, FaCalendarAlt } from "react-icons/fa";
 import { Navigate, useNavigate } from "react-router-dom";
 import { doLogout, isLoggedIn } from "../auth";
-
 const Sidebar = () => {
   const navigate = useNavigate();
+  const[ImageUrl,setImageUrl]=useState("");
+
+  useEffect(()=>{
+    const profileImage=JSON.parse(localStorage.getItem("user"));
+    setImageUrl(profileImage?.profileImage);
+  },[]);
 
   const logout = () => {
+    localStorage.clear();
     doLogout(() => {
       navigate("/");
     });
@@ -17,7 +23,7 @@ const Sidebar = () => {
       {/* Profile Section */}
       <div className="flex flex-col items-center border-b pb-4">
         <img
-          src="./images/profile-img.jpg"
+          src={`http://localhost:1111/api/v1/post/image/${ImageUrl}`}
           alt="Profile"
           className="rounded-full border-4 border-white w-16 h-16 mb-2"
         />

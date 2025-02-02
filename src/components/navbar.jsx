@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { isLoggedIn } from '../auth';
+import { Navigate } from 'react-router-dom';
 import axios from 'axios';
+import { use } from 'react';
 const Navbar = () => {
   const [isShowMenu, setIsShowMenu] = useState(false);
   const user = JSON.parse(localStorage.getItem("user"));
@@ -10,55 +12,18 @@ const Navbar = () => {
   const [error, setError] = useState(null);
   useEffect(() => {
     const profileImage = JSON.parse(localStorage.getItem("user"));
-    console.log("profileImg:",profileImage)
+    console.log("profileImg:", profileImage)
     setImageUrl(profileImage?.profileImage
     )
   }, [])
-  // const handleGetImage=async()=>{
-  //   try{
-  //     const reponse=await axios.
-  //   }catch(error){
-  //     console.log("error getting image:",error);
+  
 
-  //   }
-  // }
-  // useEffect(() => {
-  //   // Fetch the image from the backend
-  //   const fetchImage = async () => {
-  //     try {
-  //       const response = await axios.get(`http://localhost:1111/api/v1/user/${user.id}`, {
-  //         responseType: "arraybuffer", // Important: Set the response type to 'arraybuffer'
-  //       });
+const Navigate=useNavigate();
+const handlehandleImageClick=()=>{
+  Navigate("/userDashboard")
+}
 
-  //       // Convert the array buffer to a blob
-  //       const imageBlob = new Blob([response.data], {
-  //         type: response.headers["content-type"], // Use the Content-Type from the response
-  //       });
 
-  //       // Create a URL for the blob
-  //       const imageObjectUrl = URL.createObjectURL(imageBlob);
-
-  //       // Set the URL in state
-  //       setImageUrl(imageObjectUrl);
-  //       setError(null); // Clear any previous errors
-  //     } catch (error) {
-  //       console.error("Error fetching image:", error);
-  //       setError("Failed to load image");
-  //       setImageUrl(null); // Clear the image URL
-  //     }
-  //   };
-
-  //   fetchImage();
-
-  //   // Cleanup function to revoke the object URL
-  //   return () => {
-  //     if (imageUrl) {
-  //       URL.revokeObjectURL(imageUrl);
-  //     }
-  //   };
-  // }, [user.id]);
-
-  //handle the menue show
   const handleShowMenu = () => {
     setIsShowMenu(!isShowMenu);
   }
@@ -241,25 +206,14 @@ const Navbar = () => {
           <i className="bi bi-search text-xl font absolute top-2 right-3"></i>
         </li>
         <li class="flex items-center justify-center">
-
           {!isLoggedIn() ? <><button class="text-red-400 text-xs  border-2 border-red-400 rounded-lg px-2 py-2 hover:bg-red-500 hover:text-white transition-colors duration-300">
             <Link to='LoginPage'>Login/Register</Link></button></>
             : <div>
               <div className='w-9 h-9 rounded-full bg-gray-700 flex justify-center items-center overflow-hidden'>
-                {/* {error ? (
-                  <p>{error}</p>
-                ) : imageUrl ? (
-                  <img
-                    src={imageUrl}
-                    alt="User Profile"
-                    style={{ width: "200px", height: "auto", borderRadius: "50%" }}
-                  />
-                ) : (
-                  <p>Loading image...</p>
-                )} */}
                 <img
                   src={`http://localhost:1111/api/v1/post/image/${imageUrl}`}
                   alt="User Profile"
+                  onClick={handlehandleImageClick}
                   style={{ width: "200px", height: "auto", borderRadius: "50%" }}
                 />
               </div>
