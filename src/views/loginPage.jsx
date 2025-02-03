@@ -25,16 +25,22 @@ const LoginPage = () => {
       return;
     }
     try {
-      const response=await axios.post(`${import.meta.env.VITE_API_URL}/login`,{
-        email:loginDetail.email,
-        password:loginDetail.password
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
+        email: loginDetail.email,
+        password: loginDetail.password
       });
-      if(response.status===200){
+      if (response.status === 200) {
         toast.success("Login Successfully");
         console.log(response);
-        localStorage.setItem("token",response.data.token);
-        localStorage.setItem("user",JSON.stringify(response.data.user));
-        navigate("/");
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        const role = response.data.user?.role;
+        console.log("role:",role)
+        if (role === "USER") {
+          navigate("/");
+        } else if (role === 'ADMIN') {
+          navigate("/adminDashboard");
+        }
       }
     } catch (error) {
       console.log(error);

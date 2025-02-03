@@ -1,131 +1,109 @@
 import React from 'react';
-import { FaUsers, FaFilm, FaTicketAlt, FaChartBar, FaCog, FaUserPlus } from 'react-icons/fa'; // Added FaUserPlus for 'Add New Admin'
+import { FaUsers, FaFilm, FaTicketAlt, FaChartBar, FaCog, FaUserPlus } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+
+
 
 function AdminDashboard() {
+  const navigate=useNavigate();
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
   return (
-    <div className="min-h-screen bg-gray-100 flex pt-20">
+    <div className="flex h-100vh bg-gray-100 pt-20">
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md">
-        <div className="p-4 font-bold text-xl text-red-500 border-b border-gray-200">
-          Admin Panel
+      <aside className="w-56 bg-gradient-to-b from-red-500 to-red-600 p-6 pt-10 flex flex-col h-full shadow-lg">
+        <div className="flex flex-col items-center border-b pb-4">
+          <FaUserPlus className="text-white text-4xl mb-2" />
+          <h2 className="text-white font-semibold">Admin Panel</h2>
         </div>
-        <nav className="p-4">
-          <ul>
-            <li className="mb-4">
-              <a href="#dashboard" className="text-gray-700 hover:text-red-500 font-medium">
-                Dashboard
-              </a>
+        <nav className="mt-4">
+          <ul className="space-y-3 text-white">
+            <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
+              <FaChartBar className="text-lg" />
+              <span className="text-base">Dashboard</span>
             </li>
-            <li className="mb-4">
-              <a href="#manage-users" className="text-gray-700 hover:text-red-500 font-medium">
-                Manage Users
-              </a>
+            <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
+              <FaUsers className="text-lg" />
+              <span className="text-base">Manage Users</span>
             </li>
-            <li className="mb-4">
-              <a href="#manage-movies" className="text-gray-700 hover:text-red-500 font-medium">
-                Manage Movies
-              </a>
+            <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
+              <FaFilm className="text-lg" />
+              <span className="text-base">Manage Movies</span>
             </li>
-            <li className="mb-4">
-              <a href="#manage-tickets" className="text-gray-700 hover:text-red-500 font-medium">
-                Manage Tickets
-              </a>
+            <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
+              <FaTicketAlt className="text-lg" />
+              <span className="text-base">Manage Tickets</span>
             </li>
-            <li className="mb-4">
-              <a href="#reports" className="text-gray-700 hover:text-red-500 font-medium">
-                Reports
-              </a>
+            <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
+              <FaChartBar className="text-lg" />
+              <span className="text-base">Reports</span>
             </li>
-            <li className="mb-4">
-              <a href="#settings" className="text-gray-700 hover:text-red-500 font-medium">
-                Settings
-              </a>
+            <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
+              <FaCog className="text-lg" />
+              <span className="text-base">Settings</span>
             </li>
-            <li className="mb-4">
-              <a href="#logout" className="text-gray-700 hover:text-red-500 font-medium">
-                Logout
-              </a>
+            <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
+              <FaUserPlus className="text-lg" />
+              <button
+                onClick={logout}>
+                <span>Logout</span>
+              </button>
             </li>
           </ul>
         </nav>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-6">
-        <header className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
-          <button className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">
-            Logout
-          </button>
-        </header>
+      <main className="flex-1 p-6 overflow-y-auto">
+        <h1 className="text-3xl font-extrabold text-red-600 mb-4">Admin Dashboard</h1>
 
-        {/* Dashboard Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white p-4 shadow rounded-md">
-            <h2 className="text-xl font-semibold text-gray-700">Total Users</h2>
-            <p className="text-3xl font-bold text-red-500">120</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="bg-white shadow-lg rounded-lg p-4 flex items-center justify-between border-l-4 border-red-500 hover:shadow-xl transition-shadow duration-300">
+            <div>
+              <h2 className="text-xl font-semibold text-gray-800">Total Users</h2>
+              <p className="text-3xl font-bold text-red-500">120</p>
+            </div>
+            <div className="bg-red-500 text-white p-3 rounded-full">
+              <FaUsers className="text-xl" />
+            </div>
           </div>
-          <div className="bg-white p-4 shadow rounded-md">
-            <h2 className="text-xl font-semibold text-gray-700">Movies Uploaded</h2>
-            <p className="text-3xl font-bold text-red-500">45</p>
+
+          <div className="bg-white shadow-lg rounded-lg p-4 flex items-center justify-between border-l-4 border-red-500 hover:shadow-xl transition-shadow duration-300">
+            <div>
+              <h2 className="text-xl font-semibold text-gray-800">Movies Uploaded</h2>
+              <p className="text-3xl font-bold text-red-500">45</p>
+            </div>
+            <div className="bg-red-500 text-white p-3 rounded-full">
+              <FaFilm className="text-xl" />
+            </div>
           </div>
-          <div className="bg-white p-4 shadow rounded-md">
-            <h2 className="text-xl font-semibold text-gray-700">Active Tickets</h2>
-            <p className="text-3xl font-bold text-red-500">80</p>
+
+          <div className="bg-white shadow-lg rounded-lg p-4 flex items-center justify-between border-l-4 border-red-500 hover:shadow-xl transition-shadow duration-300">
+            <div>
+              <h2 className="text-xl font-semibold text-gray-800">Active Tickets</h2>
+              <p className="text-3xl font-bold text-red-500">80</p>
+            </div>
+            <div className="bg-red-500 text-white p-3 rounded-full">
+              <FaTicketAlt className="text-xl" />
+            </div>
           </div>
         </div>
 
-        {/* Recent Activity Section */}
         <section className="mt-8">
-          <h2 className="text-xl font-bold text-gray-700 mb-4">Recent Activity</h2>
-          <div className="bg-white shadow rounded-md p-4">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Recent Activity</h2>
+          <div className="bg-white shadow-lg rounded-lg p-4">
             <ul>
-              <li className="flex justify-between py-2 border-b border-gray-200">
-                <span>User John Doe purchased a ticket.</span>
-                <span className="text-gray-500">2 hrs ago</span>
+              <li className="border-b py-2 flex justify-between items-center">
+                <span className="text-gray-700">Added a new movie 'Inception'</span>
+                <span className="text-gray-500">11:00 AM</span>
               </li>
-              <li className="flex justify-between py-2 border-b border-gray-200">
-                <span>New movie "Inception" added by Admin.</span>
-                <span className="text-gray-500">1 day ago</span>
-              </li>
-              <li className="flex justify-between py-2 border-b border-gray-200">
-                <span>User Sarah Lee requested a refund.</span>
-                <span className="text-gray-500">3 days ago</span>
+              <li className="border-b py-2 flex justify-between items-center">
+                <span className="text-gray-700">Updated user details for 'John Doe'</span>
+                <span className="text-gray-500">2:30 PM</span>
               </li>
             </ul>
-          </div>
-        </section>
-
-        {/* Admin Options */}
-        <section className="mt-8">
-          <h2 className="text-xl font-bold text-gray-700 mb-4">Admin Options</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Option Cards */}
-            <div className="bg-white p-6 shadow rounded-md flex flex-col items-center justify-center text-center gap-4 hover:bg-blue-500 hover:text-white transition-all">
-              <FaUsers className="text-4xl" />
-              <h3 className="text-lg font-semibold">Manage Users</h3>
-            </div>
-            <div className="bg-white p-6 shadow rounded-md flex flex-col items-center justify-center text-center gap-4 hover:bg-green-500 hover:text-white transition-all">
-              <FaFilm className="text-4xl" />
-              <h3 className="text-lg font-semibold">Add New Movie</h3>
-            </div>
-            <div className="bg-white p-6 shadow rounded-md flex flex-col items-center justify-center text-center gap-4 hover:bg-yellow-500 hover:text-white transition-all">
-              <FaTicketAlt className="text-4xl" />
-              <h3 className="text-lg font-semibold">Manage Tickets</h3>
-            </div>
-            <div className="bg-white p-6 shadow rounded-md flex flex-col items-center justify-center text-center gap-4 hover:bg-purple-500 hover:text-white transition-all">
-              <FaChartBar className="text-4xl" />
-              <h3 className="text-lg font-semibold">View Reports</h3>
-            </div>
-            <div className="bg-white p-6 shadow rounded-md flex flex-col items-center justify-center text-center gap-4 hover:bg-red-500 hover:text-white transition-all">
-              <FaCog className="text-4xl" />
-              <h3 className="text-lg font-semibold">Settings</h3>
-            </div>
-            {/* Add New Admin Card */}
-            <div className="bg-white p-6 shadow rounded-md flex flex-col items-center justify-center text-center gap-4 hover:bg-teal-500 hover:text-white transition-all">
-              <FaUserPlus className="text-4xl" />
-              <h3 className="text-lg font-semibold">Add New Admin</h3>
-            </div>
           </div>
         </section>
       </main>

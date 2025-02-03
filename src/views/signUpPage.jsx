@@ -18,7 +18,9 @@ const SignUpPage = () => {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/register`, {
         username: username,
         email: email,
-        password: password
+        password: password,
+        role:"user"
+
       });
       toast.success('Sign Up Successful! 🎉', {
         onClose: () => navigate("/LoginPage"), // Redirect after toast closes

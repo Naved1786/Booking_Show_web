@@ -3,6 +3,7 @@ import { FaTicketAlt, FaRecycle, FaBell, FaHome, FaCog, FaEnvelope, FaChartBar, 
 import { Navigate, useNavigate } from "react-router-dom";
 import { doLogout, isLoggedIn } from "../auth";
 const Sidebar = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   const[ImageUrl,setImageUrl]=useState("");
 
@@ -28,8 +29,7 @@ const Sidebar = () => {
           alt="Profile"
           className="rounded-full border-4 border-white w-16 h-16 mb-2"
         />
-        <h2 className="text-white font-semibold">Lorem Ipsum</h2>
-        <span className="text-white text-sm">Online</span>
+        <h2 className="text-white font-semibold">{user?.username}</h2>
       </div>
       
       {/* Navigation Links */}
@@ -68,7 +68,7 @@ const Sidebar = () => {
   );
 };
 
-const Dashboard = () => {
+const UserDashboard = () => {
   const navigate = useNavigate();
   const [login, setLogin] = useState(false);
   
@@ -86,7 +86,7 @@ const Dashboard = () => {
 
         {/* Main Content Area */}
         <div className="flex-1 p-6 overflow-y-auto">
-          <h1 className="text-3xl font-extrabold text-red-600 mb-4">Welcome to Movie Ticket Booking</h1>
+          <h1 className="text-3xl font-extrabold text-red-600 mb-4">User Dashboard</h1>
 
           {/* Booking Section */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -135,4 +135,4 @@ const Dashboard = () => {
   }
 };
 
-export default Dashboard;
+export default UserDashboard;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { isLoggedIn } from '../auth';
-import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { use } from 'react';
 const Navbar = () => {
@@ -16,12 +15,17 @@ const Navbar = () => {
     setImageUrl(profileImage?.profileImage
     )
   }, [])
-  
 
-const Navigate=useNavigate();
-const handlehandleImageClick=()=>{
-  Navigate("/userDashboard")
-}
+  const navigate = useNavigate();
+  const handlehandleImageClick = () => {
+    const role = JSON.parse(localStorage.getItem('user'))?.role;
+    if (role === "USER") {
+      navigate("/userDashboard")
+    }
+    else if (role === "ADMIN") {
+      navigate("/adminDashboard")
+    }
+  }
 
 
   const handleShowMenu = () => {
@@ -209,16 +213,17 @@ const handlehandleImageClick=()=>{
         <li class="flex items-center justify-center">
           {!isLoggedIn() ? <><button class="text-red-400 text-xs  border-2 border-red-400 rounded-lg px-2 py-2 hover:bg-red-500 hover:text-white transition-colors duration-300">
             <Link to='LoginPage'>Login/Register</Link></button></>
-            : <div>
-              <div className='w-9 h-9 rounded-full bg-gray-700 flex justify-center items-center overflow-hidden'>
+            : <div className='flex flex-row justify-center items-center gap-1'>
+              <div className='w-9 h-9 rounded-full bg-gray-700 flex  justify-center items-center overflow-hidden'>
                 <img
                   // src={`http://localhost:1111/api/v1/post/image/${imageUrl}`}
                   src="./images/user-dummy.png"
                   alt="User Profile"
-                  onClick={handlehandleImageClick}
+                  onClick={() => handlehandleImageClick()}
                   style={{ width: "200px", height: "auto", borderRadius: "50%" }}
                 />
               </div>
+              <p className='text-black text-xs'>{user?.username}</p>
             </div>
           }
 
