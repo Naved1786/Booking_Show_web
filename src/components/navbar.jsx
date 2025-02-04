@@ -19,10 +19,10 @@ const Navbar = () => {
   const navigate = useNavigate();
   const handlehandleImageClick = () => {
     const role = JSON.parse(localStorage.getItem('user'))?.role;
-    if (role === "USER") {
+    if (role === "user") {
       navigate("/userDashboard")
     }
-    else if (role === "ADMIN") {
+    else if (role === "admin") {
       navigate("/adminDashboard")
     }
   }

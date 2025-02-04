@@ -36,9 +36,9 @@ const LoginPage = () => {
         localStorage.setItem("user", JSON.stringify(response.data.user));
         const role = response.data.user?.role;
         console.log("role:",role)
-        if (role === "USER") {
+        if (role === "user") {
           navigate("/");
-        } else if (role === 'ADMIN') {
+        } else if (role === 'admin') {
           navigate("/adminDashboard");
         }
       }
