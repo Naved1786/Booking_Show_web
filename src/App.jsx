@@ -12,7 +12,7 @@ import BookTickets from './views/bookTickets';
 import SeatSelection from './views/seatSelection';
 import PaymentDetails from './views/paymentDetails';
 import AdminLogin from './views/adminLogin';
-import AdminDashboard from './views/adminDashboard';
+import AdminDashboard from './views/dashboard/admin/dashboardLayout';
 import UserDashboard from './views/userDashboard';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,7 +36,7 @@ function App() {
         <Route path='/seatSelection' element={<SeatSelection/>}/>
         <Route path='/paymentDetails' element={<PaymentDetails/>}/>
         <Route path='/adminLogin' element={<AdminLogin/>}/>
-        <Route path='/adminDashboard' element={<AdminDashboard/>}/>
+        <Route path='/adminDashboard/*' element={<AdminDashboard/>}/>
         <Route path='/userDashboard' element={<UserDashboard/>}/>
       </Routes>
       <ToastContainer position="top-center"/>
