@@ -1,9 +1,11 @@
 import React from 'react'
+import AddMovieCard from '../../../components/addMovieCard'
 
 const MovieList = () => {
   return (
-    <div>MovieList
-        
+
+    <div className='w-full max-h-full'>
+      <AddMovieCard/>
     </div>
   )
 }

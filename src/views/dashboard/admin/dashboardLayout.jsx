@@ -8,7 +8,7 @@ import MovieList from './movieList'
 const DashboardLayout = () => {
     return (
         <div className='flex h-100vh bg-gray-100 pt-20'>
-            <div className="w-56">
+            <div className="w-64">
                 <AdminSidebar />
             </div>
             <div className="w-full">
