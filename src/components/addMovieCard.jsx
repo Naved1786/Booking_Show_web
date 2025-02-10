@@ -1,6 +1,5 @@
 import React from 'react';
-import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
-
+import { FaStar, FaRegStar, FaStarHalfAlt,FaEye, FaEdit, FaTrash } from 'react-icons/fa';
 const AddMovieCard = () => {
   return (
     <div className='flex flex-wrap mt-10 ml-10'>
@@ -13,9 +12,15 @@ const AddMovieCard = () => {
             className='w-56 h-60 rounded-lg object-cover'
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 hidden group-hover:flex items-center justify-center gap-4 w-56 h-60 mt-4 ml-4 rounded-lg">
-            <button className="text-white p-2 bg-gray-500 bg-opacity-70 rounded-full hover:bg-gray-400">👁️</button>
-            <button className="text-white p-2 bg-blue-600 bg-opacity-70 rounded-full hover:bg-blue-500">✏️</button>
-            <button className="text-white p-2 bg-red-600 bg-opacity-70 rounded-full hover:bg-red-500">🗑️</button>
+          <button className="text-white p-2 bg-gray-500 bg-opacity-80 rounded-full hover:bg-gray-400 transition duration-300" title="View">
+              <FaEye size={18} />
+            </button>
+            <button className="text-white p-2 bg-blue-600 bg-opacity-80 rounded-full hover:bg-blue-500 transition duration-300" title="Edit">
+              <FaEdit size={18} />
+            </button>
+            <button className="text-white p-2 bg-red-600 bg-opacity-80 rounded-full hover:bg-red-500 transition duration-300" title="Delete">
+              <FaTrash size={18} />
+            </button>
           </div>
         </div>
 
