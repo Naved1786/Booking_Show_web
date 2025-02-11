@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState  } from 'react'
 import AddMovieCard from '../../../components/addMovieCard'
-import { useState } from 'react'
 
 import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
@@ -21,12 +20,37 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import axios from 'axios'
 
 
 
 const MovieList = () => {
   const [date, setDate] = React.useState();
   const [dateOpen, setDateOpen] = useState(false);
+  const [movies, setMovies] = useState([]);
+
+
+  const fetchMovies = async () => {
+    try {
+      const token = localStorage.getItem("token"); // Get token from localStorage
+      console.log("token is", token);
+
+      const response = await axios.get("http://localhost:1111/api/movie/findAllMovie", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("response is-", response);
+      setMovies(response.data); // Assuming response.data is an array of movies
+    } catch (error) {
+      console.error("Error fetching movies:", error.response ? error.response.data : error.message);
+    }
+  };
+
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
 
   useEffect(() => {
     console.log("date:", date);
@@ -37,7 +61,29 @@ const MovieList = () => {
 
     <div className='w-full max-h-full'>
       <div>
-        <AddMovieCard />
+        <div className="flex flex-wrap mt-10 ml-10">
+          {movies.length > 0 ? (
+            movies.map((movie) => (
+              <div key={movie.id} className="w-full sm:w-1/4 xl:w-1/4 bg-white rounded-xl overflow-hidden shadow-lg pb-3">
+                {/* Movie Image */}
+                <div className="relative w-full flex justify-center items-center pt-4">
+                  <img src={movie.postUrl} alt={movie.title} className="w-56 h-60 rounded-lg object-cover" />
+                </div>
+
+                {/* Movie Details */}
+                <div className="bg-white px-4 py-3">
+                  <h2 className="text-lg font-semibold">{movie.title}</h2>
+                  <p className="text-sm text-gray-500">Genre: {movie.genre}</p>
+                  <p className="text-sm text-gray-500">Language: {movie.language}</p>
+                  <p className="text-sm text-gray-500">Duration: {movie.duration}</p>
+                  <p className="text-sm text-gray-500">Release Date: {movie.releaseDate}</p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="text-gray-600">Loading movies...</p>
+          )}
+        </div>
         <div className=" w-full flex justify-left">
           <Dialog>
             <DialogTrigger>
@@ -49,45 +95,7 @@ const MovieList = () => {
             </DialogTrigger>
             <DialogContent className="max-w-96 flex justify-center items-center mt-10  h-[450px]"  >
 
-              <div className='w-80 h-full overflow-scroll' style={{ scrollbarWidth: 'none' }}>
-                <form className="flex flex-col gap-3">
-                  <input type="text" placeholder="Movie Name" className="w-full p-2 border rounded-md focus:outline-none" />
-                  <input type="text" placeholder="Genre" className="w-full p-2 border rounded-md focus:outline-none " />
-                  <input type="text" placeholder="Director" className="w-full p-2 border rounded-md focus:outline-none " />
-                  <div className='flex flex-col justify-center items-center'>
-                    <Popover onOpenChange={setDateOpen} open={dateOpen}>
-                      <PopoverTrigger >
-                        <div className="flex ">
-                          <p>{date ? date.toLocaleDateString() : "Choose the date"}</p>
-                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                        </div>
-                      </PopoverTrigger>
-                      <PopoverContent className="max-h-72 overflow-auto"
-                        style={{ scrollbarWidth: 'none' }}
-                        onWheel={(e) => e.stopPropagation()}
-                        onTouchMove={(e) => e.stopPropagation()} >
-                        <Calendar
-                          mode="single"
-                          selected={date}
-                          onSelect={setDate}
-                          disabled={(date) =>
-                            date > new Date() || date < new Date("1900-01-01")
-                          }
-                          initialFocus
-
-                        />
-                      </PopoverContent>
-                    </Popover>
-
-                  </div>
-                  <textarea placeholder="Description" className="w-full p-2 border rounded-md focus:outline-none "></textarea>
-                  <input type="file" className="w-full p-2 border rounded-md focus:outline-none " />
-
-                  <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">
-                    Add Movie
-                  </button>
-                </form>
-              </div>
+             <AddMovieCard/>
 
 
             </DialogContent>

@@ -1,56 +1,76 @@
-import React from 'react';
-import { FaStar, FaRegStar, FaStarHalfAlt,FaEye, FaEdit, FaTrash } from 'react-icons/fa';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { format } from "date-fns"
+import { CalendarIcon } from "lucide-react"
+import { Calendar } from "@/components/ui/calendar"
+
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+
 const AddMovieCard = () => {
+ const [date, setDate] = React.useState();
+  const [dateOpen, setDateOpen] = useState(false);
+
+
   return (
-    <div className='flex flex-wrap mt-10 ml-10'>
-      <div className='w-full sm:w-1/4 xl:w-1/4 bg-white rounded-xl overflow-hidden shadow-lg pb-3'>
+    <>
+      <div className='w-80 h-full overflow-scroll' style={{ scrollbarWidth: 'none' }}>
+        <form className="flex flex-col gap-3">
+          <input type="text" placeholder="Movie Name" className="w-full p-2 border rounded-md focus:outline-none" />
+          <input type="text" placeholder="Genre" className="w-full p-2 border rounded-md focus:outline-none " />
+          <input type="text" placeholder="duaration" className="w-full p-2 border rounded-md focus:outline-none " />
+          <input type="text" placeholder="language" className="w-full p-2 border rounded-md focus:outline-none " />
+          <input type="text" placeholder="rating" className="w-full p-2 border rounded-md focus:outline-none " />
+          <input type="text" placeholder="Director" className="w-full p-2 border rounded-md focus:outline-none " />
+          <div className='flex flex-col justify-center items-center'>
+            <Popover onOpenChange={setDateOpen} open={dateOpen}>
+              <PopoverTrigger className="w-full p-2 border rounded-md focus:outline-none bg-white flex items-center justify-between cursor-pointer">
+                <span className="text-gray-500">
+                  {date ? format(date, "PPP") : "Choose the date"}
+                </span>
+                <CalendarIcon className="h-5 w-5 text-gray-400" />
+              </PopoverTrigger>
+              <PopoverContent className="max-h-72 overflow-auto"
+                style={{ scrollbarWidth: 'none' }}
+                onWheel={(e) => e.stopPropagation()}
+                onTouchMove={(e) => e.stopPropagation()} >
+                <Calendar
+                  mode="single"
+                  selected={date}
+                  onSelect={setDate}
+                  disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
 
-        <div className='relative w-full flex justify-center items-center pt-4 group'>
-          <img
-            src="/images/adminMovieCard-img.jpg"
-            alt="Movie"
-            className='w-56 h-60 rounded-lg object-cover'
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-50 hidden group-hover:flex items-center justify-center gap-4 w-56 h-60 mt-4 ml-4 rounded-lg">
-          <button className="text-white p-2 bg-gray-500 bg-opacity-80 rounded-full hover:bg-gray-400 transition duration-300" title="View">
-              <FaEye size={18} />
-            </button>
-            <button className="text-white p-2 bg-blue-600 bg-opacity-80 rounded-full hover:bg-blue-500 transition duration-300" title="Edit">
-              <FaEdit size={18} />
-            </button>
-            <button className="text-white p-2 bg-red-600 bg-opacity-80 rounded-full hover:bg-red-500 transition duration-300" title="Delete">
-              <FaTrash size={18} />
-            </button>
+
+
           </div>
-        </div>
+          <textarea placeholder="Description" className="w-full p-2 border rounded-md focus:outline-none "></textarea>
+          <input type="file" className="w-full p-2 border rounded-md focus:outline-none " />
 
-        <div className="bg-white px-4 py-3 flex flex-col gap-2">
-          <h2 className="text-lg font-semibold">Movie Title</h2>
-          <p className="text-sm text-gray-500">Genre: Action, Drama</p>
-
-          <div className="flex items-center text-yellow-500">
-            {[...Array(4)].map((_, index) => (
-              <FaStar key={index} size={18} />
-            ))}
-            <FaStarHalfAlt size={18} />
-            <span className="text-gray-600 text-sm ml-2">(4.5/5)</span>
-          </div>
-
-          <p className="text-sm text-gray-600">
-            A thrilling action-packed movie with intense.
-          </p>
-        </div>
-
+          <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">
+            Add Movie
+          </button>
+        </form>
       </div>
-      
-      <div className=" w-full flex justify-left">
-      <button className="p-3 text-sm pr-4 bg-green-600 text-white rounded-3xl hover:bg-green-500 transition-all absolute top-36 right-12">
-        ➕
-        Add Movie
-      </button>
-      </div>
-    </div>
+
+    </>
   );
-}
+};
 
 export default AddMovieCard;
