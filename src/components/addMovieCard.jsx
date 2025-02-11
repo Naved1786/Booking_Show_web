@@ -21,20 +21,118 @@ import {
 } from "@/components/ui/dialog"
 
 const AddMovieCard = () => {
- const [date, setDate] = React.useState();
+  const [date, setDate] = React.useState();
   const [dateOpen, setDateOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    genre: "",
+    duration: "",
+    language: "",
+    rating: "",
+    director: "",
+    releaseDate: "",
+  });
+
+  // Handle input changes
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await axios.post(`http://localhost:1111/api/movie/createMovie`, formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+
+      if (response.status === 201) {
+        alert("Data saved successfully!");
+      } else {
+        alert("Failed to save data.");
+      }
+
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false)
+    }
+  };
+
+  useEffect(() => {
+    setFormData(prev => ({ ...prev, releaseDate: date ? format(date, "yyyy-MM-dd") : "" }));
+  }, [date]);
+  
 
   return (
     <>
       <div className='w-80 h-full overflow-scroll' style={{ scrollbarWidth: 'none' }}>
-        <form className="flex flex-col gap-3">
-          <input type="text" placeholder="Movie Name" className="w-full p-2 border rounded-md focus:outline-none" />
-          <input type="text" placeholder="Genre" className="w-full p-2 border rounded-md focus:outline-none " />
-          <input type="text" placeholder="duaration" className="w-full p-2 border rounded-md focus:outline-none " />
-          <input type="text" placeholder="language" className="w-full p-2 border rounded-md focus:outline-none " />
-          <input type="text" placeholder="rating" className="w-full p-2 border rounded-md focus:outline-none " />
-          <input type="text" placeholder="Director" className="w-full p-2 border rounded-md focus:outline-none " />
+        <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-3">
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            placeholder="Movie Name"
+            className="w-full p-2 border rounded-md focus:outline-none"
+            required
+          />
+
+          <input
+            type="text"
+            name="genre"
+            value={formData.genre}
+            onChange={handleChange}
+            placeholder="Genre"
+            className="w-full p-2 border rounded-md focus:outline-none"
+            required
+          />
+
+          <input
+            type="text"
+            name="duration"
+            value={formData.duration}
+            onChange={handleChange}
+            placeholder="Duration (e.g. 2h 30m)"
+            className="w-full p-2 border rounded-md focus:outline-none"
+            required
+          />
+
+          <input
+            type="text"
+            name="language"
+            value={formData.language}
+            onChange={handleChange}
+            placeholder="Language"
+            className="w-full p-2 border rounded-md focus:outline-none"
+            required
+          />
+
+          <input
+            type="text"
+            name="rating"
+            value={formData.rating}
+            onChange={handleChange}
+            placeholder="Rating (e.g. 8.5)"
+            className="w-full p-2 border rounded-md focus:outline-none"
+            required
+          />
+
+          <input
+            type="text"
+            name="director"
+            value={formData.director}
+            onChange={handleChange}
+            placeholder="Director"
+            className="w-full p-2 border rounded-md focus:outline-none"
+            required
+          />
           <div className='flex flex-col justify-center items-center'>
             <Popover onOpenChange={setDateOpen} open={dateOpen}>
               <PopoverTrigger className="w-full p-2 border rounded-md focus:outline-none bg-white flex items-center justify-between cursor-pointer">
@@ -60,12 +158,17 @@ const AddMovieCard = () => {
 
 
           </div>
-          <textarea placeholder="Description" className="w-full p-2 border rounded-md focus:outline-none "></textarea>
+          <textarea onChange={handleChange} value={formData?.description} name='description' placeholder="Description" className="w-full p-2 border rounded-md focus:outline-none "></textarea>
           <input type="file" className="w-full p-2 border rounded-md focus:outline-none " />
 
-          <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">
-            Add Movie
-          </button>
+          {
+            loading ? <button className="w-full bg-blue-300 text-white py-2 rounded-md hover:bg-blue-600 transition cursor-not-allowed">
+              Submitting...
+            </button> : <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">
+              Add Movie
+            </button>
+          }
+
         </form>
       </div>
 

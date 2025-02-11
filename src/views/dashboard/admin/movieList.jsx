@@ -1,4 +1,4 @@
-import React, { useEffect,useState  } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddMovieCard from '../../../components/addMovieCard'
 
 import { format } from "date-fns"
@@ -35,6 +35,11 @@ const MovieList = () => {
       const token = localStorage.getItem("token"); // Get token from localStorage
       console.log("token is", token);
 
+      if (!token) {
+        console.error("No token found, user might not be logged in.");
+        return;
+      }
+
       const response = await axios.get("http://localhost:1111/api/movie/findAllMovie", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -46,6 +51,7 @@ const MovieList = () => {
       console.error("Error fetching movies:", error.response ? error.response.data : error.message);
     }
   };
+
 
 
   useEffect(() => {
@@ -95,7 +101,7 @@ const MovieList = () => {
             </DialogTrigger>
             <DialogContent className="max-w-96 flex justify-center items-center mt-10  h-[450px]"  >
 
-             <AddMovieCard/>
+              <AddMovieCard />
 
 
             </DialogContent>
