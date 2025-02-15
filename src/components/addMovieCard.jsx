@@ -64,6 +64,8 @@ const AddMovieCard = () => {
       setLoading(false)
     }
   };
+  
+  
 
   useEffect(() => {
     setFormData(prev => ({ ...prev, releaseDate: date ? format(date, "yyyy-MM-dd") : "" }));

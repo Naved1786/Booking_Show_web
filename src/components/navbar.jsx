@@ -33,7 +33,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className='flex h-20 items-center justify-between border-y-2 shadow-lg fixed w-full bg-white z-[10]'>
+    <div className='flex h-20 items-center justify-between border-y-2 shadow-lg fixed w-full bg-white z-[1000]'>
       <ul className='mx-10 flex items-center justify-center'>
         <li className='relative'><i className="fa-solid fa-location-dot text-3xl text-red-400 cursor-pointer" onClick={() => handleShowMenu()}></i>
           {

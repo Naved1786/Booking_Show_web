@@ -2,7 +2,7 @@ import React from 'react'
 
 const ServiceCard = (props) => {
     return (
-        <div className="bg-black flex w-[22rem] h-[10rem] justify-center items-center ">
+        <div className="bg-black flex w-[22rem] h-[10rem] justify-center items-center">
             <div className='text-white h-36 w-56 flex justify-center flex-col' >
                 <p className='text-gray-400'>Join Now</p>
                 <h1 className='text-2xl font-bold'>{props.title}</h1>

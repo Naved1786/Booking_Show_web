@@ -11,12 +11,12 @@ const AdminSidebar = () => {
     return (
         <div className='w-full'>
             {/* Sidebar */}
-            <aside className="w-full bg-gradient-to-b from-red-500 to-red-600 p-6 pt-10 flex flex-col h-full shadow-lg">
-                <div className="flex flex-col items-center border-b pb-4">
+            <aside className="w-60 bg-gradient-to-b from-red-500 to-red-600 p-6 pt-10 flex flex-col h-screen shadow-lg fixed z-50 overflow-y-auto">
+            <div className="flex flex-col items-center border-b pb-4">
                     <FaUserPlus className="text-white text-4xl mb-2" />
                     <h2 className="text-white font-semibold">Admin Panel</h2>
                 </div>
-                <nav className="mt-4">
+                <nav className="mt-4 flex-1 overflow-auto">
                     <ul className="space-y-3 text-white">
                         <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer" onClick={() => navigate("/adminDashboard/dashboard")}>
                             <FaChartBar className="text-lg" />

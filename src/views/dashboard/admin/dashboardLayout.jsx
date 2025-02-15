@@ -7,11 +7,11 @@ import MovieList from './movieList'
 
 const DashboardLayout = () => {
     return (
-        <div className='flex h-100vh bg-gray-100 pt-20'>
-            <div className="w-64">
+        <div className='flex h-screen bg-gray-100 pt-20'>
+            <div className="w-60">
                 <AdminSidebar />
             </div>
-            <div className="w-full">
+            <div className="flex-1 overflow-y-auto">
                 <Routes>
                     <Route path='/' element={<Dashboard/>}/>
                     <Route path='/dashboard' element={<Dashboard/>}/>
