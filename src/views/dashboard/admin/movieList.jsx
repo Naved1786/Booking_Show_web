@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import AddMovieCard from '../../../components/addMovieCard'
+import AddMovieCard from '../../../components/addMovieForm'
+import MoviePagination from '@/components/moviePagination'
+import Searchbar from '@/components/searchbar'
 
 import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
@@ -21,6 +23,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import axios from 'axios'
+// import { Pagination } from '@/components/pagination'
 
 
 
@@ -67,10 +70,16 @@ const MovieList = () => {
 
     <div className='w-full max-h-full'>
       <div>
-        <div className="flex flex-wrap mt-10 ml-10">
+        <div className='mt-8 ml-5'>
+          <h1 className='text-3xl '>Movie<span className='text-red-500'>List</span></h1>
+        </div>
+        <div className='pt-10 flex justify-center items-center'>
+          <Searchbar />
+        </div>
+        <div className="flex flex-wrap mt-10 ml-5  gap-3">
           {movies.length > 0 ? (
             movies.map((movie) => (
-              <div key={movie.id} className="w-full sm:w-1/4 xl:w-1/4 bg-white rounded-xl overflow-hidden shadow-lg pb-3">
+              <div key={movie.id} className="w-60 bg-white rounded-xl overflow-hidden shadow-lg pb-3">
                 {/* Movie Image */}
                 <div className="relative w-full flex justify-center items-center pt-4">
                   <img src={movie.postUrl} alt={movie.title} className="w-56 h-60 rounded-lg object-cover" />
@@ -91,9 +100,18 @@ const MovieList = () => {
           )}
         </div>
         <div className=" w-full flex justify-left">
+
+
+          <div className='w-full flex justify-center items-center pb-6'>
+            <MoviePagination />
+          </div>
+
+
           <Dialog>
+
             <DialogTrigger>
-              <button className="p-3 text-sm pr-4 bg-green-600 text-white rounded-3xl hover:bg-green-500 transition-all absolute top-36 right-12"
+
+              <button className="p-3 text-sm pr-4 bg-green-600 text-white rounded-xl hover:bg-green-500 transition-all absolute top-28 right-12"
               >
                 ➕
                 Add Movie

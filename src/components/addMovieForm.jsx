@@ -20,7 +20,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-const AddMovieCard = () => {
+const AddMovieForm = () => {
   const [date, setDate] = React.useState();
   const [dateOpen, setDateOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -178,4 +178,4 @@ const AddMovieCard = () => {
   );
 };
 
-export default AddMovieCard;
+export default AddMovieForm;

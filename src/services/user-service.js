@@ -18,3 +18,7 @@ export const signup=async(user)=>{
 export const login=async(loginDetail)=>{
     return myAxios.post('api/auth/login',loginDetail).then((response)=>response.data);
 }
+
+export const updloadImage =async (image,userId)=> {
+    return myAxios.post(`/api/user/public/uploadImg/{id}`)
+}
