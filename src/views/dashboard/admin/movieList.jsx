@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AddMovieCard from '../../../components/addMovieForm'
 import MoviePagination from '@/components/moviePagination'
 import Searchbar from '@/components/searchbar'
+import { BookMarked } from "lucide-react";
 
 import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
@@ -71,7 +72,7 @@ const MovieList = () => {
     <div className='w-full max-h-full'>
       <div>
         <div className='mt-8 ml-5'>
-          <h1 className='text-3xl '>Movie<span className='text-red-500'>List</span></h1>
+          <h1 className='text-3xl font-semibold'>Movie<span className='text-red-500'>List</span></h1>
         </div>
         <div className='pt-10 flex justify-center items-center'>
           <Searchbar />
@@ -111,9 +112,8 @@ const MovieList = () => {
 
             <DialogTrigger>
 
-              <button className="p-3 text-sm pr-4 bg-green-600 text-white rounded-xl hover:bg-green-500 transition-all absolute top-28 right-12"
-              >
-                ➕
+              <button className="p-3 text-sm pr-4 bg-green-600 text-white rounded-xl hover:bg-green-500 transition-all absolute top-28 right-12 flex items-center gap-2">
+                <BookMarked size={18} />
                 Add Movie
               </button>
             </DialogTrigger>
