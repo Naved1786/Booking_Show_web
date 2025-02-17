@@ -206,7 +206,7 @@ const Navbar = () => {
         <li className='relative'>
           <input
             type="text"
-            className=" w-56 text-base h-10 p-3 border-2 border-gray-300 rounded-full outline-none focus:border-blue-500"
+            className=" w-56 text-base h-10 p-3 border-2 border-gray-300 rounded-xl outline-none focus:border-blue-500"
             placeholder="Search movie?" />
           <i className="bi bi-search text-xl font absolute top-2 right-3"></i>
         </li>
