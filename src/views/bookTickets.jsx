@@ -11,7 +11,7 @@ const movie = {
 };
 
 const theaters = [
-  { id: 1, name: "PVR Forum Sujana Mal", timings: ["10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM"] },
+  { id: 1, name: "PVR Forum Sujana Mall", timings: ["10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM"] },
   { id: 2, name: "PVR Cinemas", timings: ["11:00 AM", "2:00 PM", "5:00 PM", "8:00 PM"] },
   { id: 3, name: "AMB Cinemas", timings: ["12:00 PM", "3:00 PM", "6:00 PM", "9:00 PM"] },
   { id: 4, name: "RK Cineplex", timings: ["10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM"] },
