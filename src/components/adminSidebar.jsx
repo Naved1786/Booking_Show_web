@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaUsers, FaFilm, FaTicketAlt, FaChartBar, FaCog, FaUserPlus } from 'react-icons/fa';
+import { FaUsers, FaFilm, FaTicketAlt, FaChartBar, FaCog, FaUserPlus, FaBuilding } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const AdminSidebar = () => {
@@ -7,12 +7,12 @@ const AdminSidebar = () => {
     const logout = () => {
         localStorage.clear();
         navigate("/");
-      };
+    };
     return (
         <div className='w-full'>
             {/* Sidebar */}
             <aside className="w-60 bg-gradient-to-b from-red-500 to-red-600 p-6 pt-10 flex flex-col h-screen shadow-lg fixed z-50 overflow-y-auto">
-            <div className="flex flex-col items-center border-b pb-4">
+                <div className="flex flex-col items-center border-b pb-4">
                     <FaUserPlus className="text-white text-4xl mb-2" />
                     <h2 className="text-white font-semibold">Admin Panel</h2>
                 </div>
@@ -30,10 +30,14 @@ const AdminSidebar = () => {
                             <FaFilm className="text-lg" />
                             <span className="text-base">Manage Movies</span>
                         </li>
-                        <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
+                        <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer" onClick={() => navigate("/adminDashboard/theaterList")}>
+                            <FaBuilding className="text-lg" />
+                            <span className="text-base">Manage Theaters</span>
+                        </li>
+                        {/* <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
                             <FaTicketAlt className="text-lg" />
                             <span className="text-base">Manage Tickets</span>
-                        </li>
+                        </li> */}
                         <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
                             <FaChartBar className="text-lg" />
                             <span className="text-base">Reports</span>

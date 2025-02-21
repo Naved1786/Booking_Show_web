@@ -3,6 +3,7 @@ import AdminSidebar from '../../../components/adminSidebar'
 import { Route, Routes } from 'react-router-dom'
 import Dashboard from './dashboard'
 import MovieList from './movieList'
+import TheaterList from './theaterList'
 
 
 const DashboardLayout = () => {
@@ -16,6 +17,7 @@ const DashboardLayout = () => {
                     <Route path='/' element={<Dashboard/>}/>
                     <Route path='/dashboard' element={<Dashboard/>}/>
                     <Route path='/movieList' element={<MovieList/>}/>
+                    <Route path='/theaterList' element={<TheaterList/>}/>
                 </Routes>
             </div>
         </div>
