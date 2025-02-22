@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaEdit, FaTrash } from "react-icons/fa";
+import Searchbar from '@/components/searchbar';
 import {
     Table,
     TableBody,
@@ -9,7 +10,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { Theater } from 'lucide-react';
+import { BookMarked } from 'lucide-react';
 
 const theaters = [
     { id: 1, name: "PVR Cinemas", location: "Mumbai", totalScreens: 5, status: "Active" },
@@ -20,6 +21,21 @@ const theaters = [
 const TheaterList = () => {
     return (
         <div>
+            <div className='pb-10'>
+
+                <div>
+                    <div className='mt-8 ml-5'>
+                        <h1 className='text-3xl font-semibold'>Theater<span className='text-red-500'>List</span></h1>
+                    </div>
+                    <button className="p-3 text-sm pr-4 bg-green-600 text-white rounded-xl hover:bg-green-500 transition-all absolute top-28 right-12 flex items-center gap-2">
+                        <BookMarked size={18} />
+                        Add Theater
+                    </button>
+                </div>
+                <div className='pt-10 flex justify-center items-center'>
+                    <Searchbar />
+                </div>
+            </div>
             <Table>
                 <TableCaption>A list of your recent invoices.</TableCaption>
                 <TableHeader>
