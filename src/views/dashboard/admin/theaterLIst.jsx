@@ -12,9 +12,9 @@ import {
 import { Theater } from 'lucide-react';
 
 const theaters = [
-    { id: 1, name: "PVR Cinemas", location: "Mumbai", totalScreens: 5 },
-    { id: 2, name: "INOX Multiplex", location: "Delhi", totalScreens: 4 },
-    { id: 3, name: "Cinepolis", location: "Bangalore", totalScreens: 6 },
+    { id: 1, name: "PVR Cinemas", location: "Mumbai", totalScreens: 5, status: "Active" },
+    { id: 2, name: "INOX Multiplex", location: "Delhi", totalScreens: 4, status: "Inactive" },
+    { id: 3, name: "Cinepolis", location: "Bangalore", totalScreens: 6, status: "Inactive" },
 ];
 
 const TheaterList = () => {
@@ -28,6 +28,7 @@ const TheaterList = () => {
                         <TableHead>Theater Name</TableHead>
                         <TableHead>Location</TableHead>
                         <TableHead className="">Screens</TableHead>
+                        <TableHead className="">Status</TableHead>
                         <TableHead className="">Actions</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -39,6 +40,16 @@ const TheaterList = () => {
                                 <TableCell>{theater.name}</TableCell>
                                 <TableCell>{theater.location}</TableCell>
                                 <TableCell className="">{theater.totalScreens}</TableCell>
+                                <TableCell className="flex items-center gap-2">
+                                    <span
+                                        className={`w-3 h-3 rounded-full ${theater.status === "Active" ? "bg-green-500" : "bg-red-500"
+                                            }`}
+                                    ></span>
+                                    {theater.status}
+
+                                </TableCell>
+
+
                                 <TableCell className="">
 
                                     <div className="flex space-x-2">
