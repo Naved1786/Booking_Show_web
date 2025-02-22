@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Searchbar from '@/components/searchbar';
+import AddTheaterForm from '@/components/addTheaterForm';
 import {
     Table,
     TableBody,
@@ -12,11 +13,28 @@ import {
 } from "@/components/ui/table"
 import { BookMarked } from 'lucide-react';
 
+// this is diolog part
+import { Button } from "@/components/ui/button"
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog"
+  import { Input } from "@/components/ui/input"
+  import { Label } from "@/components/ui/label"
+
 const theaters = [
     { id: 1, name: "PVR Cinemas", location: "Mumbai", totalScreens: 5, status: "Active" },
     { id: 2, name: "INOX Multiplex", location: "Delhi", totalScreens: 4, status: "Inactive" },
     { id: 3, name: "Cinepolis", location: "Bangalore", totalScreens: 6, status: "Inactive" },
 ];
+
+
+
 
 const TheaterList = () => {
     return (
@@ -27,10 +45,17 @@ const TheaterList = () => {
                     <div className='mt-8 ml-5'>
                         <h1 className='text-3xl font-semibold'>Theater<span className='text-red-500'>List</span></h1>
                     </div>
-                    <button className="p-3 text-sm pr-4 bg-green-600 text-white rounded-xl hover:bg-green-500 transition-all absolute top-28 right-12 flex items-center gap-2">
-                        <BookMarked size={18} />
-                        Add Theater
-                    </button>
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <button className="p-3 text-sm pr-4 bg-green-600 text-white rounded-xl hover:bg-green-500 transition-all absolute top-28 right-12 flex items-center gap-2">
+                                <BookMarked size={18} />
+                                Add Theater
+                            </button>
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[425px]">
+                            <AddTheaterForm/>
+                        </DialogContent>
+                    </Dialog>
                 </div>
                 <div className='pt-10 flex justify-center items-center'>
                     <Searchbar />
