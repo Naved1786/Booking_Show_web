@@ -17,11 +17,28 @@ export default function AddTheaterForm() {
     setTheater({ ...theater, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(theater);
-  };
+    setLoading(true);
+    try {
+      const response = await axios.post(`http://localhost:1111/api/movie/createTheater`, setTheater, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
 
+      if (response.status === 201) {
+        alert("Data saved successfully!");
+      } else {
+        alert("Failed to save data.");
+      }
+
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false)
+    }
+  };
   return (
     
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6 pt-28 ">

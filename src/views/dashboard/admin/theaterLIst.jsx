@@ -1,4 +1,6 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Searchbar from '@/components/searchbar';
 import AddTheaterForm from '@/components/addTheaterForm';
@@ -23,20 +25,52 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-  } from "@/components/ui/dialog"
-  import { Input } from "@/components/ui/input"
-  import { Label } from "@/components/ui/label"
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
-const theaters = [
-    { id: 1, name: "PVR Cinemas", location: "Mumbai", totalScreens: 5, status: "Active" },
-    { id: 2, name: "INOX Multiplex", location: "Delhi", totalScreens: 4, status: "Inactive" },
-    { id: 3, name: "Cinepolis", location: "Bangalore", totalScreens: 6, status: "Inactive" },
-];
+// const theaters = [
+//     { id: 1, name: "PVR Cinemas", location: "Mumbai", totalScreens: 5, status: "Active" },
+//     { id: 2, name: "INOX Multiplex", location: "Delhi", totalScreens: 4, status: "Inactive" },
+//     { id: 3, name: "Cinepolis", location: "Bangalore", totalScreens: 6, status: "Inactive" },
+// ];
 
 
 
 
 const TheaterList = () => {
+    const [theaters, setTheaters] = useState([]);
+
+
+    const fetchTheaters = async () => {
+        try {
+            const token = localStorage.getItem("token"); // Get token from localStorage
+            console.log("token is", token);
+
+            if (!token) {
+                console.error("No token found, user might not be logged in.");
+                return;
+            }
+
+            const response = await axios.get("http://localhost:1111/api/theater/all", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log("response is-", response);
+            setTheaters(response.data); // Assuming response.data is an array of movies
+        } catch (error) {
+            console.error("Error fetching movies:", error.response ? error.response.data : error.message);
+        }
+    };
+
+
+
+    useEffect(() => {
+        fetchTheaters();
+    }, []);
+
+
     return (
         <div>
             <div className='pb-10'>
@@ -53,7 +87,7 @@ const TheaterList = () => {
                             </button>
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-[425px]">
-                            <AddTheaterForm/>
+                            <AddTheaterForm />
                         </DialogContent>
                     </Dialog>
                 </div>
@@ -62,52 +96,45 @@ const TheaterList = () => {
                 </div>
             </div>
             <Table>
-                <TableCaption>A list of your recent invoices.</TableCaption>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead className="">#</TableHead>
-                        <TableHead>Theater Name</TableHead>
-                        <TableHead>Location</TableHead>
-                        <TableHead className="">Screens</TableHead>
-                        <TableHead className="">Status</TableHead>
-                        <TableHead className="">Actions</TableHead>
-                    </TableRow>
-                </TableHeader>
-                {
-                    theaters.map((theater, index) => (
-                        <TableBody>
-                            <TableRow key={theater.id}>
-                                <TableCell className="font-medium">{index + 1}</TableCell>
-                                <TableCell>{theater.name}</TableCell>
-                                <TableCell>{theater.location}</TableCell>
-                                <TableCell className="">{theater.totalScreens}</TableCell>
-                                <TableCell className="flex items-center gap-2">
-                                    <span
-                                        className={`w-3 h-3 rounded-full ${theater.status === "Active" ? "bg-green-500" : "bg-red-500"
-                                            }`}
-                                    ></span>
-                                    {theater.status}
+    <TableCaption>A list of your recent invoices.</TableCaption>
+    <TableHeader>
+        <TableRow>
+            <TableHead>#</TableHead>
+            <TableHead>Theater Name</TableHead>
+            <TableHead>Location</TableHead>
+            <TableHead>Screens</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Actions</TableHead>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        {theaters.map((theater, index) => (
+            <TableRow key={theater.id}>
+                <TableCell className="font-medium">{index + 1}</TableCell>
+                <TableCell>{theater.name}</TableCell>
+                <TableCell>{theater.location}</TableCell>
+                <TableCell>{theater.totalScreens}</TableCell>
+                <TableCell className="flex items-center gap-2">
+                    <span
+                        className={`w-3 h-3 rounded-full ${theater.status === "Active" ? "bg-green-500" : "bg-red-500"}`}
+                    ></span>
+                    {theater.status}
+                </TableCell>
+                <TableCell>
+                    <div className="flex space-x-2">
+                        <button className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                            <FaEdit />
+                        </button>
+                        <button className="p-2 bg-red-500 text-white rounded hover:bg-red-600">
+                            <FaTrash />
+                        </button>
+                    </div>
+                </TableCell>
+            </TableRow>
+        ))}
+    </TableBody>
+</Table>
 
-                                </TableCell>
-
-
-                                <TableCell className="">
-
-                                    <div className="flex space-x-2">
-                                        <button className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                                            <FaEdit />
-                                        </button>
-                                        <button className="p-2 bg-red-500 text-white rounded hover:bg-red-600">
-                                            <FaTrash />
-                                        </button>
-                                    </div>
-                                </TableCell>
-                            </TableRow>
-                        </TableBody>
-                    ))
-                }
-
-            </Table>
 
         </div>
     )
