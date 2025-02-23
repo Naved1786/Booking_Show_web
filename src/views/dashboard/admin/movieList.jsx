@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import AddMovieCard from '../../../components/addMovieForm'
-import MoviePagination from '@/components/moviePagination'
 import Searchbar from '@/components/searchbar'
 import { BookMarked } from "lucide-react";
-
+import PaginationDesign from '@/components/paginationDesign';
 import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
@@ -24,7 +23,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import axios from 'axios'
-// import { Pagination } from '@/components/pagination'
+
+
 
 
 
@@ -77,7 +77,7 @@ const MovieList = () => {
         <div className='pt-10 flex justify-center items-center'>
           <Searchbar />
         </div>
-        <div className="flex flex-wrap mt-10 ml-5  gap-3">
+        <div className="flex flex-wrap mt-10 ml-3  gap-2">
           {movies.length > 0 ? (
             movies.map((movie) => (
               <div key={movie.id} className="w-60 bg-white rounded-xl overflow-hidden shadow-lg pb-3">
@@ -103,8 +103,8 @@ const MovieList = () => {
         <div className=" w-full flex justify-left">
 
 
-          <div className='w-full flex justify-center items-center pb-6'>
-            <MoviePagination />
+          <div className='w-full flex justify-center items-center pt-10'>
+            <PaginationDesign/>
           </div>
 
 

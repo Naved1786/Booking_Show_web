@@ -4,6 +4,9 @@ import axios from 'axios';
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Searchbar from '@/components/searchbar';
 import AddTheaterForm from '@/components/addTheaterForm';
+import { Switch } from "@/components/ui/switch"
+import ConfirmationCard from '@/components/confirmationCard';
+
 import {
     Table,
     TableBody,
@@ -91,6 +94,14 @@ const TheaterList = () => {
         }
     };
 
+    const handleStatusToggle = (id, isActive) => {
+        setTheaters((prevTheaters) =>
+          prevTheaters.map((t) =>
+            t.id === id ? { ...t, status: isActive ? "Active" : "Inactive" } : t
+          )
+        );
+      };
+
     return (
         <div>
             <div className='pb-10'>
@@ -115,11 +126,12 @@ const TheaterList = () => {
                     <Searchbar />
                 </div>
             </div>
+            <div className="pl-10">
             <Table>
                 <TableCaption>A list of your recent invoices.</TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead>#</TableHead>
+                        <TableHead>Id</TableHead>
                         <TableHead>Theater Name</TableHead>
                         <TableHead>Location</TableHead>
                         <TableHead>Screens</TableHead>
@@ -130,15 +142,17 @@ const TheaterList = () => {
                 <TableBody>
                     {theaters.map((theater, index) => (
                         <TableRow key={theater.id}>
-                            <TableCell className="font-medium">{index + 1}</TableCell>
+                            <TableCell className="font-medium">{theater.id}</TableCell>
                             <TableCell>{theater.name}</TableCell>
                             <TableCell>{theater.location}</TableCell>
                             <TableCell>{theater.screens}</TableCell>
                             <TableCell className="flex items-center gap-2">
-                                <span
+                            <Switch checked={theater?.status==='Active'?true:false} onCheckedChange={(checked) => handleStatusToggle(theater.id, checked)}/>
+
+                                {/* <span
                                     className={`w-3 h-3 rounded-full ${theater.status === "Active" ? "bg-green-500" : "bg-red-500"}`}
                                 ></span>
-                                {theater.status}
+                                {theater.status} */}
                             </TableCell>
                             <TableCell>
                                 <div className="flex space-x-2">
@@ -155,6 +169,7 @@ const TheaterList = () => {
                     ))}
                 </TableBody>
             </Table>
+            </div>
 
 
         </div>
