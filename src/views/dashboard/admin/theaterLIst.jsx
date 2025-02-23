@@ -81,12 +81,12 @@ const TheaterList = () => {
                     </div>
                     <Dialog>
                         <DialogTrigger asChild>
-                            <button className="p-3 text-sm pr-4 bg-green-600 text-white rounded-xl hover:bg-green-500 transition-all absolute top-28 right-12 flex items-center gap-2">
+                            <button className="p-3 text-sm pr-4 bg-green-600 text-white rounded-xl hover:bg-green-500 transition-all absolute top-28 right-12 flex items-center gap-2 z-10">
                                 <BookMarked size={18} />
                                 Add Theater
                             </button>
                         </DialogTrigger>
-                        <DialogContent className="sm:max-w-[425px]">
+                        <DialogContent className="sm:max-w-[425px] mt-10">
                             <AddTheaterForm />
                         </DialogContent>
                     </Dialog>
@@ -113,7 +113,7 @@ const TheaterList = () => {
                 <TableCell className="font-medium">{index + 1}</TableCell>
                 <TableCell>{theater.name}</TableCell>
                 <TableCell>{theater.location}</TableCell>
-                <TableCell>{theater.totalScreens}</TableCell>
+                <TableCell>{theater.screens}</TableCell>
                 <TableCell className="flex items-center gap-2">
                     <span
                         className={`w-3 h-3 rounded-full ${theater.status === "Active" ? "bg-green-500" : "bg-red-500"}`}
