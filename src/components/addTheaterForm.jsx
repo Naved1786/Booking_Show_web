@@ -46,6 +46,8 @@ export default function AddTheaterForm() {
     }
   };
 
+  // Function to delete a theater
+
   return (
     <div className="w-full h-full overflow-hidden">
       <form onSubmit={handleSubmit} className="grid grid-cols-2 items-center justify-center gap-6">
@@ -60,7 +62,7 @@ export default function AddTheaterForm() {
         <div className="col-span-2">
           <input type="text" name="operatingHours" placeholder="Operating Hours (e.g., 10 AM - 10 PM)" value={theater.operatingHours} onChange={handleChange} className="border p-3 rounded-lg w-full" required />
         </div>
-        <button type="submit" className={`w-full text-white py-2 rounded-md transition ${loading ? "bg-blue-300 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"}`} disabled={loading}>
+        <button type="submit" className={`w-32 text-white py-2 rounded-md transition ${loading ? "bg-blue-300 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"}`} disabled={loading}>
           {loading ? "Submitting..." : "Add Theater"}
         </button>
       </form>

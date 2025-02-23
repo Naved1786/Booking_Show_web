@@ -70,6 +70,26 @@ const TheaterList = () => {
         fetchTheaters();
     }, []);
 
+    // Function to delete a theater
+
+    const handleDelete = async (id) => {
+
+
+        try {
+            const response = await axios.delete(`http://localhost:1111/api/theater/delete/${id}`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+            });
+
+            if (response.status === 200) {
+                alert("Theater deleted successfully!");
+                fetchTheaters(); // Refresh the list after deletion
+            } else {
+                alert("Failed to delete theater.");
+            }
+        } catch (error) {
+            console.error("Error deleting theater:", error);
+        }
+    };
 
     return (
         <div>
@@ -96,44 +116,45 @@ const TheaterList = () => {
                 </div>
             </div>
             <Table>
-    <TableCaption>A list of your recent invoices.</TableCaption>
-    <TableHeader>
-        <TableRow>
-            <TableHead>#</TableHead>
-            <TableHead>Theater Name</TableHead>
-            <TableHead>Location</TableHead>
-            <TableHead>Screens</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Actions</TableHead>
-        </TableRow>
-    </TableHeader>
-    <TableBody>
-        {theaters.map((theater, index) => (
-            <TableRow key={theater.id}>
-                <TableCell className="font-medium">{index + 1}</TableCell>
-                <TableCell>{theater.name}</TableCell>
-                <TableCell>{theater.location}</TableCell>
-                <TableCell>{theater.screens}</TableCell>
-                <TableCell className="flex items-center gap-2">
-                    <span
-                        className={`w-3 h-3 rounded-full ${theater.status === "Active" ? "bg-green-500" : "bg-red-500"}`}
-                    ></span>
-                    {theater.status}
-                </TableCell>
-                <TableCell>
-                    <div className="flex space-x-2">
-                        <button className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                            <FaEdit />
-                        </button>
-                        <button className="p-2 bg-red-500 text-white rounded hover:bg-red-600">
-                            <FaTrash />
-                        </button>
-                    </div>
-                </TableCell>
-            </TableRow>
-        ))}
-    </TableBody>
-</Table>
+                <TableCaption>A list of your recent invoices.</TableCaption>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead>#</TableHead>
+                        <TableHead>Theater Name</TableHead>
+                        <TableHead>Location</TableHead>
+                        <TableHead>Screens</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>Actions</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {theaters.map((theater, index) => (
+                        <TableRow key={theater.id}>
+                            <TableCell className="font-medium">{index + 1}</TableCell>
+                            <TableCell>{theater.name}</TableCell>
+                            <TableCell>{theater.location}</TableCell>
+                            <TableCell>{theater.screens}</TableCell>
+                            <TableCell className="flex items-center gap-2">
+                                <span
+                                    className={`w-3 h-3 rounded-full ${theater.status === "Active" ? "bg-green-500" : "bg-red-500"}`}
+                                ></span>
+                                {theater.status}
+                            </TableCell>
+                            <TableCell>
+                                <div className="flex space-x-2">
+                                    <button className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                        <FaEdit />
+                                    </button>
+                                    <button onClick={() => handleDelete(theater.id)} className="p-2 bg-red-500 text-white rounded hover:bg-red-600">
+                                        <FaTrash />
+                                    </button>
+
+                                </div>
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
 
 
         </div>
