@@ -54,7 +54,7 @@ const MovieDetails = () => {
           </div>
         </div>
       </div>
-      <div className='w-[85%] pt-8 px-10 py-10'>
+      {/* <div className='w-[85%] pt-8 px-10 py-10'>
         <div className='border-b-[1px] pb-8'>
           <h1 className='text-3xl font-bold'>About the movie</h1>
           <p className='pt-3'>The hilarious revelation of the shocking fact that your friends and spouses, are nothing more than masked strangers, dwelling behind a phony pile of lies... sometimes just needs one game!
@@ -74,7 +74,7 @@ const MovieDetails = () => {
             <AboutMovieSlider />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

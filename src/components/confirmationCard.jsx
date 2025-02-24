@@ -11,10 +11,10 @@ import { Button } from "@/components/ui/button";
 
 const ConfirmationCard = ({ message, onConfirm, onCancel }) => {
     return (
-        <Dialog>
-            <DialogTrigger asChild>
+        <Dialog open={true}>
+            {/* <DialogTrigger asChild>
                 <Button variant="destructive">Delete</Button>
-            </DialogTrigger>
+            </DialogTrigger> */}
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Are you sure?</DialogTitle>
