@@ -188,7 +188,7 @@ const Navbar = () => {
         <li className='group flex justify-center flex-col items-center'><Link to='/'>Home</Link>
           <div className='w-0 h-[2px] group-hover:w-full group-hover:bg-red-500 flex justify-center  group-hover:transition-all duration-300 ease-in-out'></div>
         </li>
-        <li className='group flex justify-center flex-col items-center'><Link to='/All Movies'>All Movies</Link>
+        <li className='group flex justify-center flex-col items-center'><Link to='/movies'>Movies</Link>
           <div className='w-0 h-[2px] group-hover:w-full group-hover:bg-red-500 flex justify-center group-hover:transition-all duration-300 ease-in-out '></div>
         </li>
         <li className='group flex justify-center flex-col items-center'><Link to='/event'>Events</Link>

@@ -17,6 +17,7 @@ import UserDashboard from './views/userDashboard';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Event from './views/event';
+import Movies from './views/movies';
 
 function App() {
   return(
@@ -27,6 +28,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/about' element={<About/>}/>
+        <Route path='/movies' element={<Movies/>}/>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/event' element={<Event/>}/>
         <Route path='/loginPage' element={<LoginPage/>}/>
