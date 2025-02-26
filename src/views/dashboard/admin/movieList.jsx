@@ -77,13 +77,14 @@ const MovieList = () => {
         <div className='pt-10 flex justify-center items-center'>
           <Searchbar />
         </div>
-        <div className="flex flex-wrap mt-10 ml-3  gap-2">
+        <div className="flex flex-wrap justify-center items-center mt-10 ml-3  gap-5">
           {movies.length > 0 ? (
             movies.map((movie) => (
-              <div key={movie.id} className="w-60 bg-white rounded-xl overflow-hidden shadow-lg pb-3">
+              <div key={movie.id} className="w-56 h-[350px] bg-white rounded-xl overflow-hidden shadow-lg pb-3">
                 {/* Movie Image */}
-                <div className="relative w-full flex justify-center items-center pt-4">
-                  <img src={movie.postUrl} alt={movie.title} className="w-56 h-60 rounded-lg object-cover" />
+                <div className="relative w-full flex justify-center items-center pt-2">
+                  <img src="/images/feature-img2.jpg" alt={movie.title} className="w-52 h-52 rounded-lg object-cover" />
+                  {/* <img src={movie.postUrl} alt={movie.title} className="w-52 h-52 rounded-lg object-cover" /> */}
                 </div>
 
                 {/* Movie Details */}

@@ -1,11 +1,13 @@
 import Banner from '@/components/banner'
 import FilterBox from '@/components/filterBox'
 import React, { useEffect, useState } from 'react'
+import { FaShoppingCart, FaStar, FaRegStar,FaStarHalfAlt } from 'react-icons/fa';
+import { Star } from "lucide-react";
 import axios from 'axios'
 import Searchbar from '@/components/searchbar'
 import { Scrollbar } from 'swiper/modules'
 
-const Movies = () => {
+const Movies = (props) => {
 
     const [movies, setMovies] = useState([]);
 
@@ -46,7 +48,7 @@ const Movies = () => {
                     <h1 className='text-xl font-bold pl-4'>Filter By</h1>
                     <div className='flex flex-col gap-3 justify-center items-center pt-4'>
                         <FilterBox title="Languages" options={["Telugu", "English", "Hindi", "Malayalam", "Tamil", "Begali", "korean", "Persian"]} />
-                        <FilterBox title="Genres" options={["Action", "Comedy", "Drama", "Horror","Romance","Family","Adventure","Thriller"]} />
+                        <FilterBox title="Genres" options={["Action", "Comedy", "Drama", "Horror", "Romance", "Family", "Adventure", "Thriller"]} />
                         <FilterBox title="Format" options={["2D", "3D", "IMAX", "4DX"]} />
                         <FilterBox title="Format" options={["2D", "3D", "IMAX", "4DX"]} />
                     </div>
@@ -59,29 +61,51 @@ const Movies = () => {
 
                         {movies.length > 0 ? (
                             movies.map((movie) => (
-                                <div key={movie.id} className="w-56  bg-white rounded-xl overflow-hidden shadow-lg pb-3">
+                                <div key={movie.id} className="w-56 h-[350px] bg-white rounded-xl overflow-hidden shadow-lg pb-3">
                                     {/* Movie Image */}
                                     <div className="relative w-full flex justify-center items-center pt-2">
-                                        <img src="/images/feature-img2.jpg" alt={movie.title} className="w-52 h-52 rounded-lg object-cover" />
+                                        <div className="relative w-52 h-52 group">
+                                            <img
+                                                src="/images/feature-img5.jpg"
+                                                alt={movie.title}
+                                                className="w-full h-full rounded-lg object-cover"
+                                            />
+                                            <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                            </div>
+                                        </div>
                                     </div>
 
                                     {/* Movie Details */}
                                     <div className="bg-white px-4 py-3">
                                         <h2 className="text-lg font-semibold">{movie.title}</h2>
                                         <p className="text-sm text-gray-500">Genre: {movie.genre}</p>
-                                        <p className="text-sm text-gray-500">Language: {movie.language}</p>
-                                        <p className="text-sm text-gray-500">Duration: {movie.duration}</p>
-                                        <p className="text-sm text-gray-500">Release Date: {movie.releaseDate}</p>
+
+                                        {/* Rating Section */}
+                                        <div className="flex items-center mt-2 text-[#ff4444]">
+                                            {[...Array(5)].map((_, index) => {
+                                                if (movie.rating >= index + 1) {
+                                                    return <FaStar key={index} />;
+                                                } else if (movie.rating >= index + 0.5) {
+                                                    return <FaStarHalfAlt key={index} />;
+                                                } else {
+                                                    return <FaRegStar key={index} />;
+                                                }
+                                            })}
+                                        </div>
+                                        {/* <div className="flex items-center mt-2">
+                                            <Star className="w-5 h-5 text-yellow-500" />
+                                            <span className="ml-1 text-sm font-semibold text-gray-700">{movie.rating} / 5</span>
+                                        </div> */}
                                     </div>
                                 </div>
                             ))
                         ) : (
                             <p className="text-gray-600">Loading movies...</p>
                         )}
+
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
