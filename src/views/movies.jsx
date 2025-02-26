@@ -1,7 +1,7 @@
 import Banner from '@/components/banner'
 import FilterBox from '@/components/filterBox'
 import React, { useEffect, useState } from 'react'
-import { FaShoppingCart, FaStar, FaRegStar,FaStarHalfAlt } from 'react-icons/fa';
+import { FaShoppingCart, FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 import { Star } from "lucide-react";
 import axios from 'axios'
 import Searchbar from '@/components/searchbar'
@@ -70,13 +70,23 @@ const Movies = (props) => {
                                                 alt={movie.title}
                                                 className="w-full h-full rounded-lg object-cover"
                                             />
-                                            <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                            <div className="absolute rounded-lg inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                                                <button className="mb-2 px-4 py-3 text-[10px] bg-red-500 hover:bg-transparent hover:border hover:border-red-500 text-white rounded-md 
+    transform -translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out">
+                                                    VIEW TRAILER
+                                                </button>
+
+                                                <button className="px-4 py-3 text-[10px] border border-red-500 text-white rounded-md hover:bg-red-500 hover:border-none 
+    transform translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out">
+                                                    VIEW DETAILS
+                                                </button>
                                             </div>
+
                                         </div>
                                     </div>
 
                                     {/* Movie Details */}
-                                    <div className="bg-white px-4 py-3">
+                                    <div className="bg-white px-4 py-3 relative">
                                         <h2 className="text-lg font-semibold">{movie.title}</h2>
                                         <p className="text-sm text-gray-500">Genre: {movie.genre}</p>
 
@@ -96,6 +106,11 @@ const Movies = (props) => {
                                             <Star className="w-5 h-5 text-yellow-500" />
                                             <span className="ml-1 text-sm font-semibold text-gray-700">{movie.rating} / 5</span>
                                         </div> */}
+                                        <div className="flex mt-3 absolute top-11 right-6">
+                                            <button className="p-2 border border-gray-200 rounded-lg text-red-500 hover:bg-red-500 hover:text-white transition">
+                                                <FaShoppingCart />
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             ))
