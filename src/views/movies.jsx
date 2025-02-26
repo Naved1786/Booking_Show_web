@@ -50,7 +50,6 @@ const Movies = (props) => {
                         <FilterBox title="Languages" options={["Telugu", "English", "Hindi", "Malayalam", "Tamil", "Begali", "korean", "Persian"]} />
                         <FilterBox title="Genres" options={["Action", "Comedy", "Drama", "Horror", "Romance", "Family", "Adventure", "Thriller"]} />
                         <FilterBox title="Format" options={["2D", "3D", "IMAX", "4DX"]} />
-                        <FilterBox title="Format" options={["2D", "3D", "IMAX", "4DX"]} />
                     </div>
 
                 </div>
