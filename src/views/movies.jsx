@@ -54,7 +54,7 @@ const Movies = (props) => {
 
                 </div>
                 <div className='w-[77%] pt-14'>
-                    <h1 className='text-xl font-bold pl-4 pb-4'>All Movies</h1>
+                    <h1 className='text-xl font-bold pl-4 pb-4'></h1>
 
                     <div className=" flex flex-wrap  ml-3  gap-4 justify-center item center h-screen overflow-scroll" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
 
