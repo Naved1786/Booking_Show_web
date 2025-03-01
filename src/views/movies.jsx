@@ -9,36 +9,34 @@ import { Scrollbar } from 'swiper/modules'
 
 const Movies = (props) => {
 
+    const [selectedLanguage, setSelectedLanguage] = useState("All");
+    const [selectedGenre, setSelectedGenre] = useState("All");
     const [movies, setMovies] = useState([]);
 
 
     const fetchMovies = async () => {
         try {
-            const token = localStorage.getItem("token"); // Get token from localStorage
-            console.log("token is", token);
-
-            if (!token) {
-                console.error("No token found, user might not be logged in.");
-                return;
-            }
-
-            const response = await axios.get("http://localhost:1111/api/movie/findAllMovie", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            console.log("response is-", response);
-            setMovies(response.data); // Assuming response.data is an array of movies
+            const token = localStorage.getItem("token");
+            const response = await axios.get(
+                `http://localhost:1111/api/movie/filter?${selectedLanguage === "All" ? "" : `language=${selectedLanguage}`
+                }${selectedGenre === "All" ? "" : `&genre=${selectedGenre}`}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            setMovies(response.data);
         } catch (error) {
-            console.error("Error fetching movies:", error.response ? error.response.data : error.message);
+            console.error("Error fetching movies:", error);
         }
     };
 
 
-
     useEffect(() => {
         fetchMovies();
-    }, []);
+        console.log("selected lanaguage:",selectedLanguage);
+    }, [selectedLanguage, selectedGenre]);
 
     return (
         <div className='bg-[#f5f5f5]'>
@@ -47,9 +45,18 @@ const Movies = (props) => {
                 <div className='w-[23%] flex flex-col  pt-14'>
                     <h1 className='text-xl font-bold pl-4'>Filter By</h1>
                     <div className='flex flex-col gap-3 justify-center items-center pt-4'>
-                        <FilterBox title="Languages" options={["Telugu", "English", "Hindi", "Malayalam", "Tamil", "Begali", "korean", "Persian"]} />
-                        <FilterBox title="Genres" options={["Action", "Comedy", "Drama", "Horror", "Romance", "Family", "Adventure", "Thriller"]} />
-                        <FilterBox title="Format" options={["2D", "3D", "IMAX", "4DX"]} />
+                        <FilterBox
+                            title="Languages"
+                            options={["All", "Telugu", "English", "Hindi", "Malayalam", "Tamil", "Bengali", "Korean", "Persian"]}
+                            selectedOption={selectedLanguage}
+                            setSelectedOption={setSelectedLanguage}
+                        />
+                        <FilterBox title="Genres"
+                            options={["All", "Action", "Comedy", "Drama", "Horror", "Romance", "Family", "Adventure", "Thriller"]}
+                            selectedOption={selectedGenre}
+                            setSelectedOption={setSelectedGenre}
+                        />
+                        {/* <FilterBox title="Format" options={["All", "2D", "3D", "IMAX", "4DX"]} /> */}
                     </div>
 
                 </div>

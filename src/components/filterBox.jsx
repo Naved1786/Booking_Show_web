@@ -3,7 +3,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { Toggle } from "@/components/ui/toggle"
 
 
-const FilterBox = ({ title, options }) => {
+const FilterBox = ({ title, options, selectedOption, setSelectedOption }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -23,9 +23,9 @@ const FilterBox = ({ title, options }) => {
       {isOpen && (
         <div className="mt-3 flex flex-wrap gap-2">
           {options.map((option, index) => (
-            <Toggle key={index} className="border text-xs  text-red-600 bg-gray-100 rounded-md">
+            <div onClick={() => setSelectedOption(option)} key={index} className={`border flex justify-center items-center text-xs w-16 h-8   rounded-md ${selectedOption === option ? 'bg-red-500 text-white' : 'bg-gray-100 text-red-600 '}`}>
               {option}
-            </Toggle>
+            </div>
           ))}
         </div>
       )}
