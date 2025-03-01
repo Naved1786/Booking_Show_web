@@ -3,6 +3,7 @@ import FilterBox from '@/components/filterBox'
 import React, { useEffect, useState } from 'react'
 import { FaShoppingCart, FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 import axios from 'axios'
+import Searchbar from '@/components/searchbar';
 
 const Movies = () => {
 
@@ -70,9 +71,13 @@ const Movies = () => {
 
                 {/* Movies List */}
                 <div className='w-[77%] pt-14'>
-                    <h1 className='text-xl font-bold pl-4 pb-4'></h1>
+                <h1 className='text-xl font-bold pl-4 pb-4'>Movies In <span className='text-red-500'>Hyderabad</span></h1>
+                   <div className='flex flex-col  items-center'>
+                   
+                   <img src="./images/coming-soon-banner.avif" className='w-[97%] h-[70px] ' alt="" />
+                   </div>
 
-                    <div className="flex flex-wrap ml-3 gap-4 justify-center items-center h-screen overflow-scroll" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+                    <div className="flex flex-wrap ml-3 gap-4 h-screen overflow-scroll mt-14" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
                         {movies.length > 0 ? (
                             movies.map((movie) => (
                                 <div key={movie.id} className="w-56 h-[350px] bg-white rounded-xl overflow-hidden shadow-lg pb-3">
