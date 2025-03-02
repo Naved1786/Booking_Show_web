@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { isLoggedIn } from '../auth';
+import { FiSearch } from "react-icons/fi";
 import axios from 'axios';
 import { use } from 'react';
-const Navbar = () => {
+import { Search } from 'lucide-react';
+import SearchBar from './searchbar';
+
+const Navbar = ({ onSearch }) => {
   const [isShowMenu, setIsShowMenu] = useState(false);
   const user = JSON.parse(localStorage.getItem("user"));
   console.log(user)
@@ -31,6 +35,15 @@ const Navbar = () => {
   const handleShowMenu = () => {
     setIsShowMenu(!isShowMenu);
   }
+
+  //search bar
+  const [query, setQuery] = useState("");
+
+  const handleSearch = () => {
+    if (query.trim()) {
+      onSearch(query);
+    }
+  };
 
   return (
     <div className='flex h-20 items-center justify-between border-y-2 shadow-lg fixed w-full bg-white z-[100]'>
@@ -204,11 +217,7 @@ const Navbar = () => {
       <ul className='flex flex-row gap-10 mx-10 items-center'>
 
         <li className='relative'>
-          <input
-            type="text"
-            className=" w-56 text-base h-10 p-3 border-2 border-gray-300 rounded-xl outline-none focus:border-blue-500"
-            placeholder="Search movie?" />
-          <i className="bi bi-search text-xl font absolute top-2 right-3"></i>
+          <SearchBar/>
         </li>
         <li class="flex items-center justify-center">
           {!isLoggedIn() ? <><button class="text-red-400 text-xs  border-2 border-red-400 rounded-lg px-2 py-2 hover:bg-red-500 hover:text-white transition-colors duration-300">

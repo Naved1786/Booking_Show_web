@@ -3,7 +3,7 @@ import FilterBox from '@/components/filterBox'
 import React, { useEffect, useState } from 'react'
 import { FaShoppingCart, FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 import axios from 'axios'
-import Searchbar from '@/components/searchbar';
+import Searchbar from '@/components/searchBar';
 
 const Movies = () => {
 

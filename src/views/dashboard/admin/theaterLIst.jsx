@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEdit, FaTrash } from "react-icons/fa";
-import Searchbar from '@/components/searchbar';
+import Searchbar from '@/components/searchBar';
 import AddTheaterForm from '@/components/addTheaterForm';
 import { Switch } from "@/components/ui/switch";
 import ConfirmationCard from '@/components/confirmationCard';

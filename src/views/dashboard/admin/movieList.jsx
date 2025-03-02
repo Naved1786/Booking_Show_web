@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import AddMovieCard from '../../../components/addMovieForm'
-import Searchbar from '@/components/searchbar'
+import SearchBar from '@/components/searchbar';
 import { BookMarked } from "lucide-react";
 import PaginationDesign from '@/components/paginationDesign';
 import { format } from "date-fns"
@@ -71,11 +71,11 @@ const MovieList = () => {
 
     <div className='w-full max-h-full'>
       <div>
-        <div className='mt-8 ml-5'>
+        <div className='mt-8 ml-8'>
           <h1 className='text-3xl font-semibold'>Movie<span className='text-red-500'>List</span></h1>
         </div>
         <div className='pt-10 flex justify-center items-center'>
-          <Searchbar />
+          <SearchBar className='w-[93%]' />
         </div>
         <div className="flex flex-wrap justify-center items-center mt-10 ml-3  gap-5">
           {movies.length > 0 ? (
