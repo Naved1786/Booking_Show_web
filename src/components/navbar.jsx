@@ -36,14 +36,7 @@ const Navbar = ({ onSearch }) => {
     setIsShowMenu(!isShowMenu);
   }
 
-  //search bar
-  const [query, setQuery] = useState("");
-
-  const handleSearch = () => {
-    if (query.trim()) {
-      onSearch(query);
-    }
-  };
+  
 
   return (
     <div className='flex h-20 items-center justify-between border-y-2 shadow-lg fixed w-full bg-white z-[100]'>
