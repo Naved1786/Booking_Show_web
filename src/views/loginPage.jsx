@@ -5,7 +5,10 @@ import { doLogin } from '../auth';
 // import { toast } from 'react-toast';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import {login as loginRedux} from '../store/slices/authSlice'
 const LoginPage = () => {
+  const dispatch=useDispatch();
   const [loginDetail, setLoginDeatail] = useState({
     email: "",
     password: "",
@@ -34,6 +37,7 @@ const LoginPage = () => {
         console.log(response);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
+        dispatch(loginRedux(response.data.user))
         const role = response.data.user?.role;
         console.log("role:",role)
         if (role === "user") {
