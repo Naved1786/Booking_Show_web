@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { FaShoppingCart, FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 import axios from 'axios'
 import Searchbar from '@/components/searchBar';
+import { useNavigate } from 'react-router-dom';
 
 const Movies = () => {
 
@@ -39,6 +40,11 @@ const Movies = () => {
         fetchMovies();
         console.log("Selected Filters:", { selectedLanguage, selectedGenre, selectedFormat });
     }, [selectedLanguage, selectedGenre, selectedFormat]);
+
+    const navigate=useNavigate();
+    const handleClick=()=>{
+        navigate("/movieDetails")
+    }
 
     return (
         <div className='bg-[#f5f5f5]'>
@@ -91,7 +97,9 @@ const Movies = () => {
                                             />
                                             <div className="absolute rounded-lg inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
                                                 <button className="mb-2 px-4 py-3 text-[10px] bg-red-500 hover:bg-transparent hover:border hover:border-red-500 text-white rounded-md 
-                                                    transform -translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out">
+                                                    transform -translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out"
+                                                   
+                                                    >
                                                     VIEW TRAILER
                                                 </button>
 
@@ -123,7 +131,9 @@ const Movies = () => {
 
                                         {/* Shopping Cart Button */}
                                         <div className="flex mt-3 absolute top-11 right-6">
-                                            <button className="p-2 border border-gray-200 rounded-lg text-red-500 hover:bg-red-500 hover:text-white transition">
+                                            <button className="p-2 border border-gray-200 rounded-lg text-red-500 hover:bg-red-500 hover:text-white transition"
+                                             onClick={handleClick}
+                                            >
                                                 <FaShoppingCart />
                                             </button>
                                         </div>
