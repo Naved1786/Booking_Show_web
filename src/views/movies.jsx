@@ -5,14 +5,35 @@ import { FaShoppingCart, FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa
 import axios from 'axios'
 import Searchbar from '@/components/searchBar';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchInput } from '@/store/slices/searchSlice';
 
 const Movies = () => {
-
     const [selectedLanguage, setSelectedLanguage] = useState("All");
     const [selectedGenre, setSelectedGenre] = useState("All");
     const [selectedFormat, setSelectedFormat] = useState("All");
     const [movies, setMovies] = useState([]);
 
+    const dispatch = useDispatch();
+    const searchInput = useSelector((state) => state.search.searchInput);
+
+    
+
+    
+    const searchMovie=async ()=>{
+        try{
+            const response = await axios.get(
+                `http://localhost:1111/api/movie/searchByTitle?title=${searchInput?.toString()}`
+            );
+            setMovies(response.data);
+        }
+        catch(error){
+        console.error("Error searching movies:", error);
+        }
+
+    }
+
+          // for filter
     const fetchMovies = async () => {
         try {
             const token = localStorage.getItem("token");
@@ -41,6 +62,9 @@ const Movies = () => {
         console.log("Selected Filters:", { selectedLanguage, selectedGenre, selectedFormat });
     }, [selectedLanguage, selectedGenre, selectedFormat]);
 
+    useEffect(()=>{
+        searchMovie();
+    },[searchInput])
     const navigate=useNavigate();
     const handleClick=()=>{
         navigate("/movieDetails")
