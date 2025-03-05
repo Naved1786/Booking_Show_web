@@ -13,13 +13,13 @@ const Movies = () => {
     const [selectedGenre, setSelectedGenre] = useState("All");
     const [selectedFormat, setSelectedFormat] = useState("All");
     const [movies, setMovies] = useState([]);
+    
 
-    const dispatch = useDispatch();
+    // --------------searching------------
+
+    // const dispatch = useDispatch();
     const searchInput = useSelector((state) => state.search.searchInput);
 
-    
-
-    
     const searchMovie=async ()=>{
         try{
             const response = await axios.get(
