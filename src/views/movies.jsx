@@ -13,27 +13,27 @@ const Movies = () => {
     const [selectedGenre, setSelectedGenre] = useState("All");
     const [selectedFormat, setSelectedFormat] = useState("All");
     const [movies, setMovies] = useState([]);
-    
+    const [showTrailer, setShowTrailer] = useState(false);
 
     // --------------searching------------
 
     // const dispatch = useDispatch();
     const searchInput = useSelector((state) => state.search.searchInput);
 
-    const searchMovie=async ()=>{
-        try{
+    const searchMovie = async () => {
+        try {
             const response = await axios.get(
                 `http://localhost:1111/api/movie/searchByTitle?title=${searchInput?.toString()}`
             );
             setMovies(response.data);
         }
-        catch(error){
-        console.error("Error searching movies:", error);
+        catch (error) {
+            console.error("Error searching movies:", error);
         }
 
     }
 
-          // for filter
+    // for filter
     const fetchMovies = async () => {
         try {
             const token = localStorage.getItem("token");
@@ -62,11 +62,11 @@ const Movies = () => {
         console.log("Selected Filters:", { selectedLanguage, selectedGenre, selectedFormat });
     }, [selectedLanguage, selectedGenre, selectedFormat]);
 
-    useEffect(()=>{
+    useEffect(() => {
         searchMovie();
-    },[searchInput])
-    const navigate=useNavigate();
-    const handleClick=()=>{
+    }, [searchInput])
+    const navigate = useNavigate();
+    const handleClick = () => {
         navigate("/movieDetails")
     }
 
@@ -101,11 +101,11 @@ const Movies = () => {
 
                 {/* Movies List */}
                 <div className='w-[77%] pt-14'>
-                <h1 className='text-xl font-bold pl-4 pb-4'>Movies In <span className='text-red-500'>Hyderabad</span></h1>
-                   <div className='flex flex-col  items-center'>
-                   
-                   <img src="./images/coming-soon-banner.avif" className='w-[97%] h-[70px] ' alt="" />
-                   </div>
+                    <h1 className='text-xl font-bold pl-4 pb-4'>Movies In <span className='text-red-500'>Hyderabad</span></h1>
+                    <div className='flex flex-col  items-center'>
+
+                        <img src="./images/coming-soon-banner.avif" className='w-[97%] h-[70px] ' alt="" />
+                    </div>
 
                     <div className="flex flex-wrap ml-3 gap-4 h-screen overflow-scroll mt-14" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
                         {movies.length > 0 ? (
@@ -122,15 +122,36 @@ const Movies = () => {
                                             <div className="absolute rounded-lg inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
                                                 <button className="mb-2 px-4 py-3 text-[10px] bg-red-500 hover:bg-transparent hover:border hover:border-red-500 text-white rounded-md 
                                                     transform -translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out"
-                                                   
-                                                    >
+                                                    onClick={() => setShowTrailer(true)}
+                                                >
                                                     VIEW TRAILER
                                                 </button>
-
                                                 <button className="px-4 py-3 text-[10px] border border-red-500 text-white rounded-md hover:bg-red-500 hover:border-none 
                                                     transform translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out">
                                                     VIEW DETAILS
                                                 </button>
+
+                                                {showTrailer && (
+                                                    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+                                                        <div className="relative w-full max-w-4xl h-96">
+                                                            <iframe
+                                                                src="https://www.youtube.com/embed/RKZJtoFoaQg?si=DUStIewFbWrDpwN6"
+                                                                title="Movie Trailer"
+                                                                className="w-full h-full"
+                                                                frameBorder="0"
+                                                                allow="autoplay; encrypted-media"
+                                                                allowFullScreen
+                                                            ></iframe>
+                                                            <button
+                                                                onClick={() => setShowTrailer(false)}
+                                                                className="absolute top-2 right-2 text-white text-2xl cursor-pointer"
+                                                            >
+                                                                ✖
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                )}
+
                                             </div>
                                         </div>
                                     </div>
@@ -156,7 +177,7 @@ const Movies = () => {
                                         {/* Shopping Cart Button */}
                                         <div className="flex mt-3 absolute top-11 right-6">
                                             <button className="p-2 border border-gray-200 rounded-lg text-red-500 hover:bg-red-500 hover:text-white transition"
-                                             onClick={handleClick}
+                                                onClick={handleClick}
                                             >
                                                 <FaShoppingCart />
                                             </button>
