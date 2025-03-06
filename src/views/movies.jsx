@@ -13,8 +13,7 @@ const Movies = () => {
     const [selectedGenre, setSelectedGenre] = useState("All");
     const [selectedFormat, setSelectedFormat] = useState("All");
     const [movies, setMovies] = useState([]);
-    const [showTrailer, setShowTrailer] = useState(false);
-
+    const [trailerUrl, setTrailerUrl] = useState(null);
     // --------------searching------------
 
     // const dispatch = useDispatch();
@@ -122,7 +121,7 @@ const Movies = () => {
                                             <div className="absolute rounded-lg inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
                                                 <button className="mb-2 px-4 py-3 text-[10px] bg-red-500 hover:bg-transparent hover:border hover:border-red-500 text-white rounded-md 
                                                     transform -translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out"
-                                                    onClick={() => setShowTrailer(true)}
+                                                    onClick={() => setTrailerUrl(movie.trailer)}
                                                 >
                                                     VIEW TRAILER
                                                 </button>
@@ -131,19 +130,19 @@ const Movies = () => {
                                                     VIEW DETAILS
                                                 </button>
 
-                                                {showTrailer && (
+                                                {trailerUrl && (
                                                     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
                                                         <div className="relative w-full max-w-4xl h-96">
                                                             <iframe
-                                                                src="https://www.youtube.com/embed/RKZJtoFoaQg?si=DUStIewFbWrDpwN6"
-                                                                title="Movie Trailer"
+                                                                src={trailerUrl}
+                                                                title={`${movie.title} Trailer`}
                                                                 className="w-full h-full"
                                                                 frameBorder="0"
                                                                 allow="autoplay; encrypted-media"
                                                                 allowFullScreen
                                                             ></iframe>
                                                             <button
-                                                                onClick={() => setShowTrailer(false)}
+                                                               onClick={() => setTrailerUrl(null)}
                                                                 className="absolute top-2 right-2 text-white text-2xl cursor-pointer"
                                                             >
                                                                 ✖
