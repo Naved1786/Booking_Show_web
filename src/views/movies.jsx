@@ -119,14 +119,16 @@ const Movies = () => {
                                                 className="w-full h-full rounded-lg object-cover"
                                             />
                                             <div className="absolute rounded-lg inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
-                                                <button className="mb-2 px-4 py-3 text-[10px] bg-red-500 hover:bg-transparent hover:border hover:border-red-500 text-white rounded-md 
+                                                <button className="mb-2 px-4 py-3 text-[10px] bg-[#d9871c] hover:bg-transparent hover:border hover:border-[#d9871c] text-white rounded-md 
                                                     transform -translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out"
                                                     onClick={() => setTrailerUrl(movie.trailer)}
                                                 >
                                                     VIEW TRAILER
                                                 </button>
-                                                <button className="px-4 py-3 text-[10px] border border-red-500 text-white rounded-md hover:bg-red-500 hover:border-none 
-                                                    transform translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out">
+                                                <button className="px-4 py-3 text-[10px] border border-[#d9871c] text-white rounded-md hover:bg-[#d9871c] hover:border-none 
+                                                    transform translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out"
+                                                    onClick={handleClick}
+                                                    >
                                                     VIEW DETAILS
                                                 </button>
 

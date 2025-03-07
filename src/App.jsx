@@ -18,6 +18,7 @@ import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Event from './views/event';
 import Movies from './views/movies';
+import ScrollToTop from './components/scrollOnTop';
 
 function App() {
   return(
@@ -25,6 +26,7 @@ function App() {
       {/* <ToastContainer/> */}
       <Navbar/>
       < div className=''>
+      <ScrollToTop/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/about' element={<About/>}/>
