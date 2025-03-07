@@ -161,7 +161,7 @@ const Movies = () => {
                                         <p className="text-sm text-gray-500">Genre: {movie.genre}</p>
 
                                         {/* Rating Section */}
-                                        <div className="flex items-center mt-2 text-[#ff4444]">
+                                        <div className="flex items-center mt-2 text-[#d9871c]">
                                             {[...Array(5)].map((_, index) => {
                                                 if (movie.rating >= index + 1) {
                                                     return <FaStar key={index} />;
@@ -174,8 +174,8 @@ const Movies = () => {
                                         </div>
 
                                         {/* Shopping Cart Button */}
-                                        <div className="flex mt-3 absolute top-11 right-6">
-                                            <button className="p-2 border border-gray-200 rounded-lg text-red-500 hover:bg-red-500 hover:text-white transition"
+                                        <div className="flex mt-3 absolute top-14 right-6">
+                                            <button className="p-3 border border-gray-200 rounded-lg text-[#d9871c] hover:bg-[#d9871c] hover:text-white transition"
                                                 onClick={handleClick}
                                             >
                                                 <FaShoppingCart />
