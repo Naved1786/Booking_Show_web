@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 const MovieDetails = () => {
   const location = useLocation();
   const [movie, setMovie] = useState();
+   const [trailerUrl, setTrailerUrl] = useState(null);
 
   useEffect(() => {
     setMovie(location?.state?.data);
@@ -25,7 +26,10 @@ const MovieDetails = () => {
             className="w-full h-full object-cover rounded-lg shadow-lg"
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <FaPlay className="text-white text-6xl bg-black bg-opacity-50 p-4 rounded-full" />
+            <FaPlay className="text-white text-6xl bg-black bg-opacity-50 p-4 rounded-full"
+            onClick={() => setTrailerUrl(movie.trailer)}
+             />
+            
           </div>
         </div>
         <div className="md:ml-8 mt-4 md:mt-0 flex flex-col justify-between z-10">
@@ -42,9 +46,32 @@ const MovieDetails = () => {
             <span className="text-yellow-400 text-xl ml-2">{movie?.rating}%</span>
           </div>
           <div className="flex space-x-4">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded"
+              onClick={() => setTrailerUrl(movie.trailer)}
+            >
               Watch Trailer
             </button>
+
+            {trailerUrl && (
+              <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+                <div className="relative w-full max-w-4xl h-96">
+                  <iframe
+                    src={trailerUrl}
+                    title={`${movie.title} Trailer`}
+                    className="w-full h-full"
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                  ></iframe>
+                  <button
+                    onClick={() => setTrailerUrl(null)}
+                    className="absolute top-2 right-2 text-white text-2xl cursor-pointer"
+                  >
+                    ✖
+                  </button>
+                </div>
+              </div>
+            )}
             <Link to="/bookTickets">
               <button className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded">
                 Book Tickets
