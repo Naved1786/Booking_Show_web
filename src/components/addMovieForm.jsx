@@ -26,7 +26,6 @@ const AddMovieForm = () => {
   const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
-    t,
     title: "",
     description: "",
     genre: "",

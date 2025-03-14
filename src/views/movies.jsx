@@ -114,7 +114,7 @@ const Movies = () => {
                                     <div className="relative w-full flex justify-center items-center pt-2">
                                         <div className="relative w-52 h-52 group">
                                             <img
-                                                src="/images/feature-img5.jpg"
+                                                src={movie.postUrl}
                                                 alt={movie.title}
                                                 className="w-full h-full rounded-lg object-cover"
                                             />
