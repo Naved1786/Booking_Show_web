@@ -8,17 +8,20 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState();
 
   useEffect(() => {
-    setMovie(location?.state?.item);
+    setMovie(location?.state?.data);
+    console.log(location?.state?.data)
   }, [location.state]);
 
   return (
     <div className="container mx-auto p-4">
-      <div className="relative w-full h-[90vh] flex flex-col md:flex-row items-center bg-gray-900 text-white rounded-lg mx-auto pt-20 bg-[url('/images/bg-stree2.jpg')] bg-cover bg-center">
+      <div className="relative w-full h-[90vh] flex flex-col md:flex-row items-center text-white rounded-lg mx-auto pt-20   bg-center"
+        style={{ backgroundImage: movie ? `url(${movie.backgroundImageUrl})` : "none" }}
+      >
         <div className='bg-black w-full h-[90vh] opacity-60 absolute bottom-0'></div>
         <div className="relative w-64 h-80 z-10 ml-12">
           <img
-            src={`./images/${movie?.image}`}
-            alt={`${movie?.movieName} Poster`}
+            src={movie?.postUrl}
+            alt={`${movie?.title} Poster`}
             className="w-full h-full object-cover rounded-lg shadow-lg"
           />
           <div className="absolute inset-0 flex items-center justify-center">
@@ -26,13 +29,9 @@ const MovieDetails = () => {
           </div>
         </div>
         <div className="md:ml-8 mt-4 md:mt-0 flex flex-col justify-between z-10">
-          <h2 className="text-3xl font-bold mb-2">{movie?.movieName}</h2>
+          <h2 className="text-3xl font-bold mb-2">{movie?.title}</h2>
           <div className="flex space-x-2 mb-4">
-            {movie?.genres?.map((genre, index) => (
-              <span key={index} className="bg-purple-600 px-2 py-1 rounded-full text-xs font-semibold">
-                {genre}
-              </span>
-            ))}
+            {movie?.genre}
           </div>
           <p className="text-gray-400 text-sm mb-2">
             {movie?.language} • {movie?.releaseDate} • {movie?.duration}
@@ -46,11 +45,11 @@ const MovieDetails = () => {
             <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded">
               Watch Trailer
             </button>
-           <Link to="/bookTickets">
-           <button className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded">
-              Book Tickets
-            </button>
-           </Link>
+            <Link to="/bookTickets">
+              <button className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded">
+                Book Tickets
+              </button>
+            </Link>
           </div>
         </div>
       </div>

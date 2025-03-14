@@ -65,8 +65,10 @@ const Movies = () => {
         searchMovie();
     }, [searchInput])
     const navigate = useNavigate();
-    const handleClick = () => {
-        navigate("/movieDetails")
+    const handleClick = (movie) => {
+        navigate("/movieDetails",{state:{
+            data:movie
+        }})
     }
 
     return (
@@ -127,7 +129,7 @@ const Movies = () => {
                                                 </button>
                                                 <button className="px-4 py-3 text-[10px] border border-[#d9871c] text-white rounded-md hover:bg-[#d9871c] hover:border-none 
                                                     transform translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out"
-                                                    onClick={handleClick}
+                                                    onClick={() => handleClick(movie)}
                                                     >
                                                     VIEW DETAILS
                                                 </button>
@@ -178,7 +180,7 @@ const Movies = () => {
                                         {/* Shopping Cart Button */}
                                         <div className="flex mt-3 absolute top-14 right-6">
                                             <button className="p-3 border border-gray-200 rounded-lg text-[#d9871c] hover:bg-[#d9871c] hover:text-white transition"
-                                                onClick={handleClick}
+                                               onClick={() => handleClick(movie)}
                                             >
                                                 <FaShoppingCart />
                                             </button>
