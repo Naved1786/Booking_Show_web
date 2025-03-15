@@ -83,7 +83,7 @@ const MovieList = () => {
               <div key={movie.id} className="w-56 h-[350px] bg-white rounded-xl overflow-hidden shadow-lg pb-3">
                 {/* Movie Image */}
                 <div className="relative w-full flex justify-center items-center pt-2">
-                  <img src="/images/feature-img2.jpg" alt={movie.title} className="w-52 h-52 rounded-lg object-cover" />
+                  <img src={movie.postUrl} alt={movie.title} className="w-52 h-52 rounded-lg object-cover" />
                   {/* <img src={movie.postUrl} alt={movie.title} className="w-52 h-52 rounded-lg object-cover" /> */}
                 </div>
 
