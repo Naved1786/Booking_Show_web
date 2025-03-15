@@ -6,6 +6,9 @@ import PaginationDesign from '@/components/paginationDesign';
 import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { RiEdit2Line } from "react-icons/ri";
+import ConfirmationCard from '@/components/confirmationCard';
 
 import {
   Popover,
@@ -32,6 +35,8 @@ const MovieList = () => {
   const [date, setDate] = React.useState();
   const [dateOpen, setDateOpen] = useState(false);
   const [movies, setMovies] = useState([]);
+   const [showConfirm, setShowConfirm] = useState(false);
+      const [selectedMovie, setSelectedMovie] = useState(null);
 
 
   const fetchMovies = async () => {
@@ -66,6 +71,35 @@ const MovieList = () => {
     console.log("date:", date);
     setDateOpen(!dateOpen)
   }, [date])
+
+
+  // Handle delete confirmation
+  const confirmDelete = (movie) => {
+    setSelectedMovie(movie);
+    setShowConfirm(true);
+  };
+
+  // Handle theater deletion
+  const handleDelete = async () => {
+    if (!selectedMovie) return;
+
+    try {
+      const response = await axios.delete(`http://localhost:1111/api/movie/deleteMovie/${selectedMovie.movieId}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+
+      if (response.status === 200) {
+        setShowConfirm(false);
+        setSelectedMovie(null);
+        fetchMovies(); // Refresh list
+      } else {
+        alert("Failed to delete movie.");
+      }
+    } catch (error) {
+      console.error("Error deleting movie:", error);
+    }
+  };
+
   return (
 
 
@@ -82,10 +116,34 @@ const MovieList = () => {
             movies.map((movie) => (
               <div key={movie.id} className="w-56 h-[350px] bg-white rounded-xl overflow-hidden shadow-lg pb-3">
                 {/* Movie Image */}
-                <div className="relative w-full flex justify-center items-center pt-2">
+                <div className="relative w-full flex justify-center items-center pt-2 group">
                   <img src={movie.postUrl} alt={movie.title} className="w-52 h-52 rounded-lg object-cover" />
-                  {/* <img src={movie.postUrl} alt={movie.title} className="w-52 h-52 rounded-lg object-cover" /> */}
+                  <div className="absolute w-52 h-52 top-2 left-2 rounded-lg inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+
+
+                    <button className="w-10 h-10 flex items-center justify-center rounded-full bg-[#d9871c] hover:bg-transparent border border-[#d9871c] text-white hover:text-[#d9871c] 
+                    transform -translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out"
+                      onClick={() => confirmDelete(movie)}
+                    >
+                      <RiDeleteBin6Line className="text-[16px]" />
+                    </button>
+
+                    <button className="w-10 h-10 flex items-center justify-center rounded-full bg-[#d9871c] hover:bg-transparent border border-[#d9871c] text-white hover:text-[#d9871c] 
+                    transform translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out">
+                      <RiEdit2Line className="text-[16px]" />
+                    </button>
+
+                  </div>
                 </div>
+                {/* Confirmation Card */}
+                {showConfirm && (
+                  <ConfirmationCard
+                    title="Delete Theater"
+                    message={`Are you sure you want to delete, ${selectedMovie?.title}?`}
+                    onConfirm={handleDelete}
+                    onCancel={() => setShowConfirm(false)}
+                  />
+                )}
 
                 {/* Movie Details */}
                 <div className="bg-white px-4 py-3">
@@ -105,7 +163,7 @@ const MovieList = () => {
 
 
           <div className='w-full flex justify-center items-center pt-10'>
-            <PaginationDesign/>
+            <PaginationDesign />
           </div>
 
 
