@@ -15,10 +15,10 @@ const MovieDetails = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="relative w-full h-[90vh] flex flex-col md:flex-row items-center text-white rounded-lg mx-auto pt-20   bg-center"
+      <div className="relative w-full h-[90vh] flex flex-col md:flex-row items-center text-white rounded-lg mx-auto pt-20 bg-cover   bg-center"
         style={{ backgroundImage: movie ? `url(${movie.backgroundImageUrl})` : "none" }}
       >
-        <div className='bg-black w-full h-[90vh] opacity-60 absolute bottom-0'></div>
+        <div className='bg-black w-full h-[90vh] opacity-70 absolute bottom-0'></div>
         <div className="relative w-64 h-80 z-10 ml-12">
           <img
             src={movie?.postUrl}
