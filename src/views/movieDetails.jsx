@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const MovieDetails = () => {
   const location = useLocation();
   const [movie, setMovie] = useState();
-   const [trailerUrl, setTrailerUrl] = useState(null);
+  const [trailerUrl, setTrailerUrl] = useState(null);
 
   useEffect(() => {
     setMovie(location?.state?.data);
@@ -25,11 +25,18 @@ const MovieDetails = () => {
             alt={`${movie?.title} Poster`}
             className="w-full h-full object-cover rounded-lg shadow-lg"
           />
-          <div className="absolute inset-0 flex items-center justify-center">
+          {/* <div className="absolute inset-0 flex items-center justify-center">
             <FaPlay className="text-white text-6xl bg-black bg-opacity-50 p-4 rounded-full"
             onClick={() => setTrailerUrl(movie.trailer)}
              />
             
+          </div> */}
+          <div className="absolute top-0 inset-0 flex items-center justify-center">
+            <img alt="" className='' />
+            <button
+              onClick={() => setTrailerUrl(movie.trailer)}
+              className="bi bi-play-circle  text-white text-5xl hover:text-red-500 absolute inset-0 flex items-center justify-center cursor-pointer"
+            ></button>
           </div>
         </div>
         <div className="md:ml-8 mt-4 md:mt-0 flex flex-col justify-between z-10">
