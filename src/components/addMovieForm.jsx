@@ -27,13 +27,17 @@ const AddMovieForm = () => {
 
   const [formData, setFormData] = useState({
     title: "",
+    theaterId:"",
     description: "",
     genre: "",
+    format:"",
     duration: "",
     language: "",
     rating: "",
     director: "",
+    castMember:"",
     releaseDate: "",
+    trailer:"",
   });
 
   // Handle input changes
@@ -85,6 +89,15 @@ const AddMovieForm = () => {
             className="w-full p-2 border rounded-md focus:outline-none"
             required
           />
+          <input
+            type="text"
+            name="theaterId"
+            value={formData.theaterId}
+            onChange={handleChange}
+            placeholder="Theater Id"
+            className="w-full p-2 border rounded-md focus:outline-none"
+            required
+          />
 
           <input
             type="text"
@@ -92,6 +105,15 @@ const AddMovieForm = () => {
             value={formData.genre}
             onChange={handleChange}
             placeholder="Genre"
+            className="w-full p-2 border rounded-md focus:outline-none"
+            required
+          />
+          <input
+            type="text"
+            name="format"
+            value={formData.format}
+            onChange={handleChange}
+            placeholder="Format"
             className="w-full p-2 border rounded-md focus:outline-none"
             required
           />
@@ -135,6 +157,24 @@ const AddMovieForm = () => {
             className="w-full p-2 border rounded-md focus:outline-none"
             required
           />
+          <input
+            type="text"
+            name="castMember"
+            value={formData.castMember}
+            onChange={handleChange}
+            placeholder="Cast Member"
+            className="w-full p-2 border rounded-md focus:outline-none"
+            required
+          />
+          <input
+            type="text"
+            name="trailer"
+            value={formData.trailer}
+            onChange={handleChange}
+            placeholder="Trailer"
+            className="w-full p-2 border rounded-md focus:outline-none"
+            required
+          />
           <div className='flex flex-col justify-center items-center'>
             <Popover onOpenChange={setDateOpen} open={dateOpen}>
               <PopoverTrigger className="w-full p-2 border rounded-md focus:outline-none bg-white flex items-center justify-between cursor-pointer">
@@ -162,7 +202,7 @@ const AddMovieForm = () => {
           </div>
           <textarea onChange={handleChange} value={formData?.description} name='description' placeholder="Description" className="w-full p-2 border rounded-md focus:outline-none "></textarea>
           <input type="file" className="w-full p-2 border rounded-md focus:outline-none " />
-
+          <input type="file" className="w-full p-2 border rounded-md focus:outline-none " />
           {
             loading ? <button className="w-full bg-blue-300 text-white py-2 rounded-md hover:bg-blue-600 transition cursor-not-allowed">
               Submitting...

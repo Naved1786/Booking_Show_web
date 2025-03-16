@@ -119,7 +119,7 @@ const MovieList = () => {
                 <div className="relative w-full flex justify-center items-center pt-2 group">
                   <img src={movie.postUrl} alt={movie.title} className="w-52 h-52 rounded-lg object-cover" />
                   <div className="absolute w-52 h-52 top-2 left-2 rounded-lg inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
-
+                    
 
                     <button className="w-10 h-10 flex items-center justify-center rounded-full bg-[#d9871c] hover:bg-transparent border border-[#d9871c] text-white hover:text-[#d9871c] 
                     transform -translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out"
