@@ -13,6 +13,7 @@ const Navbar = ({ onSearch }) => {
   console.log(user)
   const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState(null);
+
   useEffect(() => {
     const profileImage = JSON.parse(localStorage.getItem("user"));
     console.log("profileImg:", profileImage)
@@ -218,8 +219,8 @@ const Navbar = ({ onSearch }) => {
             : <div className='flex flex-row justify-center items-center gap-1'>
               <div className='w-9 h-9 rounded-full bg-gray-700 flex  justify-center items-center overflow-hidden'>
                 <img
-                  // src={`http://localhost:1111/api/v1/post/image/${imageUrl}`}
-                  src="./images/user-dummy.png"
+                  src={`http://localhost:1111/api/v1/post/image/${imageUrl}`}
+                  // src="./images/user-dummy.png"
                   alt="User Profile"
                   onClick={() => handlehandleImageClick()}
                   style={{ width: "200px", height: "auto", borderRadius: "50%" }}

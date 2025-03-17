@@ -19,6 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Event from './views/event';
 import Movies from './views/movies';
 import ScrollToTop from './components/scrollOnTop';
+// import userDashboardLayout from './views/dashboard/user/dashboardLayout';
 
 function App() {
   return(
@@ -41,7 +42,9 @@ function App() {
         <Route path='/paymentDetails' element={<PaymentDetails/>}/>
         <Route path='/adminLogin' element={<AdminLogin/>}/>
         <Route path='/adminDashboard/*' element={<AdminDashboard/>}/>
-        <Route path='/userDashboard' element={<UserDashboard/>}/>
+       
+        {/* <Route path='/userDashboard/*' element={<userDashboardLayout/>}/> */}
+
       </Routes>
       <ToastContainer position="top-center"/>
       </div>  

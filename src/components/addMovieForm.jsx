@@ -27,30 +27,47 @@ const AddMovieForm = () => {
 
   const [formData, setFormData] = useState({
     title: "",
-    theaterId:"",
+    theaterId: "",
     description: "",
     genre: "",
-    format:"",
+    format: "",
     duration: "",
     language: "",
     rating: "",
     director: "",
-    castMember:"",
+    castMember: "",
     releaseDate: "",
-    trailer:"",
+    trailer: "",
+    image:"",
+    backgroundImage:"",
   });
 
   // Handle input changes
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.type === "file") {
+      setFormData({ ...formData, [e.target.name]: e.target.files[0] });
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
   };
+
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post(`http://localhost:1111/api/movie/createMovie`, formData, {
+
+      const payload = new FormData();
+      
+      Object.keys(formData).forEach(key => {
+        payload.append(key, formData[key]);
+      });
+
+      // payload.append("image", formData.image);
+      // payload.append("backgroundImage", formData.backgroundImage);
+
+      const response = await axios.post(`http://localhost:1111/api/movie/createMovie`, payload, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -68,13 +85,13 @@ const AddMovieForm = () => {
       setLoading(false)
     }
   };
-  
-  
+
+
 
   useEffect(() => {
     setFormData(prev => ({ ...prev, releaseDate: date ? format(date, "yyyy-MM-dd") : "" }));
   }, [date]);
-  
+
 
   return (
     <>
@@ -201,8 +218,9 @@ const AddMovieForm = () => {
 
           </div>
           <textarea onChange={handleChange} value={formData?.description} name='description' placeholder="Description" className="w-full p-2 border rounded-md focus:outline-none "></textarea>
-          <input type="file" className="w-full p-2 border rounded-md focus:outline-none " />
-          <input type="file" className="w-full p-2 border rounded-md focus:outline-none " />
+          <input type="file" name="image" onChange={handleChange} className="w-full p-2 border rounded-md focus:outline-none" />
+          <input type="file" name="backgroundImage" onChange={handleChange} className="w-full p-2 border rounded-md focus:outline-none" />
+
           {
             loading ? <button className="w-full bg-blue-300 text-white py-2 rounded-md hover:bg-blue-600 transition cursor-not-allowed">
               Submitting...
