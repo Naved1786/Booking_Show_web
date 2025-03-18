@@ -1,7 +1,8 @@
 import React from 'react'
-import Dashboard from './dashboard';
+import Dashboard from '../user/dashboard';
 import UserSidebar from '@/components/userSidebar';
-import UserProfile from './userProfile';
+import UserProfile from '../user/userProfile';
+import { Route, Routes } from 'react-router-dom';
 const userDashboardLayout = () => {
   return (
     <div className='flex h-screen bg-gray-100 pt-20'>

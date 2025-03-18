@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaTicketAlt, FaRecycle, FaBell, FaHome, FaCog, FaEnvelope, FaChartBar, FaFilm, FaCalendarAlt } from "react-icons/fa";
 import { Navigate, useNavigate } from "react-router-dom";
-import { doLogout, isLoggedIn } from "../auth";
+// import { doLogout, isLoggedIn } from "../auth";
+import { doLogout,isLoggedIn } from '../../../auth/index';
 
 
 
@@ -19,7 +20,7 @@ const Dashboard = () => {
   if (isLoggedIn()) {
     return (
       <div className="flex h-screen bg-gray-100 pt-20">
-        <Sidebar />
+
 
         {/* Main Content Area */}
         <div className="flex-1 p-6 overflow-y-auto">

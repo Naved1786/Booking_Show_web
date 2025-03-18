@@ -38,7 +38,7 @@ const AdminSidebar = () => {
                             <FaTicketAlt className="text-lg" />
                             <span className="text-base">Manage Tickets</span>
                         </li> */}
-                        <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
+                        <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer"onClick={() => navigate("/adminDashboard/userProfile")}>
                             <FaChartBar className="text-lg" />
                             <span className="text-base">Reports</span>
                         </li>

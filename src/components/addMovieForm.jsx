@@ -69,7 +69,9 @@ const AddMovieForm = () => {
 
       const response = await axios.post(`http://localhost:1111/api/movie/createMovie`, payload, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          "Content-Type": "multipart/form-data",
+          
         }
       })
 

@@ -13,13 +13,12 @@ import SeatSelection from './views/seatSelection';
 import PaymentDetails from './views/paymentDetails';
 import AdminLogin from './views/adminLogin';
 import AdminDashboard from './views/dashboard/admin/dashboardLayout';
-import UserDashboard from './views/userDashboard';
+import UserDashboardLayout from './views/dashboard/user/dashboardLayout';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Event from './views/event';
 import Movies from './views/movies';
 import ScrollToTop from './components/scrollOnTop';
-// import userDashboardLayout from './views/dashboard/user/dashboardLayout';
 
 function App() {
   return(
@@ -43,7 +42,7 @@ function App() {
         <Route path='/adminLogin' element={<AdminLogin/>}/>
         <Route path='/adminDashboard/*' element={<AdminDashboard/>}/>
        
-        {/* <Route path='/userDashboard/*' element={<userDashboardLayout/>}/> */}
+        <Route path='/userDashboard/*' element={<UserDashboardLayout/>}/>
 
       </Routes>
       <ToastContainer position="top-center"/>

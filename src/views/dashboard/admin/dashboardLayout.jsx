@@ -1,9 +1,10 @@
 import React from 'react'
 import AdminSidebar from '../../../components/adminSidebar'
 import { Route, Routes } from 'react-router-dom'
-import Dashboard from './dashboard'
-import MovieList from './movieList'
-import TheaterList from './theaterList'
+import Dashboard from '../admin/dashboard'
+import MovieList from '../admin/movieList'
+import TheaterList from '../admin/theaterLIst'
+import UserProfile from '../user/userProfile'
 
 
 const DashboardLayout = () => {
@@ -18,6 +19,7 @@ const DashboardLayout = () => {
                     <Route path='/dashboard' element={<Dashboard/>}/>
                     <Route path='/movieList' element={<MovieList/>}/>
                     <Route path='/theaterList' element={<TheaterList/>}/>
+                    <Route path='/userProfile' element={<UserProfile/>}/>
                 </Routes>
             </div>
         </div>
