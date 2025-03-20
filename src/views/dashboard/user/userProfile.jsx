@@ -1,10 +1,11 @@
 import { User, Mail, Phone, Calendar, Edit, CheckCircle } from "lucide-react";
 import { useRef } from "react";
 import { useState } from "react";
+import axios from "axios";
 
 const UserProfile = () => {
     const fileInputRef = useRef(null);
-    const [image, setImageUrl] = useState("/images/user-dummy.png");
+    const [image, setImage] = useState("/images/user-dummy.png");
 
     const handleEditClick = () => {
         fileInputRef.current.click(); // Trigger file input click
