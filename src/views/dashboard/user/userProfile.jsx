@@ -31,7 +31,7 @@ const UserProfile = () => {
             }
         } catch (error) {
             console.error("Error uploading image:", error);
-            alert("Something went wrong. Please try again.");
+            alert("Something went wrong. Please try agai.");
         }
     };
 
