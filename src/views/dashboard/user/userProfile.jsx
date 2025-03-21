@@ -5,35 +5,43 @@ import axios from "axios";
 
 const UserProfile = () => {
     const fileInputRef = useRef(null);
-    const [image, setImage] = useState("/images/user-dummy.png");
-
+    const [image, setImage] = useState(() => {
+        return localStorage.getItem("profileImage") || "/images/user-dummy.png";
+    });
+    const user=JSON.parse(localStorage.getItem("user"));
+    console.log("user:",user)
     const handleEditClick = () => {
         fileInputRef.current.click(); // Trigger file input click
     };
 
     const handleFileChange = async (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
+    const file = e.target.files[0];
+    if (!file) return;
 
-        const formData = new FormData();
-        formData.append("image", file);
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("id", user.id);
 
-        try {
-            const response = await axios.post("http://localhost:1111/cloudinary/upload", formData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            });
-            if (response.data.success) {
-                setImage(response.data.imageUrl); // Update profile image
-            } else {
-                alert("Failed to upload image.");
-            }
-        } catch (error) {
-            console.error("Error uploading image:", error);
-            alert("Something went wrong. Please try agai.");
+    try {
+        const response = await axios.post("http://localhost:1111/cloudinary/upload", formData, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+
+        if (response.status === 200) {
+            const newImage = response.data.user.image;
+            setImage(newImage); // Update state
+            localStorage.setItem("profileImage", newImage); // Store in localStorage
+        } else {
+            alert("Failed to upload image.");
         }
-    };
+    } catch (error) {
+        console.error("Error uploading image:", error);
+        alert("Something went wrong. Please try again.");
+    }
+};
+
 
     return (
         <div className="mx-auto p-6">
