@@ -2,45 +2,46 @@ import { User, Mail, Phone, Calendar, Edit, CheckCircle } from "lucide-react";
 import { useRef } from "react";
 import { useState } from "react";
 import axios from "axios";
+import { AiOutlineCamera } from "react-icons/ai";
 
 const UserProfile = () => {
     const fileInputRef = useRef(null);
     const [image, setImage] = useState(() => {
         return localStorage.getItem("profileImage") || "/images/user-dummy.png";
     });
-    const user=JSON.parse(localStorage.getItem("user"));
-    console.log("user:",user)
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log("user:", user)
     const handleEditClick = () => {
         fileInputRef.current.click(); // Trigger file input click
     };
 
     const handleFileChange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+        const file = e.target.files[0];
+        if (!file) return;
 
-    const formData = new FormData();
-    formData.append("image", file);
-    formData.append("id", user.id);
+        const formData = new FormData();
+        formData.append("image", file);
+        formData.append("id", user.id);
 
-    try {
-        const response = await axios.post("http://localhost:1111/cloudinary/upload", formData, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-        });
+        try {
+            const response = await axios.post("http://localhost:1111/cloudinary/upload", formData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            });
 
-        if (response.status === 200) {
-            const newImage = response.data.user.image;
-            setImage(newImage); // Update state
-            localStorage.setItem("profileImage", newImage); // Store in localStorage
-        } else {
-            alert("Failed to upload image.");
+            if (response.status === 200) {
+                const newImage = response.data.user.image;
+                setImage(newImage); // Update state
+                localStorage.setItem("profileImage", newImage); // Store in localStorage
+            } else {
+                alert("Failed to upload image.");
+            }
+        } catch (error) {
+            console.error("Error uploading image:", error);
+            alert("Something went wrong. Please try again.");
         }
-    } catch (error) {
-        console.error("Error uploading image:", error);
-        alert("Something went wrong. Please try again.");
-    }
-};
+    };
 
 
     return (
@@ -48,27 +49,31 @@ const UserProfile = () => {
             <h2 className="text-2xl font-semibold mb-4">Account Information</h2>
             <div className="bg-gray-100 p-6 rounded-lg">
 
-                <div className="flex items-center mb-6">
-                    <div className="relative w-24 h-24 rounded-full border-4 border-gray-300 overflow-hidden flex items-center justify-center">
+                <div className="flex items-center mb-6 relative">
+                    {/* Profile Image Container */}
+                    <div className="w-24 h-24 rounded-full border-4 border-gray-300 overflow-hidden flex items-center justify-center">
                         <img
                             src={image}
                             alt="Profile"
                             className="w-full h-full object-cover"
                         />
-                        <button className="absolute bottom-2 right-2 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-800 transition"
-                            onClick={handleEditClick}
-                        >
-                            <Edit className="h-4 w-4" />
-                        </button>
-                        <input
-                            type="file"
-                            ref={fileInputRef}
-                            accept="image/*"
-                            className="hidden"
-                            onChange={handleFileChange}
-                        />
                     </div>
+                    <button
+                        className="absolute bottom-3 left-[70px]  bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-800 transition"
+                        onClick={handleEditClick}
+                    >
+                        <AiOutlineCamera className="h-4 w-4" />
+                    </button>
+
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        accept="image/*"
+                        className="hidden"
+                        onChange={handleFileChange}
+                    />
                 </div>
+
 
                 <div className="grid grid-cols-2 gap-4">
                     <div>
