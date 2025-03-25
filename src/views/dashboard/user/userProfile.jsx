@@ -2,7 +2,8 @@ import { User, Mail, Phone, Calendar, Edit, CheckCircle } from "lucide-react";
 import { useRef } from "react";
 import { useState } from "react";
 import axios from "axios";
-import { AiOutlineCamera } from "react-icons/ai";
+import { AiOutlineCamera,AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineSave } from "react-icons/ai";
 
 const UserProfile = () => {
     const fileInputRef = useRef(null);
@@ -44,12 +45,22 @@ const UserProfile = () => {
     };
 
 
+    const [isEditing, setIsEditing] = useState(false);
+    const [userDetails, setUserDetails] = useState({
+        name: "",
+        email: "",
+    });
+
+    
+
+
+
     return (
         <div className="mx-auto p-6">
-            <h2 className="text-2xl font-semibold mb-4">Account Information</h2>
+            <h2 className="text-2xl pl-7 font-semibold mb-4">My Profile</h2>
             <div className="bg-gray-100 p-6 rounded-lg">
 
-                <div className="flex items-center mb-6 relative">
+                <div className="flex items-center  relative">
                     {/* Profile Image Container */}
                     <div className="w-24 h-24 rounded-full border-4 border-gray-300 overflow-hidden flex items-center justify-center">
                         <img
@@ -72,8 +83,13 @@ const UserProfile = () => {
                         className="hidden"
                         onChange={handleFileChange}
                     />
-                </div>
 
+                    
+                </div>
+                <button className="flex justify-self-end items-center gap-2 mb-2 text-green-500 hover:text-gray-600 transition">
+                        <AiOutlineEdit className="h-4 w-4" />
+                        Edit
+                    </button>
 
                 <div className="grid grid-cols-2 gap-4">
                     <div>
@@ -152,6 +168,12 @@ const UserProfile = () => {
                         rows="3"
                     />
                 </div>
+
+                <button className="bg-blue-600 text-xs text-white flex items-center gap-1 px-3 py-3 mt-5 rounded-lg hover:bg-blue-700 transition">
+                    <AiOutlineSave className="h-5 w-5" />
+                    Save Changes
+                </button>
+
             </div>
         </div>
     );
