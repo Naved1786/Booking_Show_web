@@ -219,7 +219,7 @@ const Navbar = ({ onSearch }) => {
             : <div className='flex flex-row justify-center items-center gap-1'>
               <div className='w-9 h-9 rounded-full bg-gray-700 flex  justify-center items-center overflow-hidden'>
                 <img
-                  src={`http://localhost:1111/api/v1/post/image/${imageUrl}`}
+                  src={`http://localhost:1111/cloudinary/upload/${imageUrl}`}
                   // src="./images/user-dummy.png"
                   alt="User Profile"
                   onClick={() => handlehandleImageClick()}

@@ -13,8 +13,13 @@ const AdminSidebar = () => {
             {/* Sidebar */}
             <aside className="w-60 bg-gradient-to-b from-red-500 to-red-600 p-6 pt-10 flex flex-col h-screen shadow-lg fixed z-50 overflow-y-auto">
                 <div className="flex flex-col items-center border-b pb-4">
-                    <FaUserPlus className="text-white text-4xl mb-2" />
-                    <h2 className="text-white font-semibold">Admin Panel</h2>
+                    <img
+                        // src={`http://localhost:1111/api/v1/post/image/${ImageUrl}`}
+                        src="./images/dummy-img.jpg"
+                        alt="Profile"
+                        className="rounded-full w-16 h-16 mb-2"
+                    />
+                    <h2 className="text-white font-semibold"></h2>
                 </div>
                 <nav className="mt-4 flex-1 overflow-auto">
                     <ul className="space-y-3 text-white">
@@ -38,7 +43,7 @@ const AdminSidebar = () => {
                             <FaTicketAlt className="text-lg" />
                             <span className="text-base">Manage Tickets</span>
                         </li> */}
-                        <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer"onClick={() => navigate("/adminDashboard/userProfile")}>
+                        <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer" onClick={() => navigate("/adminDashboard/userProfile")}>
                             <FaChartBar className="text-lg" />
                             <span className="text-base">Reports</span>
                         </li>

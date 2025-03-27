@@ -8,7 +8,7 @@ import { AiOutlineSave } from "react-icons/ai";
 const UserProfile = () => {
     const fileInputRef = useRef(null);
     const [image, setImage] = useState(() => {
-        return localStorage.getItem("profileImage") || "/images/user-dummy.png";
+        return localStorage.getItem("profileImage") || "/images/dummy-img.jpg";
     });
     const user = JSON.parse(localStorage.getItem("user"));
     console.log("user:", user)
