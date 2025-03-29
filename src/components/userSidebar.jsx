@@ -68,7 +68,7 @@ const UserSidebar = () => {
               className="w-full text-left flex items-center space-x-3 text-base p-2 text-white hover:bg-red-700 rounded-lg cursor-pointer"
             >
               <FaRecycle className="text-lg" />
-              <span>Logou</span>
+              <span>Logout</span>
             </button>
           </div>
         </div>
