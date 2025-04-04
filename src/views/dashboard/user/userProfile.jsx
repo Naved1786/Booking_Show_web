@@ -2,19 +2,19 @@ import { User, Mail, Phone, Calendar, Edit, CheckCircle } from "lucide-react";
 import { useRef } from "react";
 import { useState } from "react";
 import axios from "axios";
-import { AiOutlineCamera,AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineCamera, AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineSave } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "@/store/slices/authSlice";
 
 const UserProfile = () => {
-    const dispatch=useDispatch();
-
+    const dispatch = useDispatch();
+    const [isDisabled, setIsDisabled] = useState(true);
     const fileInputRef = useRef(null);
     const [image, setImage] = useState(() => {
         return localStorage.getItem("profileImage") || "/images/dummy-img.jpg";
     });
-    const user = useSelector((state)=>state.auth.user);
+    const user = useSelector((state) => state.auth.user);
     console.log("user:", user)
     const handleEditClick = () => {
         fileInputRef.current.click(); // Trigger file input click
@@ -49,11 +49,11 @@ const UserProfile = () => {
             alert("Something went wrong. Please try again.");
         }
     };
-    const handleSubmit=async()=>{
-        try{
+    const handleSubmit = async () => {
+        try {
 
-        }catch(error){
-            console.log("error while update profile:",error)
+        } catch (error) {
+            console.log("error while update profile:", error)
         }
     }
 
@@ -64,7 +64,7 @@ const UserProfile = () => {
     //     email: "",
     // });
 
-    
+
 
 
 
@@ -97,12 +97,12 @@ const UserProfile = () => {
                         onChange={handleFileChange}
                     />
 
-                    
+
                 </div>
                 <button className="flex justify-self-end items-center gap-2 mb-2 text-green-500 hover:text-gray-600 transition">
-                        <AiOutlineEdit className="h-4 w-4" />
-                        Edit
-                    </button>
+                    <AiOutlineEdit className="h-4 w-4" />
+                    Edit
+                </button>
 
                 <div className="grid grid-cols-2 gap-4">
                     <div>
@@ -110,7 +110,10 @@ const UserProfile = () => {
                         <div className="relative">
                             <input
                                 type="text"
-                                className="w-full p-2 border rounded-lg"
+                                value={user.firstName}
+                                disabled={isDisabled}
+                                className={`w-full p-2 border rounded-lg text-sm ${isDisabled ? "bg-gray-100 cursor-not-allowed " : "bg-white"
+                                    }`}
                             />
                             <User className="absolute right-3 top-3 h-4 w-4 text-gray-500" />
                         </div>
@@ -121,7 +124,10 @@ const UserProfile = () => {
                         <div className="relative">
                             <input
                                 type="text"
-                                className="w-full p-2 border rounded-lg"
+                                value={user.lastName}
+                                disabled={isDisabled}
+                                className={`w-full p-2 border rounded-lg text-sm ${isDisabled ? "bg-gray-100 cursor-not-allowed " : "bg-white"
+                                    }`}
                             />
                             <Edit className="absolute right-3 top-3 h-4 w-4 text-gray-500 cursor-pointer" />
                         </div>
@@ -132,7 +138,11 @@ const UserProfile = () => {
                         <div className="relative">
                             <input
                                 type="email"
-                                className="w-full p-2 border rounded-lg"
+
+                                value={user.email}
+                                disabled={isDisabled}
+                                className={`w-full p-2 border rounded-lg text-sm ${isDisabled ? "bg-gray-100 cursor-not-allowed " : "bg-white"
+                                    }`}
                             />
                             <Mail className="absolute right-3 top-3 h-4 w-4 text-gray-500" />
                             <CheckCircle className="absolute right-8 top-3 h-4 w-4 text-green-500" />
@@ -144,7 +154,10 @@ const UserProfile = () => {
                         <div className="relative">
                             <input
                                 type="text"
-                                className="w-full p-2 border rounded-lg"
+                                value={user.phoneNo}
+                                disabled={isDisabled}
+                                className={`w-full p-2 border rounded-lg text-sm ${isDisabled ? "bg-gray-100 cursor-not-allowed " : "bg-white"
+                                    }`}
                             />
                             <Phone className="absolute right-3 top-3 h-4 w-4 text-gray-500" />
                             <CheckCircle className="absolute right-8 top-3 h-4 w-4 text-green-500" />
@@ -156,7 +169,10 @@ const UserProfile = () => {
                         <div className="relative">
                             <input
                                 type="text"
-                                className="w-full p-2 border rounded-lg"
+                                value={user.dob}
+                                disabled={isDisabled}
+                                className={`w-full p-2 border rounded-lg text-sm ${isDisabled ? "bg-gray-100 cursor-not-allowed " : "bg-white"
+                                    }`}
                             />
                             <Calendar className="absolute right-3 top-3 h-4 w-4 text-gray-500" />
                         </div>
@@ -166,18 +182,26 @@ const UserProfile = () => {
                         <label className="block text-sm text-gray-600">Country</label>
                         <input
                             type="text"
-                            className="w-full p-2 border rounded-lg"
+                            value={user.country}
+                            disabled={isDisabled}
+                            className={`w-full p-2 border rounded-lg text-sm ${isDisabled ? "bg-gray-100 cursor-not-allowed " : "bg-white"
+                                }`}
                         />
                     </div>
                 </div>
 
                 <div className="mt-4">
-                    <label className="block text-sm text-gray-600 flex items-center justify-between">
+                    <label className="block text-sm text-gray-600 flex items-center justify-between"
+
+                    >
                         Bio
                         <Edit className="h-4 w-4 text-gray-500 cursor-pointer" />
                     </label>
                     <textarea
-                        className="w-full p-2 border rounded-lg"
+                        value={user.bio}
+                        disabled={isDisabled}
+                        className={`w-full p-2 border rounded-lg text-sm ${isDisabled ? "bg-gray-100 cursor-not-allowed " : "bg-white"
+                            }`}
                         rows="3"
                     />
                 </div>
