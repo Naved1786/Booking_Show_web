@@ -6,20 +6,14 @@ import axios from 'axios';
 import { use } from 'react';
 import { Search } from 'lucide-react';
 import SearchBar from './searchbar';
+import { useSelector } from 'react-redux';
 
 const Navbar = ({ onSearch }) => {
   const [isShowMenu, setIsShowMenu] = useState(false);
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = useSelector((state)=>state.auth.user);
   console.log(user)
   const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const profileImage = JSON.parse(localStorage.getItem("user"));
-    console.log("profileImg:", profileImage)
-    setImageUrl(profileImage?.profileImage
-    )
-  }, [])
 
   const navigate = useNavigate();
   const handlehandleImageClick = () => {
@@ -219,8 +213,7 @@ const Navbar = ({ onSearch }) => {
             : <div className='flex flex-row justify-center items-center gap-1'>
               <div className='w-9 h-9 rounded-full bg-gray-700 flex  justify-center items-center overflow-hidden'>
                 <img
-                  src={`http://localhost:1111/cloudinary/upload/${imageUrl}`}
-                  // src="./images/user-dummy.png"
+                  src={user?.image || "./images/user-dummy.png"}
                   alt="User Profile"
                   onClick={() => handlehandleImageClick()}
                   style={{ width: "200px", height: "auto", borderRadius: "50%" }}

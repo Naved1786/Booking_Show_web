@@ -4,13 +4,17 @@ import { useState } from "react";
 import axios from "axios";
 import { AiOutlineCamera,AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineSave } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "@/store/slices/authSlice";
 
 const UserProfile = () => {
+    const dispatch=useDispatch();
+
     const fileInputRef = useRef(null);
     const [image, setImage] = useState(() => {
         return localStorage.getItem("profileImage") || "/images/dummy-img.jpg";
     });
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = useSelector((state)=>state.auth.user);
     console.log("user:", user)
     const handleEditClick = () => {
         fileInputRef.current.click(); // Trigger file input click
@@ -34,7 +38,9 @@ const UserProfile = () => {
             if (response.status === 200) {
                 const newImage = response.data.user.image;
                 setImage(newImage); // Update state
+                dispatch(login(response?.data?.user))
                 localStorage.setItem("profileImage", newImage); // Store in localStorage
+                handleSubmit();
             } else {
                 alert("Failed to upload image.");
             }
@@ -43,13 +49,20 @@ const UserProfile = () => {
             alert("Something went wrong. Please try again.");
         }
     };
+    const handleSubmit=async()=>{
+        try{
+
+        }catch(error){
+            console.log("error while update profile:",error)
+        }
+    }
 
 
-    const [isEditing, setIsEditing] = useState(false);
-    const [userDetails, setUserDetails] = useState({
-        name: "",
-        email: "",
-    });
+    // const [isEditing, setIsEditing] = useState(false);
+    // const [userDetails, setUserDetails] = useState({
+    //     name: "",
+    //     email: "",
+    // });
 
     
 
@@ -64,7 +77,7 @@ const UserProfile = () => {
                     {/* Profile Image Container */}
                     <div className="w-24 h-24 rounded-full border-4 border-gray-300 overflow-hidden flex items-center justify-center">
                         <img
-                            src={image}
+                            src={user.image || image}
                             alt="Profile"
                             className="w-full h-full object-cover"
                         />
