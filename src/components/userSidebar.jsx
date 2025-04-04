@@ -22,16 +22,16 @@ const UserSidebar = () => {
   return (
     <div className="w-56 bg-gradient-to-b from-red-500 to-red-600 p-6 pt-10 flex flex-col h-100vh shadow-lg">
       {/* Profile Section */}
-      {user && (
-        <div className="flex flex-col items-center border-b pb-4">
-          <img
-            src={user.image || "./images/dummy-img.jpg"}
-            alt="Profile"
-            className="rounded-full w-16 h-16 mb-2"
-          />
-          <h2 className="text-white font-semibold">{user.username}</h2>
-        </div>
-      )}
+
+      <div className="flex flex-col items-center border-b pb-4">
+        <img
+          src={user.image || "./images/dummy-img.jpg"}
+          alt="Profile"
+          className="rounded-full w-16 h-16 mb-2"
+        />
+        <h2 className="text-white font-semibold">{user.username}</h2>
+      </div>
+
 
 
       {/* Navigation Links */}
@@ -68,7 +68,7 @@ const UserSidebar = () => {
           className="w-full text-left flex items-center space-x-3 text-base p-2 text-white hover:bg-red-700 rounded-lg cursor-pointer"
         >
           <FaRecycle className="text-lg" />
-          <span>Logou</span>
+          <span>Logout</span>
         </button>
       </div>
     </div>
