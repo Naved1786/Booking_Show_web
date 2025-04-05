@@ -25,11 +25,11 @@ const UserSidebar = () => {
 
       <div className="flex flex-col items-center border-b pb-4">
         <img
-          src={user.image || "./images/dummy-img.jpg"}
+          src={user?.image || "./images/dummy-img.jpg"}
           alt="Profile"
           className="rounded-full w-16 h-16 mb-2"
         />
-        <h2 className="text-white font-semibold">{user.username}</h2>
+        <h2 className="text-white font-semibold">{user?.username}</h2>
       </div>
 
 
