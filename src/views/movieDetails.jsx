@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import AboutMovieSlider from '../components/aboutMovieSlider';
 import { FaPlay } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import PaginationDesign from '@/components/paginationDesign';
 const MovieDetails = () => {
   const location = useLocation();
   const [movie, setMovie] = useState();

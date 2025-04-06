@@ -7,6 +7,7 @@ import Searchbar from '@/components/searchBar';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchInput } from '@/store/slices/searchSlice';
+import PaginationDesign from '@/components/paginationDesign';
 
 const Movies = () => {
     const [selectedLanguage, setSelectedLanguage] = useState("All");
@@ -66,9 +67,11 @@ const Movies = () => {
     }, [searchInput])
     const navigate = useNavigate();
     const handleClick = (movie) => {
-        navigate("/movieDetails",{state:{
-            data:movie
-        }})
+        navigate("/movieDetails", {
+            state: {
+                data: movie
+            }
+        })
     }
 
     return (
@@ -108,7 +111,7 @@ const Movies = () => {
                         <img src="./images/coming-soon-banner.avif" className='w-[97%] h-[70px] ' alt="" />
                     </div>
 
-                    <div className="flex flex-wrap ml-3 gap-4 h-screen overflow-scroll mt-14" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+                    <div className="flex flex-wrap justify-center items-center ml-3 gap-4 h-screen overflow-scroll mt-14" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
                         {movies.length > 0 ? (
                             movies.map((movie) => (
                                 <div key={movie.id} className="w-56 h-[350px] bg-white rounded-xl overflow-hidden shadow-lg pb-3">
@@ -130,7 +133,7 @@ const Movies = () => {
                                                 <button className="px-4 py-3 text-[10px] border border-[#d9871c] text-white rounded-md hover:bg-[#d9871c] hover:border-none 
                                                     transform translate-x-5 group-hover:translate-x-0 transition-transform duration-500 ease-in-out"
                                                     onClick={() => handleClick(movie)}
-                                                    >
+                                                >
                                                     VIEW DETAILS
                                                 </button>
 
@@ -146,7 +149,7 @@ const Movies = () => {
                                                                 allowFullScreen
                                                             ></iframe>
                                                             <button
-                                                               onClick={() => setTrailerUrl(null)}
+                                                                onClick={() => setTrailerUrl(null)}
                                                                 className="absolute top-2 right-2 text-white text-2xl cursor-pointer"
                                                             >
                                                                 ✖
@@ -180,17 +183,21 @@ const Movies = () => {
                                         {/* Shopping Cart Button */}
                                         <div className="flex mt-3 absolute top-14 right-6">
                                             <button className="p-3 border border-gray-200 rounded-lg text-[#d9871c] hover:bg-[#d9871c] hover:text-white transition"
-                                               onClick={() => handleClick(movie)}
+                                                onClick={() => handleClick(movie)}
                                             >
                                                 <FaShoppingCart />
                                             </button>
                                         </div>
                                     </div>
+
+
                                 </div>
                             ))
                         ) : (
                             <p className="text-gray-600">Loading movies...</p>
                         )}
+
+                        <PaginationDesign />
                     </div>
                 </div>
             </div>
