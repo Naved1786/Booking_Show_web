@@ -23,6 +23,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from './store/slices/authSlice';
 import axios from 'axios';
+import EventDetails from './views/eventDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ function App() {
           <Route path='/loginPage' element={<LoginPage />} />
           <Route path='/signUpPage' element={<SignUpPage />} />
           <Route path='/movieDetails' element={<MovieDetails />} />
+          <Route path='/eventDetails' element={<EventDetails />} />
           <Route path='/bookTickets' element={<BookTickets />} />
           <Route path='/seatSelection' element={<SeatSelection />} />
           <Route path='/paymentDetails' element={<PaymentDetails />} />
