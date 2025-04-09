@@ -19,11 +19,11 @@ const EventDetails = () => {
   // };
 
   return (
-    <div className="max-w-7xl mx-auto p-4 grid lg:grid-cols-3 gap-8 pt-20">
+    <div className="max-w-7xl mx-auto p-4 grid lg:grid-cols-3 gap-8 pt-20 pb-20">
       {/* Left Section */}
       <div className="lg:col-span-2 space-y-8">
         {/* Banner */}
-        <div className="rounded-2xl overflow-hidden shadow-md">
+        <div className="rounded-2xl overflow-hidden shadow-md mt-10">
           <img
             src={event.backgroundImageUrl}
             alt={event.title}

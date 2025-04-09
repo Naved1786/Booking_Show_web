@@ -58,7 +58,7 @@ const Event = () => {
 
 
     // Featured events (a subset of all events)
-    // const featuredEvents = events.slice(0, 6);
+    const featuredEvents = events.slice(0, 6);
 
     // Categories for filtering
     const categories = ["All", "Music", "Sports", "Theater", "Comedy", "Food", "Arts"];
@@ -143,7 +143,7 @@ const Event = () => {
                         <h2 className="text-2xl font-semibold">Featured Events</h2>
                         <a href="#" className="text-blue-600 hover:underline text-sm font-medium">View All</a>
                     </div>
-                    {/* <EventSlider items={featuredEvents} /> */}
+                    <EventSlider items={featuredEvents} />
                 </section>
 
                 {/* All Events Section */}
