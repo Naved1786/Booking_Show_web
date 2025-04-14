@@ -1,26 +1,29 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Calendar, Clock, MapPin, Film, ChevronRight, Info } from "lucide-react";
+import axios from 'axios';
+import { useLocation } from "react-router-dom";
 
-const movie = {
-  title: "Avengers: Endgame",
-  genre: "Action, Sci-Fi",
-  description:
-    "The Avengers reunite to restore balance after the devastating effects of Thanos' snap.",
-  image: "/images/feature-img9.jpg",
-  duration: "3h 2m",
-  rating: "PG-13",
-  releaseDate: "April 26, 2019",
-  director: "Anthony Russo, Joe Russo"
-};
 
-const theaters = [
-  { id: 1, name: "PVR Forum Sujana Mall", timings: ["10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM"], distance: "2.1 miles" },
-  { id: 2, name: "PVR Cinemas", timings: ["11:00 AM", "2:00 PM", "5:00 PM", "8:00 PM"], distance: "3.5 miles" },
-  { id: 3, name: "AMB Cinemas", timings: ["12:00 PM", "3:00 PM", "6:00 PM", "9:00 PM"], distance: "4.2 miles" },
-  { id: 4, name: "RK Cineplex", timings: ["10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM"], distance: "1.8 miles" },
-  { id: 5, name: "INOX", timings: ["11:00 AM", "2:00 PM", "5:00 PM", "8:00 PM"], distance: "5.3 miles" },
-  { id: 6, name: "Aparna Cinemas", timings: ["12:00 PM", "3:00 PM", "6:00 PM", "9:00 PM"], distance: "3.7 miles" },
-];
+// const movie = {
+//   title: "Avengers: Endgame",
+//   genre: "Action, Sci-Fi",
+//   description:
+//     "The Avengers reunite to restore balance after the devastating effects of Thanos' snap.",
+//   image: "/images/feature-img9.jpg",
+//   duration: "3h 2m",
+//   rating: "PG-13",
+//   releaseDate: "April 26, 2019",
+//   director: "Anthony Russo, Joe Russo"
+// };
+
+// const theaters = [
+//   { id: 1, name: "PVR Forum Sujana Mall", timings: ["10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM"], distance: "2.1 miles" },
+//   { id: 2, name: "PVR Cinemas", timings: ["11:00 AM", "2:00 PM", "5:00 PM", "8:00 PM"], distance: "3.5 miles" },
+//   { id: 3, name: "AMB Cinemas", timings: ["12:00 PM", "3:00 PM", "6:00 PM", "9:00 PM"], distance: "4.2 miles" },
+//   { id: 4, name: "RK Cineplex", timings: ["10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM"], distance: "1.8 miles" },
+//   { id: 5, name: "INOX", timings: ["11:00 AM", "2:00 PM", "5:00 PM", "8:00 PM"], distance: "5.3 miles" },
+//   { id: 6, name: "Aparna Cinemas", timings: ["12:00 PM", "3:00 PM", "6:00 PM", "9:00 PM"], distance: "3.7 miles" },
+// ];
 
 const BookTickets = () => {
   // Initialize with today's date
@@ -28,6 +31,33 @@ const BookTickets = () => {
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedTheater, setSelectedTheater] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
+  const [theaters, setTheaters] = useState([]);
+
+  const location = useLocation();
+    const movie = location.state?.data
+
+
+  const fetchTheaters = async () => {
+    try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            console.error("No token found, user might not be logged in.");
+            return;
+        }
+
+        const response = await axios.get("http://localhost:1111/api/theater/all", {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        setTheaters(response.data);
+    } catch (error) {
+        console.error("Error fetching theaters:", error.response ? error.response.data : error.message);
+    }
+};
+
+useEffect(() => {
+    fetchTheaters();
+}, []);
+
 
   // Generate next 7 days for date selection
   const getNextDays = () => {
@@ -62,11 +92,11 @@ const BookTickets = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 min-h-screen pt-20">
       {/* Hero Section with Movie Image */}
       <div className="relative w-full h-64 md:h-96">
         <img
-          src={movie.image}
+          src={movie.backgroundImageUrl}
           alt={movie.title}
           className="w-full h-full object-cover"
         />
@@ -153,7 +183,7 @@ const BookTickets = () => {
           </div>
           
           <div className="space-y-1">
-            {theaters.map((theater) => (
+            {Array.isArray(theaters) && theaters?.length>0 &&theaters.map((theater) => (
               <div 
                 key={theater.id} 
                 className={`border-l-4 px-6 py-4 transition-all cursor-pointer ${
@@ -179,7 +209,7 @@ const BookTickets = () => {
                 
                 {selectedTheater?.id === theater.id && (
                   <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    {theater.timings.map((time) => (
+                    {theater.time.map((time) => (
                       <button
                         key={time}
                         className={`px-3 py-2 text-sm font-medium rounded-md transition-all flex items-center justify-center ${

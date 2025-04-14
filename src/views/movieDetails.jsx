@@ -4,6 +4,7 @@ import AboutMovieSlider from '../components/aboutMovieSlider';
 import { FaPlay } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import PaginationDesign from '@/components/paginationDesign';
+import { useNavigate } from 'react-router-dom';
 const MovieDetails = () => {
   const location = useLocation();
   const [movie, setMovie] = useState();
@@ -13,6 +14,15 @@ const MovieDetails = () => {
     setMovie(location?.state?.data);
     console.log(location?.state?.data)
   }, [location.state]);
+
+  const navigate = useNavigate();
+    const handleClick = (event) => {
+        navigate("/bookTickets", {
+            state: {
+                data: movie
+            }
+        })
+    }
 
   return (
     <div className="container mx-auto p-4">
@@ -80,11 +90,11 @@ const MovieDetails = () => {
                 </div>
               </div>
             )}
-            <Link to="/bookTickets">
-              <button className="bg-white  hover:bg-red-500 hover:text-white text-sm text-black font-semibold py-2 px-5 rounded-xs">
-                Get Ticket
-              </button>
-            </Link>
+            <button className="bg-white  hover:bg-red-500 hover:text-white text-sm text-black font-semibold py-2 px-5 rounded-xs"
+             onClick={() => handleClick(movie)}
+            >
+              Get Ticket
+            </button>
           </div>
         </div>
       </div>
