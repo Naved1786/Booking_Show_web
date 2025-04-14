@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaEdit, FaTrash } from "react-icons/fa";
-import Searchbar from '@/components/searchBar';
+import SearchBar from '@/components/searchBar';
 import AddTheaterForm from '@/components/addTheaterForm';
 import { Switch } from "@/components/ui/switch";
 import ConfirmationCard from '@/components/confirmationCard';
@@ -107,7 +107,7 @@ const TheaterList = () => {
                 </Dialog>
             </div>
             <div className='pt-10 flex justify-center items-center'>
-                <Searchbar />
+                <SearchBar />
             </div>
 
             {/* Confirmation Card */}
