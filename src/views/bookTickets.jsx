@@ -38,21 +38,22 @@ const BookTickets = () => {
 
 
   const fetchTheaters = async () => {
-    try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-            console.error("No token found, user might not be logged in.");
-            return;
-        }
-
-        const response = await axios.get("http://localhost:1111/api/theater/all", {
-            headers: { Authorization: `Bearer ${token}` },
-        });
-        setTheaters(response.data);
-    } catch (error) {
-        console.error("Error fetching theaters:", error.response ? error.response.data : error.message);
+  try {
+    const token = localStorage.getItem("token");
+    if (!token || !movie?.id) {
+      console.error("Missing token or movie ID");
+      return;
     }
+
+    const response = await axios.get(`http://localhost:1111/api/theater/by-movie/${movie.id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    setTheaters(response.data);
+  } catch (error) {
+    console.error("Error fetching filtered theaters:", error.response ? error.response.data : error.message);
+  }
 };
+
 
 useEffect(() => {
     fetchTheaters();
