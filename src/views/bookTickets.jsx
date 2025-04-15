@@ -2,28 +2,8 @@ import React, { useState,useEffect } from "react";
 import { Calendar, Clock, MapPin, Film, ChevronRight, Info } from "lucide-react";
 import axios from 'axios';
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-
-// const movie = {
-//   title: "Avengers: Endgame",
-//   genre: "Action, Sci-Fi",
-//   description:
-//     "The Avengers reunite to restore balance after the devastating effects of Thanos' snap.",
-//   image: "/images/feature-img9.jpg",
-//   duration: "3h 2m",
-//   rating: "PG-13",
-//   releaseDate: "April 26, 2019",
-//   director: "Anthony Russo, Joe Russo"
-// };
-
-// const theaters = [
-//   { id: 1, name: "PVR Forum Sujana Mall", timings: ["10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM"], distance: "2.1 miles" },
-//   { id: 2, name: "PVR Cinemas", timings: ["11:00 AM", "2:00 PM", "5:00 PM", "8:00 PM"], distance: "3.5 miles" },
-//   { id: 3, name: "AMB Cinemas", timings: ["12:00 PM", "3:00 PM", "6:00 PM", "9:00 PM"], distance: "4.2 miles" },
-//   { id: 4, name: "RK Cineplex", timings: ["10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM"], distance: "1.8 miles" },
-//   { id: 5, name: "INOX", timings: ["11:00 AM", "2:00 PM", "5:00 PM", "8:00 PM"], distance: "5.3 miles" },
-//   { id: 6, name: "Aparna Cinemas", timings: ["12:00 PM", "3:00 PM", "6:00 PM", "9:00 PM"], distance: "3.7 miles" },
-// ];
 
 const BookTickets = () => {
   // Initialize with today's date
@@ -32,20 +12,24 @@ const BookTickets = () => {
   const [selectedTheater, setSelectedTheater] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
   const [theaters, setTheaters] = useState([]);
+  const navigate=useNavigate();
 
   const location = useLocation();
     const movie = location.state?.data
 
-
+    
   const fetchTheaters = async () => {
   try {
     const token = localStorage.getItem("token");
-    if (!token || !movie?.id) {
+    console.log("Movie ID:", movie);
+    if (!token || !movie?.movieId    ) {
       console.error("Missing token or movie ID");
       return;
     }
 
-    const response = await axios.get(`http://localhost:1111/api/theater/by-movie/${movie.id}`, {
+   
+
+    const response = await axios.get(`http://localhost:1111/api/theater/by-movie/${movie.movieId  }`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     setTheaters(response.data);
@@ -244,6 +228,7 @@ useEffect(() => {
               : "bg-gray-300 cursor-not-allowed"
           }`}
           disabled={!selectedTheater || !selectedTime}
+          onClick={() => navigate('/seatSelection')}
         >
           <span>Continue to Seats</span>
           <ChevronRight size={18} className="ml-1" />

@@ -24,6 +24,7 @@ import { useDispatch } from 'react-redux';
 import { login } from './store/slices/authSlice';
 import axios from 'axios';
 import EventDetails from './views/eventDetails';
+import PaymentPage from './views/paymentPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -71,6 +72,7 @@ function App() {
           <Route path='/paymentDetails' element={<PaymentDetails />} />
           <Route path='/adminLogin' element={<AdminLogin />} />
           <Route path='/adminDashboard/*' element={<AdminDashboard />} />
+          <Route path='/paymentPage' element={<PaymentPage />} />
 
           <Route path='/userDashboard/*' element={<UserDashboardLayout />} />
 
