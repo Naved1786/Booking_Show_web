@@ -25,6 +25,7 @@ import { login } from './store/slices/authSlice';
 import axios from 'axios';
 import EventDetails from './views/eventDetails';
 import PaymentPage from './views/paymentPage';
+import TicketPage from './views/ticketPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ function App() {
           <Route path='/movies' element={<Movies />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/event' element={<Event />} />
+          <Route path='/ticketPage' element={<TicketPage />} />
           <Route path='/loginPage' element={<LoginPage />} />
           <Route path='/signUpPage' element={<SignUpPage />} />
           <Route path='/movieDetails' element={<MovieDetails />} />

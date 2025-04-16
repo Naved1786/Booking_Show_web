@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Calendar, Clock, MapPin, Film, ChevronRight, Info } from "lucide-react";
 import axios from 'axios';
 import { useLocation } from "react-router-dom";
@@ -12,36 +12,36 @@ const BookTickets = () => {
   const [selectedTheater, setSelectedTheater] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
   const [theaters, setTheaters] = useState([]);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const location = useLocation();
-    const movie = location.state?.data
+  const movie = location.state?.data
 
-    
+
   const fetchTheaters = async () => {
-  try {
-    const token = localStorage.getItem("token");
-    console.log("Movie ID:", movie);
-    if (!token || !movie?.movieId    ) {
-      console.error("Missing token or movie ID");
-      return;
+    try {
+      const token = localStorage.getItem("token");
+      console.log("Movie ID:", movie);
+      if (!token || !movie?.movieId) {
+        console.error("Missing token or movie ID");
+        return;
+      }
+
+
+
+      const response = await axios.get(`http://localhost:1111/api/theater/by-movie/${movie.movieId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setTheaters(response.data);
+    } catch (error) {
+      console.error("Error fetching filtered theaters:", error.response ? error.response.data : error.message);
     }
-
-   
-
-    const response = await axios.get(`http://localhost:1111/api/theater/by-movie/${movie.movieId  }`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    setTheaters(response.data);
-  } catch (error) {
-    console.error("Error fetching filtered theaters:", error.response ? error.response.data : error.message);
-  }
-};
+  };
 
 
-useEffect(() => {
+  useEffect(() => {
     fetchTheaters();
-}, []);
+  }, []);
 
 
   // Generate next 7 days for date selection
@@ -58,8 +58,8 @@ useEffect(() => {
   // Helper function to check if two dates are the same day
   const isSameDay = (date1, date2) => {
     return date1.getDate() === date2.getDate() &&
-           date1.getMonth() === date2.getMonth() &&
-           date1.getFullYear() === date2.getFullYear();
+      date1.getMonth() === date2.getMonth() &&
+      date1.getFullYear() === date2.getFullYear();
   };
 
   const formatDate = (date) => {
@@ -75,6 +75,15 @@ useEffect(() => {
     setSelectedTheater(theater);
     setSelectedTime(null);
   };
+
+
+  const handleClick = (event) => {
+    navigate("/seatSelection", {
+      state: {
+        data: movie
+      }
+    })
+  }
 
   return (
     <div className="bg-gray-100 min-h-screen pt-20">
@@ -106,15 +115,15 @@ useEffect(() => {
         <div className="p-6">
           <div className="flex justify-between items-center">
             <h2 className="text-2xl font-semibold text-gray-800">Book Tickets</h2>
-            <button 
-              onClick={() => setShowDetails(!showDetails)} 
+            <button
+              onClick={() => setShowDetails(!showDetails)}
               className="flex items-center text-red-500 text-sm font-medium"
             >
               <Info size={16} className="mr-1" />
               Movie Details
             </button>
           </div>
-          
+
           {showDetails && (
             <div className="mt-4 p-4 bg-gray-50 rounded-lg">
               <p className="text-gray-600 mb-3">{movie.description}</p>
@@ -128,7 +137,7 @@ useEffect(() => {
               </div>
             </div>
           )}
-          
+
           {/* Date Selector */}
           <div className="mt-6">
             <div className="flex items-center mb-2">
@@ -143,11 +152,10 @@ useEffect(() => {
               {getNextDays().map((date, index) => (
                 <button
                   key={index}
-                  className={`py-3 px-2 rounded-lg text-center transition-all duration-200 ${
-                    isSameDay(selectedDate, date)
+                  className={`py-3 px-2 rounded-lg text-center transition-all duration-200 ${isSameDay(selectedDate, date)
                       ? "bg-red-500 text-white"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
+                    }`}
                   onClick={() => handleDateSelect(date)}
                 >
                   <div className="text-xs">{date.toLocaleDateString('en-US', { weekday: 'short' })}</div>
@@ -166,16 +174,15 @@ useEffect(() => {
               <h3 className="text-gray-700 font-medium">Select Theater</h3>
             </div>
           </div>
-          
+
           <div className="space-y-1">
-            {Array.isArray(theaters) && theaters?.length>0 &&theaters.map((theater) => (
-              <div 
-                key={theater.id} 
-                className={`border-l-4 px-6 py-4 transition-all cursor-pointer ${
-                  selectedTheater?.id === theater.id 
-                    ? "border-l-red-500 bg-red-50" 
+            {Array.isArray(theaters) && theaters?.length > 0 && theaters.map((theater) => (
+              <div
+                key={theater.id}
+                className={`border-l-4 px-6 py-4 transition-all cursor-pointer ${selectedTheater?.id === theater.id
+                    ? "border-l-red-500 bg-red-50"
                     : "border-l-transparent hover:bg-gray-50"
-                }`}
+                  }`}
                 onClick={() => handleTheaterSelect(theater)}
               >
                 <div className="flex justify-between items-center">
@@ -186,22 +193,21 @@ useEffect(() => {
                       {theater.distance}
                     </div>
                   </div>
-                  <ChevronRight 
-                    size={18} 
-                    className={`transition-transform ${selectedTheater?.id === theater.id ? "transform rotate-90 text-red-500" : "text-gray-400"}`} 
+                  <ChevronRight
+                    size={18}
+                    className={`transition-transform ${selectedTheater?.id === theater.id ? "transform rotate-90 text-red-500" : "text-gray-400"}`}
                   />
                 </div>
-                
+
                 {selectedTheater?.id === theater.id && (
                   <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
                     {theater.time.map((time) => (
                       <button
                         key={time}
-                        className={`px-3 py-2 text-sm font-medium rounded-md transition-all flex items-center justify-center ${
-                          selectedTime === time
+                        className={`px-3 py-2 text-sm font-medium rounded-md transition-all flex items-center justify-center ${selectedTime === time
                             ? "bg-red-500 text-white"
                             : "border border-gray-300 text-gray-800 hover:bg-red-100"
-                        }`}
+                          }`}
                         onClick={(e) => {
                           e.stopPropagation();
                           setSelectedTime(time);
@@ -222,13 +228,12 @@ useEffect(() => {
       {/* Proceed Button */}
       <div className="flex justify-center my-8">
         <button
-          className={`px-8 py-3 text-white font-semibold rounded-md transition-all duration-300 flex items-center ${
-            selectedTheater && selectedTime
+          className={`px-8 py-3 text-white font-semibold rounded-md transition-all duration-300 flex items-center ${selectedTheater && selectedTime
               ? "bg-red-500 hover:bg-red-600"
               : "bg-gray-300 cursor-not-allowed"
-          }`}
+            }`}
           disabled={!selectedTheater || !selectedTime}
-          onClick={() => navigate('/seatSelection')}
+          onClick={handleClick}
         >
           <span>Continue to Seats</span>
           <ChevronRight size={18} className="ml-1" />
