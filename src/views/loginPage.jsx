@@ -112,7 +112,7 @@ const LoginPage = () => {
         <p className="text-center mb-6">Enter your personal details and start journey with us</p>
         <Link to="/SignUpPage">
           <button className="px-8 py-2 border-2 border-white rounded-full text-lg hover:bg-white hover:text-red-500 transition duration-300">
-            SIGN UP
+            SIGN U
           </button>
         </Link>
       </div>
