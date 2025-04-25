@@ -1,68 +1,175 @@
-import React from 'react';
-import { FaUsers, FaFilm, FaTicketAlt, FaChartBar, FaCog, FaUserPlus, FaBuilding } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { FaUsers, FaFilm, FaChartBar, FaCog, FaSignOutAlt, FaBuilding, FaTachometerAlt, FaTicketAlt } from 'react-icons/fa';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const AdminSidebar = () => {
-    const navigate = useNavigate();
-    const logout = () => {
-        localStorage.clear();
-        navigate("/");
-    };
-    return (
-        <div className='w-full'>
-            {/* Sidebar */}
-            <aside className="w-60 bg-gradient-to-b from-red-500 to-red-600 p-6 pt-10 flex flex-col h-screen shadow-lg fixed z-50 overflow-y-auto">
-                <div className="flex flex-col items-center border-b pb-4">
-                    <img
-                        // src={`http://localhost:1111/api/v1/post/image/${ImageUrl}`}
-                        src="./images/dummy-img.jpg"
-                        alt="Profile"
-                        className="rounded-full w-16 h-16 mb-2"
-                    />
-                    <h2 className="text-white font-semibold"></h2>
-                </div>
-                <nav className="mt-4 flex-1 overflow-auto">
-                    <ul className="space-y-3 text-white">
-                        <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer" onClick={() => navigate("/adminDashboard/dashboard")}>
-                            <FaChartBar className="text-lg" />
-                            <span className="text-base">Dashboard</span>
-                        </li>
-                        <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
-                            <FaUsers className="text-lg" />
-                            <span className="text-base">Manage Users</span>
-                        </li>
-                        <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer" onClick={() => navigate("/adminDashboard/movieList")}>
-                            <FaFilm className="text-lg" />
-                            <span className="text-base">Manage Movies</span>
-                        </li>
-                        <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer" onClick={() => navigate("/adminDashboard/theaterList")}>
-                            <FaBuilding className="text-lg" />
-                            <span className="text-base">Manage Theaters</span>
-                        </li>
-                        {/* <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
-                            <FaTicketAlt className="text-lg" />
-                            <span className="text-base">Manage Tickets</span>
-                        </li> */}
-                        <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer" onClick={() => navigate("/adminDashboard/userProfile")}>
-                            <FaChartBar className="text-lg" />
-                            <span className="text-base">Reports</span>
-                        </li>
-                        <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
-                            <FaCog className="text-lg" />
-                            <span className="text-base">Settings</span>
-                        </li>
-                        <li className="flex items-center space-x-3 p-2 rounded-lg hover:bg-red-700 cursor-pointer">
-                            <FaUserPlus className="text-lg" />
-                            <button
-                                onClick={logout}>
-                                <span>Logout</span>
-                            </button>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
-        </div>
-    )
-}
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [activeItem, setActiveItem] = useState("");
+  
+  // Check if current path matches the route
+  const isActive = (path) => {
+    return location.pathname.includes(path);
+  };
+  
+  const handleNavigation = (path) => {
+    setActiveItem(path);
+    navigate(`/adminDashboard/${path}`);
+  };
+  
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
 
-export default AdminSidebar
+  return (
+    <div className="w-64 bg-white flex flex-col h-[85vh]">
+      {/* Logo */}
+      <div className="flex items-center justify-center py-6 border-b">
+        <div className="flex items-center">
+          <FaTicketAlt size={24} className="mr-2 text-red-500" />
+          <div className="bg-gradient-to-r from-blue-500 to-red-500 bg-clip-text text-transparent">
+            <span className="font-bold text-xl tracking-tight">Book</span>
+            <span className="font-light text-xl">The</span>
+            <span className="font-bold text-xl">Show</span>
+          </div>
+        </div>
+      </div>
+      
+      {/* Navigation Links - Added max-height and overflow-y-auto for scrollability */}
+      <nav className="flex-grow py-6 px-4 max-h-96 overflow-y-auto">
+        <ul className="space-y-2">
+          <li>
+            <button
+              onClick={() => handleNavigation("dashboard")}
+              className={`flex items-center w-full space-x-3 p-3 rounded-lg transition-colors ${
+                isActive("/dashboard") || activeItem === "dashboard"
+                  ? "bg-red-100 text-red-600 font-medium" 
+                  : "text-gray-700 hover:bg-gray-50 active:bg-red-50"
+              }`}
+            >
+              <FaTachometerAlt size={18} className={isActive("/dashboard") || activeItem === "dashboard" ? "text-red-500" : "text-gray-500"} />
+              <span>Dashboard</span>
+            </button>
+          </li>
+          
+          <li>
+            <button
+              onClick={() => handleNavigation("users")}
+              className={`flex items-center w-full space-x-3 p-3 rounded-lg transition-colors ${
+                isActive("/users") || activeItem === "users"
+                  ? "bg-red-100 text-red-600 font-medium" 
+                  : "text-gray-700 hover:bg-gray-50 active:bg-red-50"
+              }`}
+            >
+              <FaUsers size={18} className={isActive("/users") || activeItem === "users" ? "text-red-500" : "text-gray-500"} />
+              <span>Manage Users</span>
+            </button>
+          </li>
+          
+          <li>
+            <button
+              onClick={() => handleNavigation("movieList")}
+              className={`flex items-center w-full space-x-3 p-3 rounded-lg transition-colors ${
+                isActive("/movieList") || activeItem === "movieList"
+                  ? "bg-red-100 text-red-600 font-medium" 
+                  : "text-gray-700 hover:bg-gray-50 active:bg-red-50"
+              }`}
+            >
+              <FaFilm size={18} className={isActive("/movieList") || activeItem === "movieList" ? "text-red-500" : "text-gray-500"} />
+              <span>Manage Movies</span>
+            </button>
+          </li>
+          
+          <li>
+            <button
+              onClick={() => handleNavigation("theaterList")}
+              className={`flex items-center w-full space-x-3 p-3 rounded-lg transition-colors ${
+                isActive("/theaterList") || activeItem === "theaterList"
+                  ? "bg-red-100 text-red-600 font-medium" 
+                  : "text-gray-700 hover:bg-gray-50 active:bg-red-50"
+              }`}
+            >
+              <FaBuilding size={18} className={isActive("/theaterList") || activeItem === "theaterList" ? "text-red-500" : "text-gray-500"} />
+              <span>Manage Theaters</span>
+            </button>
+          </li>
+          
+          <li>
+            <button
+              onClick={() => handleNavigation("reports")}
+              className={`flex items-center w-full space-x-3 p-3 rounded-lg transition-colors ${
+                isActive("/reports") || activeItem === "reports"
+                  ? "bg-red-100 text-red-600 font-medium" 
+                  : "text-gray-700 hover:bg-gray-50 active:bg-red-50"
+              }`}
+            >
+              <FaChartBar size={18} className={isActive("/reports") || activeItem === "reports" ? "text-red-500" : "text-gray-500"} />
+              <span>Reports</span>
+            </button>
+          </li>
+          
+          <li>
+            <button
+              onClick={() => handleNavigation("settings")}
+              className={`flex items-center w-full space-x-3 p-3 rounded-lg transition-colors ${
+                isActive("/settings") || activeItem === "settings"
+                  ? "bg-red-100 text-red-600 font-medium" 
+                  : "text-gray-700 hover:bg-gray-50 active:bg-red-50"
+              }`}
+            >
+              <FaCog size={18} className={isActive("/settings") || activeItem === "settings" ? "text-red-500" : "text-gray-500"} />
+              <span>Settings</span>
+            </button>
+          </li>
+          
+          {/* Adding extra items to demonstrate scrolling */}
+          <li>
+            <button
+              onClick={() => handleNavigation("bookings")}
+              className={`flex items-center w-full space-x-3 p-3 rounded-lg transition-colors ${
+                isActive("/bookings") || activeItem === "bookings"
+                  ? "bg-red-100 text-red-600 font-medium" 
+                  : "text-gray-700 hover:bg-gray-50 active:bg-red-50"
+              }`}
+            >
+              <FaTicketAlt size={18} className={isActive("/bookings") || activeItem === "bookings" ? "text-red-500" : "text-gray-500"} />
+              <span>Manage Bookings</span>
+            </button>
+          </li>
+          
+          <li>
+            <button
+              onClick={() => handleNavigation("analytics")}
+              className={`flex items-center w-full space-x-3 p-3 rounded-lg transition-colors ${
+                isActive("/analytics") || activeItem === "analytics"
+                  ? "bg-red-100 text-red-600 font-medium" 
+                  : "text-gray-700 hover:bg-gray-50 active:bg-red-50"
+              }`}
+            >
+              <FaChartBar size={18} className={isActive("/analytics") || activeItem === "analytics" ? "text-red-500" : "text-gray-500"} />
+              <span>Analytics</span>
+            </button>
+          </li>
+
+          <li>
+             {/* Logout Button */}
+      <div className=" border-t p-4">
+        <button
+          onClick={logout}
+          className="w-full flex items-center justify-center space-x-2 p-3 text-gray-700 hover:bg-red-50 rounded-lg transition-colors active:bg-red-100"
+        >
+          <FaSignOutAlt size={16} className="text-red-500" />
+          <span className="font-medium">Logout</span>
+        </button>
+      </div>
+          </li>
+        </ul>
+      </nav>
+      
+     
+    </div>
+  );
+};
+
+export default AdminSidebar;
