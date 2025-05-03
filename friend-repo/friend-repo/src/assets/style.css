@@ -1,0 +1,36 @@
+/* Change pagination bullet color */
+ .slider .swiper-pagination-bullet{
+    background-color: #bdb5b5df !important; /* Default color */
+    opacity: 1; /* Ensure bullets are fully visible */
+    transition: background-color 0.3s ease;
+  }
+  /* Change active bullet color */
+  .slider .swiper-pagination-bullet-active {
+    background-color: #3226dc !important; /* Active color */
+  }
+   
+  .slider2 .swiper-pagination{
+    bottom: -20px;
+  }
+
+  @keyframes borderExpand {
+    from {
+      border-width: 0 0 2px 0;
+    }
+    to {
+      border-width: 0 0 2px 100%;
+    }
+  }
+
+  .movie-card {
+    background: linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 65%);
+    z-index: 10px;
+  }
+  .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+    content: 'next';
+    color: red;
+}
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+  content: 'prev';
+  color: red;
+}
