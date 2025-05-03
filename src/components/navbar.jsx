@@ -1,15 +1,40 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { isLoggedIn } from '../auth';
-const Navbar = () => {
-  const [isShowMenu, setIsShowMenu] = useState(false);
+import { FiSearch } from "react-icons/fi";
+import axios from 'axios';
+import { use } from 'react';
+import { Search } from 'lucide-react';
+import SearchBar from './searchbar';
+import { useSelector } from 'react-redux';
 
-  //handle the menue show
+const Navbar = ({ onSearch }) => {
+  const [isShowMenu, setIsShowMenu] = useState(false);
+  const user = useSelector((state)=>state.auth.user);
+  console.log(user)
+  const [imageUrl, setImageUrl] = useState("");
+  const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
+  const handlehandleImageClick = () => {
+    const role = JSON.parse(localStorage.getItem('user'))?.role;
+    if (role === "user") {
+      navigate("/userDashboard")
+    }
+    else if (role === "admin") {
+      navigate("/adminDashboard")
+    }
+  }
+
+
   const handleShowMenu = () => {
     setIsShowMenu(!isShowMenu);
   }
+
+  
+
   return (
-    <div className='flex h-20 items-center justify-between border-y-2 shadow-lg fixed w-full bg-white z-[1000]'>
+    <div className='flex h-20 items-center justify-between border-y-2 shadow-lg fixed w-full bg-white z-[100]'>
       <ul className='mx-10 flex items-center justify-center'>
         <li className='relative'><i className="fa-solid fa-location-dot text-3xl text-red-400 cursor-pointer" onClick={() => handleShowMenu()}></i>
           {
@@ -46,21 +71,21 @@ const Navbar = () => {
                   <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-2 rounded-lg transition-opacity group-hover:bg-opacity-60">
                     <p class="text-white font-semibold">Mumbai-AII</p>
                   </div>
-                  
+
                 </div>
                 <div class="relative group cursor-pointer">
                   <img src="./images/Bengaluru-img.webp" alt="City" class="rounded-lg w-full h-full object-cover" />
                   <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-2 rounded-lg transition-opacity group-hover:bg-opacity-60">
                     <p class="text-white font-semibold">Bangaluru</p>
                   </div>
-                  
+
                 </div>
                 <div class="relative group cursor-pointer">
                   <img src="./images/Chandigarh-img.avif" alt="City" class="rounded-lg w-full h-full object-cover" />
                   <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-2 rounded-lg transition-opacity group-hover:bg-opacity-60">
                     <p class="text-white font-semibold">Chandigarh</p>
                   </div>
-                  
+
                 </div>
                 <div class="relative group cursor-pointer">
                   <img src="./images/Chennai-img.avif" alt="City" class="rounded-lg w-full h-full object-cover" />
@@ -73,14 +98,14 @@ const Navbar = () => {
                   <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-2 rounded-lg transition-opacity group-hover:bg-opacity-60">
                     <p class="text-white font-semibold">Hyderabad</p>
                   </div>
-                  
+
                 </div>
                 <div class="relative group cursor-pointer">
                   <img src="./images/Kolkata-img.avif" alt="City" class="rounded-lg w-full h-full object-cover" />
                   <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-2 rounded-lg transition-opacity group-hover:bg-opacity-60">
                     <p class="text-white font-semibold">Kolkata</p>
                   </div>
-                  
+
                 </div>
               </div>
 
@@ -118,7 +143,7 @@ const Navbar = () => {
                     <a href="#" class="hover:text-red-400">Delhi-NCR</a>
                   </div>
 
-                  
+
                   <div className="w-[50%] flex flex-col justify-center items-center gap-2 ">
                     <a href="#" class="hover:text-red-400">Dhanbad</a>
                     <a href="#" class="hover:text-red-400">Dharwad</a>
@@ -164,7 +189,7 @@ const Navbar = () => {
         <li className='group flex justify-center flex-col items-center'><Link to='/'>Home</Link>
           <div className='w-0 h-[2px] group-hover:w-full group-hover:bg-red-500 flex justify-center  group-hover:transition-all duration-300 ease-in-out'></div>
         </li>
-        <li className='group flex justify-center flex-col items-center'><Link to='/All Movies'>All Movies</Link>
+        <li className='group flex justify-center flex-col items-center'><Link to='/movies'>Movies</Link>
           <div className='w-0 h-[2px] group-hover:w-full group-hover:bg-red-500 flex justify-center group-hover:transition-all duration-300 ease-in-out '></div>
         </li>
         <li className='group flex justify-center flex-col items-center'><Link to='/event'>Events</Link>
@@ -180,17 +205,23 @@ const Navbar = () => {
       <ul className='flex flex-row gap-10 mx-10 items-center'>
 
         <li className='relative'>
-          <input
-            type="text"
-            className=" w-56 text-base h-10 p-3 border-2 border-gray-300 rounded-full outline-none focus:border-blue-500"
-            placeholder="Search movie?" />
-          <i className="bi bi-search text-xl font absolute top-2 right-3"></i>
+          <SearchBar/>
         </li>
         <li class="flex items-center justify-center">
-
-          {!isLoggedIn() && <><button class="text-red-400 text-xs  border-2 border-red-400 rounded-lg px-2 py-2 hover:bg-red-500 hover:text-white transition-colors duration-300">
-            <Link to='LoginPage'>Login/Register</Link>
-          </button></> }
+          {!isLoggedIn() ? <><button class="text-red-400 text-xs  border-2 border-red-400 rounded-lg px-2 py-2 hover:bg-red-500 hover:text-white transition-colors duration-300">
+            <Link to='LoginPage'>Login/Register</Link></button></>
+            : <div className='flex flex-row justify-center items-center gap-1'>
+              <div className='w-9 h-9 rounded-full bg-gray-700 flex  justify-center items-center overflow-hidden'>
+                <img
+                  src={user?.image || "./images/user-dummy.png"}
+                  alt="User Profile"
+                  onClick={() => handlehandleImageClick()}
+                  style={{ width: "200px", height: "auto", borderRadius: "50%" }}
+                />
+              </div>
+              <p className='text-black text-xs'>{user?.username}</p>
+            </div>
+          }
 
         </li>
       </ul>

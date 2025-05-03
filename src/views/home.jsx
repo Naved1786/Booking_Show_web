@@ -269,7 +269,7 @@ const Home = () => {
             <i className="fa-solid fa-angle-right text-xs"></i>
           </div>
 
-          <div className="w-full flex justify-center">
+          <div className="w-full flex justify-center ">
             <CardSlider slides={popularMovie} />
 
           </div>

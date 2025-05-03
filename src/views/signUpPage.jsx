@@ -1,66 +1,47 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { toast } from 'react-toast';
+import { Link,useNavigate } from 'react-router-dom';
 import { signup } from '../services/user-service';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 const SignUpPage = () => {
-  const [data, setData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    about: "about",
-  });
-console.log(data)
-const [error, setError] = useState({
-  errors: {},
-  isError: false,
-});
 
-const submitForm = (event) => {
-  event.preventDefault();
-  if (error.isError) {
-    toast.error("form Data is invalid !!");
-    setError({...error,isError:false})
-    return;
-  }
+  const [username, setUsename] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate=useNavigate();
   
-  signup(data)
-    .then((resp) => {
-      console.log(data);
-      toast.success("User register Successfully");
-      setData({
-        name: "",
-        email: "",
-        password: "",
-        about: "about",
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/register`, {
+        username: username,
+        email: email,
+        password: password,
+        role:"user"
+
       });
-    })
-    .catch((error) => {
-      console.log(error)
-      console.log("Error log");
-     
-      setError({
-        errors:error,
-        isError:true
-      })
-      
-      
-    });
-};
-//   useEffect(()=>{
-//     console.log(data)
-//   },[data])
-const handleChange = (event, field) => {
-  setData({ ...data, [field]: event.target.value });
-}
+      toast.success('Sign Up Successful! 🎉', {
+        onClose: () => navigate("/LoginPage"), // Redirect after toast closes
+        autoClose: 1000, // Auto close after 1 seconds
+      });
+    }
+    catch (error) {
+      console.log("Error while submitting the signup form:", error);
+      toast.error(error?.response?.data?.error || "Failed to sign up");
+    }
+  }
+
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen pt-20">
       <div className="w-1/2 bg-gradient-to-br from-red-500 to-orange-500 flex flex-col justify-center items-center text-white p-8">
         <h1 className="text-4xl font-bold mb-4">Welcome Back!</h1>
         <p className="text-center mb-6">To keep connected with us please login with your personal info</p>
         <Link to="/LoginPage">
-        <button className="px-8 py-2 border-2 border-white rounded-full text-lg hover:bg-white hover:text-red-500 transition duration-300">
-          SIGN IN
-        </button>
+          <button className="px-8 py-2 border-2 border-white rounded-full text-lg hover:bg-white hover:text-red-500 transition duration-300">
+            SIGN IN
+          </button>
         </Link>
       </div>
 
@@ -78,30 +59,36 @@ const handleChange = (event, field) => {
           </div>
         </div>
         <p className="text-gray-500 mb-4">or use your email for registration</p>
-        <form className="flex flex-col space-y-4 w-3/4" onSubmit={submitForm}>
+        <form className="flex flex-col space-y-4 w-3/4" onSubmit={(e) => handleSubmit(e)}>
           <input
             type="text"
-            placeholder="Name"
+            name="username"
+            placeholder="Username"
             className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-            onChange={(e)=> handleChange(e,"name")}
-            value={data.name}
+            value={username}
+            onChange={(e) => setUsename(e.target.value)}
+            required
           />
           <input
             type="email"
+            name="email"
             placeholder="Email"
             className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-            onChange={(e)=> handleChange(e,"email")}
-            value={data.email}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <input
             type="password"
+            name="password"
             placeholder="Password"
             className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-            onChange={(e)=> handleChange(e,"password")}
-            value={data.password}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
-          <button className="px-8 py-3 bg-orange-500 text-white rounded-full text-lg hover:bg-orange-600 transition duration-300">
-            SIGN UP
+          <button type="submit" className="px-8 py-3 bg-orange-500 text-white rounded-full text-lg hover:bg-orange-600 transition duration-300">
+            SIGN U
           </button>
         </form>
       </div>

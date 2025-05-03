@@ -8,7 +8,7 @@ const Footer = () => {
   },[location.pathname])
   return (
     
-      pathname !== "/LoginPage" && pathname !== "/movieDetails" ?(
+      pathname !== "/LoginPage" && pathname !== "/movieDetails" && pathname !== "/LoginPage" && pathname !== "/SignUpPage" && !pathname?.split('/')?.includes('userDashboard') && !pathname?.split('/')?.includes('adminDashboard')  && pathname !== "/seatSelection"?(
         <div className='w-full h-[450px] bg-black flex flex-col items-center'>
 
         <div className='flex justify-between w-[75%] h-28 items-center border-b-[1px] border-b-gray-600'>
