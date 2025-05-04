@@ -5,7 +5,6 @@ import SearchBar from '@/components/searchbar';
 import AddTheaterForm from '@/components/addTheaterForm';
 import { Switch } from "@/components/ui/switch";
 import ConfirmationCard from '@/components/confirmationCard';
-//theather list
 
 import {
     Table,
